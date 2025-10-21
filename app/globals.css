@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@theme {
+  /* Palette */
+  --color-text-light: #fff;
+
+  --color-primary-main: #384742;
+
+  --color-secondary-main: #c4ac83;
+}

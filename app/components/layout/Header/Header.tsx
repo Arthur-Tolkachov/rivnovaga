@@ -1,17 +1,16 @@
-import { Logo } from "../../ui/Logo";
-import styles from "./Header.module.scss";
-import cn from "classnames";
+import Container from "@/app/components/ui/Container";
 
-export const Header = () => {
+import HeaderBottom from "./HeaderBottom";
+import { HeaderTop } from "./HeaderTop";
+
+export function Header() {
   return (
-    <header className={cn("flex justify-center", styles.header)}>
-      <div></div>
+    <header className="fixed top-0 left-0 right-0">
+      <Container>
+        <HeaderTop />
 
-      <div>
-        <Logo />
-      </div>
-
-      <div></div>
+        <HeaderBottom />
+      </Container>
     </header>
   );
-};
+}
