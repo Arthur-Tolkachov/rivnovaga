@@ -22,16 +22,19 @@ export const CONTACT_LINKS_CONFIG = [
 export const SOCIAL_LINKS_CONFIG = [
   {
     id: "telegram",
+    title: "Telegram",
     href: "/",
     Icon: TelegramIcon as React.FC<React.SVGProps<SVGSVGElement>>,
   },
   {
     id: "viber",
+    title: "Viber",
     href: "/",
     Icon: ViberIcon as React.FC<React.SVGProps<SVGSVGElement>>,
   },
   {
     id: "whatsapp",
+    title: "WhatsApp",
     href: "/",
     Icon: WhatsAppIcon as React.FC<React.SVGProps<SVGSVGElement>>,
   },

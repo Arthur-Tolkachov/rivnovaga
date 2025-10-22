@@ -8,11 +8,25 @@ body {
   overflow-x: hidden;
 }
 
+/* Typography */
+h1 {
+  @apply text-4xl md:text-5xl font-medium;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl font-medium;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl font-medium;
+}
+
 @theme {
   /* Palette */
   --color-text-light: #fff;
 
   --color-primary-main: #384742;
 
-  --color-secondary-main: #c4ac83;
+  --color-secondary-main: #c19549;
+  --color-secondary-dark: #5d4112;
 }
