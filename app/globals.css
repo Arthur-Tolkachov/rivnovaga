@@ -25,7 +25,9 @@ h3 {
   /* Palette */
   --color-text-light: #fff;
 
+  --color-primary-light: #546760;
   --color-primary-main: #384742;
+  --color-primary-dark: #293732;
 
   --color-secondary-main: #c19549;
   --color-secondary-dark: #5d4112;
