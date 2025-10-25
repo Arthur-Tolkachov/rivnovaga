@@ -1,9 +1,10 @@
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
+import { SocialLinks } from "@/app/components/ui/SocialLinks";
 
 export default function Cta() {
   return (
-    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-cover py-20">
+    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-cover py-30">
       <Container>
         <div className="bg-secondary-dark-80 p-10 flex flex-col gap-10">
           <h2 className="text-secondary-light">
@@ -28,9 +29,14 @@ export default function Cta() {
               Не відкладайте захист своїх прав — зв’яжіться з нами вже сьогодні.
             </p>
           </div>
-          <Button variant="outlined" color="secondary">
-            Консультацiя
-          </Button>
+
+          <div className="flex justify-between items-center border-t-2 border-secondary-light pt-10">
+            <Button variant="outlined" color="secondary">
+              Консультацiя
+            </Button>
+
+            <SocialLinks />
+          </div>
         </div>
       </Container>
     </section>
