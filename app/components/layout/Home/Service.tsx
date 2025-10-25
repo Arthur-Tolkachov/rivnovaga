@@ -5,15 +5,15 @@ import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
 export default function Service() {
   return (
-    <section className="bg-secondary-light">
+    <section>
       <Container className="flex flex-col gap-10 py-15">
         <div className="flex justify-between">
           <h2 className="text-primary-dark w-fit">Послуги</h2>
           <Link
             href="/"
-            className="text-secondary-dark hover:underline"
+            className="text-secondary-darker hover:underline"
             endAdornment={
-              <ArrowRightIcon className="w-5 h-5 stroke-secondary-dark" />
+              <ArrowRightIcon className="w-5 h-5 stroke-secondary-darker" />
             }
             gap={10}
           >

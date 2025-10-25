@@ -16,13 +16,14 @@ export default function Button({
 }: ButtonProps) {
   const buttonStyles = {
     primary: {
-      filled: "",
-      outlined: "",
+      filled:
+        "bg-primary-main border-primary-main hover:bg-primary-dark duration-200",
+      outlined: "bg-secondary-main border-secondary-main",
     },
     secondary: {
-      filled: "",
+      filled: "border-primary-main",
       outlined:
-        "border-secondary-main hover:bg-secondary-main hover:text-secondary-dark duration-200",
+        "border-secondary-main hover:bg-secondary-main hover:text-secondary-darker duration-200",
     },
   };
 

@@ -2,7 +2,7 @@ import Container from "@/app/components/ui/Container";
 
 export default function About() {
   return (
-    <section className="py-15 bg-secondary-light scroll-mt-[110px]" id="about">
+    <section className="py-15 scroll-mt-[110px]" id="about">
       <Container className="flex flex-col gap-10">
         <div className="flex gap-15">
           <div className="flex flex-col gap-10 w-2/4">
