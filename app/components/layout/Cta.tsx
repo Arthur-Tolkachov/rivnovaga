@@ -30,7 +30,7 @@ export default function Cta() {
             </p>
           </div>
 
-          <div className="flex justify-between items-center border-t-2 border-secondary-light pt-10">
+          <div className="flex justify-between items-center border-t-1 border-secondary-light pt-10">
             <Button variant="outlined" color="secondary">
               Консультацiя
             </Button>

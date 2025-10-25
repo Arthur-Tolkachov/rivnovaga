@@ -8,6 +8,8 @@
 body {
   overflow-x: hidden;
   background-color: var(--color-secondary-light);
+  background: url("/assets/images/pattern.jpg");
+  background-size: 300px auto;
 }
 
 /* Typography */
