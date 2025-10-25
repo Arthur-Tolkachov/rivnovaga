@@ -2,13 +2,11 @@ import Container from "@/app/components/ui/Container";
 
 export default function About() {
   return (
-    <section className="py-15">
+    <section className="py-15 bg-secondary-light">
       <Container className="flex flex-col gap-10">
         <div className="flex gap-15">
           <div className="flex flex-col gap-10 w-2/4">
-            <h2 className="text-primary-dark w-fit relative">
-              Адвокат Київ та область
-            </h2>
+            <h2 className="text-primary-dark w-fit">Адвокат Київ та область</h2>
 
             <p className="text-primary-light">
               Вас вітає адвокатське об&apos;єднання «Рівновага». Ми группа
@@ -33,7 +31,7 @@ export default function About() {
           </div>
 
           <div className="flex flex-col gap-10 w-2/4">
-            <h2 className="text-primary-dark w-fit relative">
+            <h2 className="text-primary-dark w-fit">
               Дистанційне представництво
             </h2>
 

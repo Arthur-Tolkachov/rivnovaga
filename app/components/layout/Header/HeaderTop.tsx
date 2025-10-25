@@ -12,6 +12,7 @@ export function HeaderTop() {
             key={id}
             href={href}
             className="text-text-light group"
+            gap={15}
             startAdornment={
               <Icon className="w-5 h-5 fill-text-light group-hover:fill-secondary-main duration-200" />
             }
