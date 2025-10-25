@@ -1,6 +1,6 @@
 import Link from "@/app/components/ui/Link";
 
-import { SOCIAL_LINKS_CONFIG } from "./links.config";
+import { SOCIAL_LINKS_CONFIG } from "./social_links.config";
 
 export function SocialLinks() {
   return (
