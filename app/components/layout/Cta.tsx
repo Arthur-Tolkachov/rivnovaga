@@ -3,7 +3,7 @@ import Container from "@/app/components/ui/Container";
 
 export default function Cta() {
   return (
-    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-cover py-15">
+    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-cover py-20">
       <Container>
         <div className="bg-secondary-dark-80 p-10 flex flex-col gap-10">
           <h2 className="text-secondary-light">
@@ -11,22 +11,22 @@ export default function Cta() {
           </h2>
 
           <div className="flex flex-col gap-5">
-            <h3 className="text-secondary-light">
+            <p className="text-secondary-light text-xl">
               Зверніться до нас, щоб отримати кваліфіковану підтримку у
               вирішенні правових питань будь-якої складності. Ми надаємо
               професійні консультації, допомагаємо підготувати необхідні
               документи та забезпечуємо надійний захист ваших прав і інтересів у
               суді.
-            </h3>
+            </p>
 
-            <h3 className="text-secondary-light">
+            <p className="text-secondary-light text-xl">
               Наш досвід і відповідальний підхід гарантують ефективне вирішення
               справи у найкоротші терміни.
-            </h3>
+            </p>
 
-            <h3 className="text-secondary-light">
+            <p className="text-secondary-light text-xl">
               Не відкладайте захист своїх прав — зв’яжіться з нами вже сьогодні.
-            </h3>
+            </p>
           </div>
           <Button variant="outlined" color="secondary">
             Консультацiя
