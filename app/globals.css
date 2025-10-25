@@ -20,7 +20,7 @@ h2 {
 }
 
 h3 {
-  @apply text-xl md:text-xl font-medium;
+  @apply text-xl md:text-xl font-normal;
 }
 
 @theme {
