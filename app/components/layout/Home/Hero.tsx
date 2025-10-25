@@ -20,7 +20,7 @@ export function Hero() {
           </Button>
 
           <Link
-            href="#"
+            href="#about"
             className="w-fit absolute bottom-10 left-2/4 ml-[-7px]"
             startAdornment={
               <MouseIcon className="w-15 h-auto fill-text-light hover:fill-secondary-main duration-200" />

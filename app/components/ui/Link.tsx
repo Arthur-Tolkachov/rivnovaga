@@ -1,6 +1,7 @@
 import cn from "classnames";
 
 export interface LinkProps {
+  id?: string;
   children?: React.ReactNode;
   href: string;
   className?: string;
