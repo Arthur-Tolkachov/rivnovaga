@@ -5,18 +5,23 @@ export interface LinkProps {
   href: string;
   className?: string;
   startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
+  gap?: number;
 }
 
 export default function Link({
   children,
   startAdornment,
+  endAdornment,
   className,
+  gap,
   ...rest
 }: LinkProps) {
   return (
-    <a className={cn("flex gap-5 items-center", className)} {...rest}>
+    <a className={cn("flex items-center", className)} style={{ gap }} {...rest}>
       {startAdornment && startAdornment}
       {children && <span>{children}</span>}
+      {endAdornment && endAdornment}
     </a>
   );
 }
