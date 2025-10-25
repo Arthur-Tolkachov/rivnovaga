@@ -9,7 +9,7 @@ export function Header() {
     <>
       <header
         id="mainHeader"
-        className="sticky top-[-73px] left-0 right-0 z-1 mb-[-182px]"
+        className="sticky top-[-73px] left-0 right-0 z-2 mb-[-182px]"
         style={{
           opacity: 0,
           transform: "scale(0)",
