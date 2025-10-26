@@ -23,7 +23,7 @@ export default function Card({
       )}
     >
       <div
-        className="bg-cover absolute inset-0 group-hover:scale-110 duration-200"
+        className="bg-cover absolute inset-0 opacity-90 group-hover:scale-110 group-hover:opacity-100 duration-200"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       />
 

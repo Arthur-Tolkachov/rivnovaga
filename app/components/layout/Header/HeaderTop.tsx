@@ -11,13 +11,13 @@ export function HeaderTop() {
           <Link
             key={id}
             href={href}
-            className="text-text-light group"
+            className="text-secondary-light group"
             gap={15}
             startAdornment={
-              <Icon className="w-5 h-5 fill-text-light group-hover:fill-secondary-main duration-200" />
+              <Icon className="w-5 h-5 fill-secondary-light group-hover:fill-secondary-main duration-200" />
             }
           >
-            <span className="text-text-light group-hover:underline">
+            <span className="text-secondary-light group-hover:underline">
               example@gmail.com
             </span>
           </Link>

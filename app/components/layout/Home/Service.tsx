@@ -17,7 +17,7 @@ export default function Service() {
             }
             gap={10}
           >
-            Дивитись всi
+            Переглянути всi
           </Link>
         </div>
 

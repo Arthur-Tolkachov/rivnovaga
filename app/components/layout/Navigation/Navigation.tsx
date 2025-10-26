@@ -10,7 +10,7 @@ export default function Navigation() {
           <li key={id}>
             <Link
               href={href}
-              className="text-text-light hover:text-secondary-main duration-200"
+              className="text-secondary-light hover:text-secondary-main duration-200"
             >
               {label}
             </Link>
