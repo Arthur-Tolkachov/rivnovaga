@@ -14,7 +14,7 @@ export default function Logo() {
         priority
       />
 
-      <div className="flex flex-col text-text-light group-hover:text-secondary-main duration-200">
+      <div className="flex flex-col text-secondary-light group-hover:text-secondary-main duration-200">
         <span className="text-xl">Адвокатське об&apos;єднання</span>
 
         <span className="text-2xl">«Рівновага»</span>

@@ -31,7 +31,7 @@ export default function Cta() {
           </div>
 
           <div className="flex justify-between items-center border-t-1 border-secondary-light pt-10">
-            <Button variant="outlined" color="secondary">
+            <Button variant="outlined-light" color="secondary">
               Консультацiя
             </Button>
 

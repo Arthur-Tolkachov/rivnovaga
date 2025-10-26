@@ -10,7 +10,7 @@ export function SocialLinks() {
           <Link
             className="group"
             startAdornment={
-              <Icon className="w-5 h-5 fill-text-light group-hover:fill-secondary-main duration-200" />
+              <Icon className="w-5 h-5 fill-secondary-light group-hover:fill-secondary-main duration-200" />
             }
             {...rest}
           />
