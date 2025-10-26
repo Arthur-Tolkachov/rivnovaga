@@ -18,12 +18,12 @@ export default function Card({
     <Link
       href={href}
       className={cn(
-        "flex flex-col-reverse w-1/4 group relative overflow-hidden",
+        "flex flex-col-reverse group relative overflow-hidden",
         className
       )}
     >
       <div
-        className="bg-cover absolute inset-0 opacity-90 group-hover:scale-110 group-hover:opacity-100 duration-200"
+        className="bg-cover bg-center absolute inset-0 opacity-90 group-hover:scale-110 group-hover:opacity-100 duration-200"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       />
 
