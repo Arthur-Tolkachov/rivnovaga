@@ -9,7 +9,7 @@ import {
 export function Map() {
   return (
     // TODO: remove key
-    <APIProvider apiKey={"AIzaSyBx_l-VnBle1GmOR05D5hJbZmqXu50qShM"}>
+    <APIProvider apiKey={""}>
       <GoogleMap
         style={{ width: "100%", height: "600px" }}
         defaultCenter={{ lat: 50.520469750328935, lng: 30.20618508465575 }}
