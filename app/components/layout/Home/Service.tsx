@@ -21,7 +21,7 @@ export default function Service() {
           </Link>
         </div>
 
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-3 gap-5">
           <Card
             href="/"
             className="min-h-[350px]"
@@ -73,23 +73,6 @@ export default function Service() {
           >
             Встановлення юридичних фактів - смерть, рідство, народження,
             батьківство
-          </Card>
-
-          <Card
-            href="/"
-            className="min-h-[350px]"
-            backgroundImageUrl="/assets/images/6borgnik.png"
-          >
-            Захист прав боржників та стягувачів у виконавчому провадженні
-          </Card>
-
-          <Card
-            href="/"
-            className="min-h-[350px]"
-            backgroundImageUrl="/assets/images/2zahist.jpg"
-          >
-            Захист підозрюваних, обвинувачених, засуджених на всіх стадіях
-            кримінального провадження
           </Card>
         </div>
       </Container>
