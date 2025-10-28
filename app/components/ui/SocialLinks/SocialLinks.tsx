@@ -12,8 +12,8 @@ interface SocialLinksProps {
 
 export function SocialLinks({ color = "light" }: SocialLinksProps) {
   const socialLinksStyle = {
-    dark: "fill-secondary-dark group-hover:fill-secondary-main",
-    light: "fill-secondary-light group-hover:fill-secondary-main",
+    dark: "fill-secondary-dark group-hover:fill-secondary-lighter",
+    light: "fill-secondary-light group-hover:fill-secondary-lighter",
   };
 
   return (

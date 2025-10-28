@@ -1,7 +1,7 @@
 import cn from "classnames";
 import Link from "next/link";
 
-type ButtonVariant = "outlined-light" | "outlined-dark" | "filled";
+type ButtonVariant = "outlined-light" | "outlined-dark" | "filled" | "rounded";
 type ButtonColor = "primary" | "secondary";
 
 export interface ButtonProps {
@@ -24,18 +24,22 @@ export default function Button({
   const buttonStyles = {
     primary: {
       filled:
-        "bg-primary-main border-primary-main hover:bg-primary-dark duration-200",
+        "w-fit px-8 py-4 bg-primary-main border-primary-main hover:bg-primary-dark duration-200",
+      rounded:
+        "rounded-full bg-primary-main border-primary-main w-[50px] h-[50px] hover:bg-primary-lighter hover:border-primary-lighter duration-200",
       ["outlined-light"]:
-        "bg-primary-main border-secondary-main text-primary-light",
+        "w-fit px-8 py-4 bg-primary-main border-secondary-main text-primary-light",
       ["outlined-dark"]:
-        "bg-primary-main border-primary-main text-primary-dark",
+        "w-fit px-8 py-4 bg-primary-main border-primary-main text-primary-dark",
     },
     secondary: {
-      filled: "border-primary-main",
+      filled: "w-fit px-8 py-4 border-primary-main",
+      rounded:
+        "rounded-full bg-secondary-main border-secondary-main w-[50px] h-[50px] hover:bg-secondary-lighter hover:border-secondary-lighter duration-200",
       ["outlined-light"]:
-        "border-secondary-main text-secondary-light hover:bg-secondary-main hover:text-secondary-darker duration-200",
+        "w-fit px-8 py-4 border-secondary-main text-secondary-light hover:bg-secondary-main hover:text-secondary-dark duration-200",
       ["outlined-dark"]:
-        "border-secondary-main text-secondary-darker hover:bg-secondary-main hover:text-secondary-darker duration-200",
+        "w-fit px-8 py-4 border-secondary-main text-secondary-darker hover:bg-secondary-main hover:text-secondary-dark duration-200",
     },
   };
 
@@ -44,7 +48,7 @@ export default function Button({
       <Link
         href={href}
         className={cn(
-          "cursor-pointer w-fit px-8 py-4 text-xl border-solid border-2 text-center",
+          "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
           buttonStyles[color][variant],
           className
         )}
@@ -58,7 +62,7 @@ export default function Button({
     <button
       onClick={onClick}
       className={cn(
-        "cursor-pointer w-fit px-8 py-4 text-xl border-solid border-2 text-center",
+        "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
         buttonStyles[color][variant],
         className
       )}

@@ -37,9 +37,9 @@ export default function Contacts() {
                   </span>
                 </Link>
               ))}
-            </div>
 
-            <SocialLinks color="dark" />
+              <SocialLinks color="dark" />
+            </div>
           </div>
         </div>
 

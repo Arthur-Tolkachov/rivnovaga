@@ -4,7 +4,7 @@ import { SocialLinks } from "@/app/components/ui/SocialLinks";
 
 export default function Cta() {
   return (
-    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-center bg-cover py-30">
+    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover py-30">
       <Container>
         <div className="bg-secondary-dark-80 p-10 flex flex-col gap-10">
           <h2 className="text-secondary-light">
