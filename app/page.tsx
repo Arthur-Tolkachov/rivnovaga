@@ -3,23 +3,30 @@ import About from "@/app/components/layout/Home/About";
 import Contacts from "@/app/components/layout/Home/Contacts";
 import { Hero } from "@/app/components/layout/Home/Hero";
 import Practice from "@/app/components/layout/Home/Practice";
-import Service from "@/app/components/layout/Home/Service";
+import Services from "@/app/components/layout/Home/Services";
 
 import { UsefulLinks } from "./components/layout/Home/UsefulLinks";
+import { DESKTOP_HEADER_HEIGHT } from "./utils/rootLayout.constants";
 
 export default function Home() {
   return (
     <div>
-      <Hero />
+      <div
+        style={{
+          marginTop: `-${DESKTOP_HEADER_HEIGHT}px`,
+        }}
+      >
+        <Hero />
+      </div>
 
-      <main>
+      <div>
         <About />
-        <Service />
+        <Services />
         <Cta />
         <Practice />
         <Contacts />
         <UsefulLinks />
-      </main>
+      </div>
     </div>
   );
 }

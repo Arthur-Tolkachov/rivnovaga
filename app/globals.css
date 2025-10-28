@@ -6,6 +6,11 @@
   font-family: var(--font-geist-sans), sans;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   overflow-x: hidden;
   background-color: var(--color-secondary-light);

@@ -8,7 +8,7 @@ import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary-main py-15">
+    <footer className="bg-secondary-main py-15 h-fit">
       <Container className="grid grid-cols-3 items-start">
         <Logo />
 

@@ -36,32 +36,34 @@ export default function UtilsPanel() {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 flex flex-col gap-3">
+    <div className="fixed bottom-8 right-8 flex flex-col gap-10">
       {show && (
-        <Button variant="rounded" onClick={handleClick}>
+        <Button variant="rounded" color="secondary" onClick={handleClick}>
           <ArrowRightIcon className="w-10 h-10 rotate-[-90deg] stroke-secondary-light" />
         </Button>
       )}
 
-      <Button href="/" variant="rounded">
-        <PhoneIcon className="w-5 h-5 fill-secondary-light" />
-      </Button>
+      <div className="flex flex-col gap-3">
+        <Button href="/" variant="rounded">
+          <PhoneIcon className="w-5 h-5 fill-secondary-light" />
+        </Button>
 
-      <Button href="/" variant="rounded">
-        <TelegramIcon className="w-5 h-5 fill-secondary-light" />
-      </Button>
+        <Button href="/" variant="rounded">
+          <TelegramIcon className="w-5 h-5 fill-secondary-light" />
+        </Button>
 
-      <Button href="/" variant="rounded">
-        <ViberIcon className="w-5 h-5 fill-secondary-light" />
-      </Button>
+        <Button href="/" variant="rounded">
+          <ViberIcon className="w-5 h-5 fill-secondary-light" />
+        </Button>
 
-      <Button href="/" variant="rounded">
-        <WhatsAppIcon className="w-5 h-5 fill-secondary-light" />
-      </Button>
+        <Button href="/" variant="rounded">
+          <WhatsAppIcon className="w-5 h-5 fill-secondary-light" />
+        </Button>
 
-      <Button href="/" variant="rounded">
-        <EmailIcon className="w-5 h-5 fill-secondary-light" />
-      </Button>
+        <Button href="/" variant="rounded">
+          <EmailIcon className="w-5 h-5 fill-secondary-light" />
+        </Button>
+      </div>
     </div>
   );
 }
