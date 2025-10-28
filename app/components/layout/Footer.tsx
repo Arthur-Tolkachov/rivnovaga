@@ -1,0 +1,73 @@
+import NextLink from "next/link";
+
+import Container from "@/app/components/ui/Container";
+import Link from "@/app/components/ui/Link";
+import Logo from "@/app/components/ui/Logo";
+import { SocialLinks } from "@/app/components/ui/SocialLinks";
+import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
+
+export default function Footer() {
+  return (
+    <footer className="bg-secondary-main py-15">
+      <Container className="grid grid-cols-3 items-start">
+        <Logo />
+
+        <ul className="flex flex-col gap-3">
+          <li>
+            <NextLink
+              href="/"
+              className="text-secondary-light hover:text-secondary-lighter duration-200"
+            >
+              Послуги
+            </NextLink>
+          </li>
+          <li>
+            <NextLink
+              href="/"
+              className="text-secondary-light hover:text-secondary-lighter duration-200"
+            >
+              Про адвокатiв
+            </NextLink>
+          </li>
+          <li>
+            <NextLink
+              href="/"
+              className="text-secondary-light hover:text-secondary-lighter duration-200"
+            >
+              Наша практика
+            </NextLink>
+          </li>
+          <li>
+            <NextLink
+              href="/"
+              className="text-secondary-light hover:text-secondary-lighter duration-200"
+            >
+              Контакти
+            </NextLink>
+          </li>
+        </ul>
+
+        <ul className="flex flex-col gap-5">
+          {CONTACT_LINKS_CONFIG.map(({ id, href, Icon, label }) => (
+            <li key={id}>
+              <Link
+                href={href}
+                className="text-secondary-light group"
+                gap={15}
+                startAdornment={
+                  <Icon className="w-5 h-5 fill-secondary-light group-hover:fill-secondary-lighter duration-200" />
+                }
+              >
+                <span className="text-secondary-light group-hover:underline">
+                  {label}
+                </span>
+              </Link>
+            </li>
+          ))}
+
+          <SocialLinks />
+        </ul>
+      </Container>
+    </footer>
+  );
+}

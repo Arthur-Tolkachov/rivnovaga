@@ -8,8 +8,7 @@ import {
 
 export function Map() {
   return (
-    // TODO: remove key
-    <APIProvider apiKey={""}>
+    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
       <GoogleMap
         style={{ width: "100%", height: "600px" }}
         defaultCenter={{ lat: 50.520469750328935, lng: 30.20618508465575 }}

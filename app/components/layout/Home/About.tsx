@@ -8,7 +8,7 @@ export default function About() {
           <div className="flex flex-col gap-10 w-2/4">
             <h2 className="text-primary-dark w-fit">Адвокат Київ та область</h2>
 
-            <p className="text-primary-light">
+            <p className="text-primary-lighter">
               Вас вітає адвокатське об&apos;єднання «Рівновага». Ми группа
               досвідченних адвокатів, які допоможуть Вам у будь-якій справі. Ми
               маємо великий досвід роботи із судовою системою, правоохоронними
@@ -35,7 +35,7 @@ export default function About() {
               Дистанційне представництво
             </h2>
 
-            <p className="text-primary-light">
+            <p className="text-primary-lighter">
               Якщо Ви знаходитесь у будь-якому куточку України, на окупованій
               території або за кордоном, Ви можете віддалено укласти договір з
               нашими адвокатами та скористатися нашими послугами. Послуги будуть

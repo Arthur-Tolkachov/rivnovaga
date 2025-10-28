@@ -1,3 +1,4 @@
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +15,12 @@ export default function Logo() {
         priority
       />
 
-      <div className="flex flex-col text-secondary-light group-hover:text-secondary-main duration-200">
+      <div
+        className={cn(
+          "flex flex-col text-secondary-light duration-200",
+          "group-hover:text-secondary-lighter"
+        )}
+      >
         <span className="text-xl">Адвокатське об&apos;єднання</span>
 
         <span className="text-2xl">«Рівновага»</span>

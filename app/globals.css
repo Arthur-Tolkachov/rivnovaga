@@ -29,12 +29,14 @@ h3 {
 @theme {
   /* Palette */
   --color-primary-light: #546760;
+  --color-primary-lighter: #535b58;
   --color-primary-main: #384742;
   --color-primary-main-90: rgba(56, 71, 55, 0.9);
   --color-primary-dark: #293732;
 
   --color-secondary-light: #f5f5f5;
-  --color-secondary-main: #c19549;
+  --color-secondary-lighter: #c19549;
+  --color-secondary-main: #927752;
   --color-secondary-darker: #5d4112;
   --color-secondary-dark: #31271a;
   --color-secondary-dark-80: rgba(49, 39, 26, 0.8);
