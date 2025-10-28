@@ -1,13 +1,12 @@
 import Link from "@/app/components/ui/Link";
 import { SocialLinks } from "@/app/components/ui/SocialLinks";
-
-import { CONTACT_LINKS_CONFIG } from "./links.config";
+import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
 
 export function HeaderTop() {
   return (
     <div className="flex justify-between items-center border-b border-b-secondary-main py-6">
       <div className="flex gap-10">
-        {CONTACT_LINKS_CONFIG.map(({ id, href, Icon }) => (
+        {CONTACT_LINKS_CONFIG.map(({ id, href, Icon, label }) => (
           <Link
             key={id}
             href={href}
@@ -18,7 +17,7 @@ export function HeaderTop() {
             }
           >
             <span className="text-secondary-light group-hover:underline">
-              example@gmail.com
+              {label}
             </span>
           </Link>
         ))}

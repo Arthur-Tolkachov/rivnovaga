@@ -1,8 +1,21 @@
+import cn from "classnames";
+
 import Link from "@/app/components/ui/Link";
 
 import { SOCIAL_LINKS_CONFIG } from "./social_links.config";
 
-export function SocialLinks() {
+type SocialLinksColor = "dark" | "light";
+
+interface SocialLinksProps {
+  color?: SocialLinksColor;
+}
+
+export function SocialLinks({ color = "light" }: SocialLinksProps) {
+  const socialLinksStyle = {
+    dark: "fill-secondary-dark group-hover:fill-secondary-main",
+    light: "fill-secondary-light group-hover:fill-secondary-main",
+  };
+
   return (
     <ul className="flex gap-6">
       {SOCIAL_LINKS_CONFIG.map(({ id, Icon, ...rest }) => (
@@ -10,7 +23,9 @@ export function SocialLinks() {
           <Link
             className="group"
             startAdornment={
-              <Icon className="w-5 h-5 fill-secondary-light group-hover:fill-secondary-main duration-200" />
+              <Icon
+                className={cn("w-5 h-5  duration-200", socialLinksStyle[color])}
+              />
             }
             {...rest}
           />

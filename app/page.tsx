@@ -5,6 +5,8 @@ import { Hero } from "@/app/components/layout/Home/Hero";
 import Practice from "@/app/components/layout/Home/Practice";
 import Service from "@/app/components/layout/Home/Service";
 
+import { UsefulLinks } from "./components/layout/Home/UsefulLinks";
+
 export default function Home() {
   return (
     <div>
@@ -16,6 +18,7 @@ export default function Home() {
         <Cta />
         <Practice />
         <Contacts />
+        <UsefulLinks />
       </main>
     </div>
   );
