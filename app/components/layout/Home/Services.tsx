@@ -3,7 +3,7 @@ import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
-export default function Service() {
+export default function Services() {
   return (
     <section className="py-15">
       <Container className="flex flex-col gap-10">
