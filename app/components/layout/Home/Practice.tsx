@@ -5,8 +5,8 @@ import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
 export default function Practice() {
   return (
-    <section>
-      <Container className="py-15 flex flex-col gap-10">
+    <section className="py-15">
+      <Container className="flex flex-col gap-10">
         <div className="flex justify-between">
           <h2 className="text-secondary-dark w-fit">Наша практика</h2>
           <Link

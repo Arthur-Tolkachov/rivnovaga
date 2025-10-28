@@ -5,8 +5,8 @@ import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
 export default function Service() {
   return (
-    <section>
-      <Container className="flex flex-col gap-10 py-15">
+    <section className="py-15">
+      <Container className="flex flex-col gap-10">
         <div className="flex justify-between">
           <h2 className="text-primary-dark w-fit">Послуги</h2>
           <Link
@@ -51,7 +51,7 @@ export default function Service() {
           <Card
             href="/"
             className="min-h-[350px]"
-            backgroundImageUrl="/assets/images/2zahist.jpg"
+            backgroundImageUrl="/assets/images/2zahist.png"
           >
             Захист підозрюваних, обвинувачених, засуджених на всіх стадіях
             кримінального провадження

@@ -5,7 +5,7 @@ import MouseIcon from "@/public/assets/icons/mouse.svg";
 
 export function Hero() {
   return (
-    <div className="bg-[url(/assets/images/hero_bg.jpg)] bg-cover w-full h-screen relative">
+    <section className="bg-[url(/assets/images/hero_bg.jpg)] bg-cover w-full h-screen relative">
       <Container className="flex h-full">
         <div className="flex flex-col justify-center gap-10">
           <h2 className="text-secondary-main">Ваш захист — наш пріоритет.</h2>
@@ -28,6 +28,6 @@ export function Hero() {
           />
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

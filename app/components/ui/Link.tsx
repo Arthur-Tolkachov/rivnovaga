@@ -8,6 +8,7 @@ export interface LinkProps {
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
   gap?: number;
+  target?: "_blank" | "_self" | "_parent";
 }
 
 export default function Link({
