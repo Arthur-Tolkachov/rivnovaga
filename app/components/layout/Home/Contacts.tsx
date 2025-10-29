@@ -1,7 +1,7 @@
+import { Map } from "@/app/components/layout/Map";
+import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Container from "@/app/components/ui/Container";
-import { Map } from "@/app/components/ui/Map/Map";
-import { SocialLinks } from "@/app/components/ui/SocialLinks";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
+import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
 
 import Link from "../../ui/Link";
 

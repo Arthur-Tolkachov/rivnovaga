@@ -10,7 +10,6 @@ export const useHeader = () => {
 
   const [opacity, setOpacity] = useState(initialOpacity);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("isLoading :>> ", opacity);
 
   const calculateOpacity = (scrollValue: number) => {
     const value = scrollValue / 300;

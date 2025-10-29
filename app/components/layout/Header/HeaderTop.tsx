@@ -1,6 +1,6 @@
 import Link from "@/app/components/ui/Link";
-import { SocialLinks } from "@/app/components/ui/SocialLinks";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
+import { SocialLinks } from "@/app/components/layout/SocialLinks";
+import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
 
 export function HeaderTop() {
   return (
