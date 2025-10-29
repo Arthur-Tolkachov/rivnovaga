@@ -10,7 +10,7 @@ export default function Services() {
         <div className="flex justify-between">
           <h2 className="text-primary-dark w-fit">Послуги</h2>
           <Link
-            href="/"
+            href="/services"
             className="text-secondary-darker hover:underline"
             endAdornment={
               <ArrowRightIcon className="w-5 h-5 stroke-secondary-darker" />
@@ -23,7 +23,7 @@ export default function Services() {
 
         <div className="grid grid-cols-3 gap-5">
           <Card
-            href="/"
+            href="services/slug1"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/4family.png"
           >
@@ -32,7 +32,7 @@ export default function Services() {
           </Card>
 
           <Card
-            href="/"
+            href="services/slug2"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/5fakty.png"
           >
@@ -41,7 +41,7 @@ export default function Services() {
           </Card>
 
           <Card
-            href="/"
+            href="services/slug3"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/6borgnik.png"
           >
@@ -49,7 +49,7 @@ export default function Services() {
           </Card>
 
           <Card
-            href="/"
+            href="services/slug4"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/2zahist.png"
           >
@@ -58,7 +58,7 @@ export default function Services() {
           </Card>
 
           <Card
-            href="/"
+            href="services/slug5"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/4family.png"
           >
@@ -67,7 +67,7 @@ export default function Services() {
           </Card>
 
           <Card
-            href="/"
+            href="services/slug6"
             className="min-h-[350px]"
             backgroundImageUrl="/assets/images/5fakty.png"
           >
