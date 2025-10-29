@@ -24,7 +24,7 @@ export default function Services() {
         <div className="grid grid-col-3">
           <div className="grid grid-cols-3 gap-5">
             <Card
-              href="/"
+              href="services/slug5"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/4family.png"
             >
@@ -33,7 +33,7 @@ export default function Services() {
             </Card>
 
             <Card
-              href="/"
+              href="services/slug4"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/5fakty.png"
             >
@@ -42,7 +42,7 @@ export default function Services() {
             </Card>
 
             <Card
-              href="/"
+              href="services/slug3"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/6borgnik.png"
             >
@@ -50,7 +50,7 @@ export default function Services() {
             </Card>
 
             <Card
-              href="/"
+              href="services/slug2"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/2zahist.png"
             >
@@ -59,7 +59,7 @@ export default function Services() {
             </Card>
 
             <Card
-              href="/"
+              href="services/slug1"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/4family.png"
             >
@@ -68,7 +68,7 @@ export default function Services() {
             </Card>
 
             <Card
-              href="/"
+              href="services/slug"
               className="min-h-[350px]"
               backgroundImageUrl="/assets/images/5fakty.png"
             >
