@@ -3,8 +3,8 @@ import NextLink from "next/link";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
 import Logo from "@/app/components/ui/Logo";
-import { SocialLinks } from "@/app/components/ui/SocialLinks";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constans";
+import { SocialLinks } from "@/app/components/layout/SocialLinks";
+import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
 
 export default function Footer() {
   return (

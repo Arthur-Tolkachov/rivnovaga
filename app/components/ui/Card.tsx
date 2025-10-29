@@ -28,7 +28,7 @@ export default function Card({
       />
 
       <div className="bg-primary-main-90 p-3 z-1 min-h-[150px]">
-        <h3 className="text-secondary-light group-hover:text-secondary-main duration-200">
+        <h3 className="text-secondary-light group-hover:text-secondary-lighter duration-200">
           {children}
         </h3>
       </div>
