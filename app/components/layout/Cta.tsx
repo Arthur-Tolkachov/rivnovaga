@@ -1,6 +1,6 @@
+import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
 
 export default function Cta() {
   return (
