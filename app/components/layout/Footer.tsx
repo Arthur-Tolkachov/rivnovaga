@@ -1,9 +1,9 @@
 import NextLink from "next/link";
 
+import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
 import Logo from "@/app/components/ui/Logo";
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
 
 export default function Footer() {
