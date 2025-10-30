@@ -4,7 +4,7 @@ import Link from "@/app/components/ui/Link";
 import MainSection from "@/app/components/ui/MainSection";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
-export default function Services() {
+export default function ServicesSection() {
   return (
     <MainSection>
       <Container className="flex flex-col gap-10">

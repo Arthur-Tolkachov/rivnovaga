@@ -4,7 +4,7 @@ import Link from "@/app/components/ui/Link";
 import MainSection from "@/app/components/ui/MainSection";
 import MouseIcon from "@/public/assets/icons/mouse.svg";
 
-export function Hero() {
+export default function HeroSection() {
   return (
     <MainSection className="bg-[url(/assets/images/hero_bg.jpg)] bg-fixed bg-cover w-full h-screen relative">
       <Container className="flex h-full">

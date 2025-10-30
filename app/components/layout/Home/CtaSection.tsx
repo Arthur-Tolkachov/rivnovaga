@@ -3,7 +3,7 @@ import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
 import MainSection from "@/app/components/ui/MainSection";
 
-export default function Cta() {
+export default function CtaSection() {
   return (
     <MainSection className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover py-30">
       <Container>

@@ -41,7 +41,7 @@ export const BREADCRUMBS_CONFIG = [
   },
 ];
 
-export default function Service() {
+export default function ServicePage() {
   return (
     <MainSection>
       <Container className="flex flex-col gap-10">
