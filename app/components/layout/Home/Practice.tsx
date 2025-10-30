@@ -1,11 +1,12 @@
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
+import MainSection from "@/app/components/ui/MainSection";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
 export default function Practice() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <div className="flex justify-between">
           <h2 className="text-secondary-dark w-fit">Наша практика</h2>
@@ -44,7 +45,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -74,7 +75,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -104,7 +105,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -134,7 +135,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -164,7 +165,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -194,7 +195,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -205,6 +206,6 @@ export default function Practice() {
           </div>
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
+import MainSection from "@/app/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Наша практика | Адвокатське об'єднання «Рівновага»",
@@ -36,7 +37,7 @@ export const BREADCRUMBS_CONFIG = [
 
 export default function Practice() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
@@ -77,7 +78,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -107,7 +108,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -137,7 +138,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -167,7 +168,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -197,7 +198,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -227,7 +228,7 @@ export default function Practice() {
               </span>
 
               <Button
-                href="/"
+                href="/practice/123"
                 color="secondary"
                 variant="outlined-dark"
                 className="mt-5 w-full"
@@ -238,6 +239,6 @@ export default function Practice() {
           </div>
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

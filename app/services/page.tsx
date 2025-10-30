@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Card from "@/app/components/ui/Card";
 import Container from "@/app/components/ui/Container";
+import MainSection from "@/app/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Адвокатські послуги | Адвокатське об'эднання «Рівновага»",
@@ -35,7 +36,7 @@ export const BREADCRUMBS_CONFIG = [
 
 export default function Services() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
@@ -107,6 +108,6 @@ export default function Services() {
           </div>
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

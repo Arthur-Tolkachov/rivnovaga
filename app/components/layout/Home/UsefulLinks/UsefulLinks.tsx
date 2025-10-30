@@ -1,11 +1,12 @@
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
+import MainSection from "@/app/components/ui/MainSection";
 
 import { USEFUL_LINKS_CONFIG } from "./links.constants";
 
 export function UsefulLinks() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <h2 className="text-secondary-dark">Кориснi посилання</h2>
 
@@ -30,6 +31,6 @@ export function UsefulLinks() {
           ))}
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }
