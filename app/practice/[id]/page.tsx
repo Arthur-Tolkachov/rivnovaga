@@ -1,6 +1,30 @@
+import { Metadata } from "next";
+
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Container from "@/app/components/ui/Container";
 import MainSection from "@/app/components/ui/MainSection";
+
+export const metadata: Metadata = {
+  title: "Відшкодування шкоди після ДТП | Адвокатське об'єднання «Рівновага»",
+  description:
+    "Приклади рішень судів щодо відшкодування шкоди, завданої внаслідок дорожньо-транспортних пригод. Професійний захист прав потерпілих та клієнтів адвокатів АО «Рівновага».",
+  keywords: [
+    "відшкодування шкоди",
+    "ДТП",
+    "судові рішення",
+    "адвокатська практика",
+    "захист потерпілих",
+    "юридична допомога",
+    "відшкодування збитків",
+  ],
+  openGraph: {
+    title: "Відшкодування шкоди після ДТП | Адвокатське об'єднання «Рівновага»",
+    description:
+      "Ознайомтесь із реальними судовими рішеннями щодо відшкодування шкоди після дорожньо-транспортних пригод. Професійний захист прав потерпілих.",
+    url: "https://zahist-ua.com/practice/123",
+    type: "website",
+  },
+};
 
 export const BREADCRUMBS_CONFIG = [
   {
@@ -15,7 +39,7 @@ export const BREADCRUMBS_CONFIG = [
   },
 ];
 
-export default function PracticePreview() {
+export default function PracticePreviewPage() {
   return (
     <MainSection>
       <Container className="flex flex-col gap-10">

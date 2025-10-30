@@ -1,7 +1,7 @@
 import Container from "@/app/components/ui/Container";
 import MainSection from "@/app/components/ui/MainSection";
 
-export default function About() {
+export default function AboutSection() {
   return (
     <MainSection className="scroll-mt-[110px]" id="about">
       <Container className="flex flex-col gap-10">

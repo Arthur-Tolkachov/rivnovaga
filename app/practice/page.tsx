@@ -35,7 +35,7 @@ export const BREADCRUMBS_CONFIG = [
   },
 ];
 
-export default function Practice() {
+export default function PracticePage() {
   return (
     <MainSection>
       <Container className="flex flex-col gap-10">
