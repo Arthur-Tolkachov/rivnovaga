@@ -2,7 +2,12 @@ import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Card from "@/app/components/ui/Card";
 import Container from "@/app/components/ui/Container";
 
-import { BREADCRUMBS_CONFIG } from "./breadCrumbs.config";
+export const BREADCRUMBS_CONFIG = [
+  {
+    key: "services",
+    title: "Послуги",
+  },
+];
 
 export default function Services() {
   return (
