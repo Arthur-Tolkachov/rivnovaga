@@ -1,10 +1,11 @@
 import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
+import MainSection from "@/app/components/ui/MainSection";
 
 export default function Cta() {
   return (
-    <section className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover py-30">
+    <MainSection className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover py-30">
       <Container>
         <div className="bg-secondary-dark-80 p-10 flex flex-col gap-10">
           <h2 className="text-secondary-light">
@@ -39,6 +40,6 @@ export default function Cta() {
           </div>
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

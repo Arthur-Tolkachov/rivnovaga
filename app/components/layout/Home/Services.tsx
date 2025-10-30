@@ -1,11 +1,12 @@
 import Card from "@/app/components/ui/Card";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
+import MainSection from "@/app/components/ui/MainSection";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 
 export default function Services() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <div className="flex justify-between">
           <h2 className="text-primary-dark w-fit">Послуги</h2>
@@ -76,6 +77,6 @@ export default function Services() {
           </Card>
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

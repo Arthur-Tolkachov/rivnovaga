@@ -1,11 +1,12 @@
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
+import MainSection from "@/app/components/ui/MainSection";
 import MouseIcon from "@/public/assets/icons/mouse.svg";
 
 export function Hero() {
   return (
-    <section className="bg-[url(/assets/images/hero_bg.jpg)] bg-fixed bg-cover w-full h-screen relative">
+    <MainSection className="bg-[url(/assets/images/hero_bg.jpg)] bg-fixed bg-cover w-full h-screen relative">
       <Container className="flex h-full">
         <div className="flex flex-col justify-center gap-10">
           <h2 className="text-secondary-lighter">Ваш захист — наш пріоритет</h2>
@@ -28,6 +29,6 @@ export function Hero() {
           />
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }

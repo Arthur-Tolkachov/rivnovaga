@@ -1,13 +1,13 @@
 import { Map } from "@/app/components/layout/Map";
 import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Container from "@/app/components/ui/Container";
+import Link from "@/app/components/ui/Link";
+import MainSection from "@/app/components/ui/MainSection";
 import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
-
-import Link from "../../ui/Link";
 
 export default function Contacts() {
   return (
-    <section className="py-15">
+    <MainSection>
       <Container className="flex flex-col gap-10">
         <h2 className="text-secondary-dark w-fit">Контакти</h2>
 
@@ -47,6 +47,6 @@ export default function Contacts() {
           <Map />
         </div>
       </Container>
-    </section>
+    </MainSection>
   );
 }
