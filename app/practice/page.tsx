@@ -1,6 +1,31 @@
+import { Metadata } from "next";
+
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
+
+export const metadata: Metadata = {
+  title: "Наша практика | Адвокатське об'єднання «Рівновага»",
+  description:
+    "Реальні кейси та рішення судів у справах, які вели адвокати Адвокатського об'єднання «Рівновага». Досвід та професійний захист прав клієнтів на всіх етапах процесу.",
+  keywords: [
+    "судові рішення",
+    "кейс адвоката",
+    "адвокатська практика",
+    "захист прав",
+    "кримінальні справи",
+    "цивільні справи",
+    "сімейні спори",
+    "юридична допомога",
+  ],
+  openGraph: {
+    title: "Наша практика | Адвокатське об'єднання «Рівновага»",
+    description:
+      "Ознайомтесь із реальними кейсами та судовими рішеннями, які демонструють досвід та професійний підхід наших адвокатів.",
+    url: "https://zahist-ua.com/practice",
+    type: "website",
+  },
+};
 
 export const BREADCRUMBS_CONFIG = [
   {

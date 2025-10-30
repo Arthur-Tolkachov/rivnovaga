@@ -1,8 +1,31 @@
+import { Metadata } from "next";
 import Image from "next/image";
 
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
+
+export const metadata: Metadata = {
+  title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",
+  description:
+    "Професійний юридичний захист у сімейних спорах: розірвання шлюбу, поділ майна, визначення місця проживання дитини. Надійна допомога адвокатів на всіх етапах процесу.",
+  keywords: [
+    "сімейні спори",
+    "розірвання шлюбу",
+    "поділ майна",
+    "адвокат сімейний",
+    "захист прав дитини",
+    "сімейний адвокат",
+    "юридична допомога",
+  ],
+  openGraph: {
+    title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",
+    description:
+      "Експертний юридичний захист у сімейних спорах: розірвання шлюбу, поділ майна, визначення місця проживання дитини.",
+    url: "https://zahist-ua.com/services",
+    type: "website",
+  },
+};
 
 export const BREADCRUMBS_CONFIG = [
   {

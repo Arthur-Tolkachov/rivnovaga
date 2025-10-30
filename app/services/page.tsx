@@ -1,6 +1,30 @@
+import { Metadata } from "next";
+
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Card from "@/app/components/ui/Card";
 import Container from "@/app/components/ui/Container";
+
+export const metadata: Metadata = {
+  title: "Адвокатські послуги | Адвокатське об'эднання «Рівновага»",
+  description:
+    "Професійні адвокатські послуги у кримінальних, цивільних, сімейних, господарських та адміністративних справах. Надійний юридичний захист ваших прав та інтересів.",
+  keywords: [
+    "адвокат",
+    "юридичні послуги",
+    "захист у суді",
+    "сімейний адвокат",
+    "цивільні справи",
+    "кримінальні справи",
+    "юридична допомога",
+  ],
+  openGraph: {
+    title: "Адвокатські послуги | Адвокатське об'эднання «Рівновага»",
+    description:
+      "Надійна юридична допомога у справах будь-якої складності. Захист прав та інтересів клієнтів на всіх етапах судового процесу.",
+    url: "https://zahist-ua.com/",
+    type: "website",
+  },
+};
 
 export const BREADCRUMBS_CONFIG = [
   {
