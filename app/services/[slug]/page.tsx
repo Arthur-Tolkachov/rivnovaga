@@ -1,12 +1,21 @@
 import Image from "next/image";
 
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
 import Button from "@/app/components/ui/Button";
-import Card from "@/app/components/ui/Card";
 import Container from "@/app/components/ui/Container";
 
-import { BREADCRUMBS_CONFIG } from "./breadCrumbs.config";
+export const BREADCRUMBS_CONFIG = [
+  {
+    key: "services",
+    title: "Послуги",
+    href: "/services",
+  },
+  {
+    key: "slug",
+    title:
+      "Вирішення сімейних спорів - розірвання шлюбу, поділ майна, визначення місця проживання дитини",
+  },
+];
 
 export default function Service() {
   return (

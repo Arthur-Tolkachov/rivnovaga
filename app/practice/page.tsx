@@ -1,25 +1,33 @@
+import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
 import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
+
+export const BREADCRUMBS_CONFIG = [
+  {
+    key: "practice",
+    title: "Наша практика",
+  },
+];
 
 export default function Practice() {
   return (
     <section className="py-15">
       <Container className="flex flex-col gap-10">
-        <div className="flex justify-between">
-          <h2 className="text-secondary-dark w-fit">Наша практика</h2>
+        <div className="flex flex-col gap-5">
+          <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
-          <Link
-            href="/practice"
-            className="text-secondary-darker hover:underline"
-            endAdornment={
-              <ArrowRightIcon className="w-5 h-5 stroke-secondary-darker" />
-            }
-            gap={10}
-          >
-            Переглянути всi
-          </Link>
+          <h1 className="text-primary-dark">Наша практика</h1>
+
+          <h3 className="text-primary-dark">
+            На цій сторінці представлено приклади справ, у яких адвокати нашої
+            фірми успішно захищали права та інтереси клієнтів. Ми ділимося
+            рішеннями судів, що підтверджують нашу професійність, досвід і
+            відданість справі. Кожна справа — це результат ретельної підготовки,
+            глибокого аналізу законодавства та наполегливої роботи нашої
+            команди. Ми пишаємося тим, що допомагаємо клієнтам досягати
+            справедливості у найскладніших правових ситуаціях. Ознайомтесь із
+            нашими справами нижче, щоб побачити реальні результати нашої роботи.
+          </h3>
         </div>
 
         <div className="grid grid-cols-3 gap-5">
