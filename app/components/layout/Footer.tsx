@@ -5,6 +5,7 @@ import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
 import Logo from "@/app/components/ui/Logo";
 import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
+import { NAVIGATION_CONFIG } from "@/app/utils/navigation.config";
 
 export default function Footer() {
   return (
@@ -12,39 +13,17 @@ export default function Footer() {
       <Container className="grid grid-cols-3 items-start">
         <Logo />
 
-        <ul className="flex flex-col gap-3">
-          <li>
-            <NextLink
-              href="/"
-              className="text-secondary-light hover:text-secondary-lighter duration-200"
-            >
-              Послуги
-            </NextLink>
-          </li>
-          <li>
-            <NextLink
-              href="/"
-              className="text-secondary-light hover:text-secondary-lighter duration-200"
-            >
-              Про адвокатiв
-            </NextLink>
-          </li>
-          <li>
-            <NextLink
-              href="/"
-              className="text-secondary-light hover:text-secondary-lighter duration-200"
-            >
-              Наша практика
-            </NextLink>
-          </li>
-          <li>
-            <NextLink
-              href="/"
-              className="text-secondary-light hover:text-secondary-lighter duration-200"
-            >
-              Контакти
-            </NextLink>
-          </li>
+        <ul className="flex flex-col gap-5">
+          {NAVIGATION_CONFIG.map(({ id, href, label }) => (
+            <li key={id}>
+              <NextLink
+                href={href}
+                className="text-secondary-light hover:text-secondary-lighter duration-200"
+              >
+                {label}
+              </NextLink>
+            </li>
+          ))}
         </ul>
 
         <ul className="flex flex-col gap-5">
