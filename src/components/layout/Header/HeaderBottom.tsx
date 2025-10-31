@@ -2,8 +2,8 @@
 
 import { usePathname } from "next/navigation";
 
-import Navigation from "@/app/components/layout/Navigation/Navigation";
-import Logo from "@/app/components/ui/Logo";
+import Logo from "../../ui/Logo";
+import Navigation from "../Navigation/Navigation";
 
 export default function HeaderBottom() {
   const pathname = usePathname();

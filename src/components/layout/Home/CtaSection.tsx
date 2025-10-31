@@ -1,7 +1,7 @@
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
+import Button from "../../ui/Button";
+import Container from "../../ui/Container";
+import MainSection from "../../ui/MainSection";
+import { SocialLinks } from "../SocialLinks";
 
 export default function CtaSection() {
   return (

@@ -1,11 +1,12 @@
 import NextLink from "next/link";
 
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import Logo from "@/app/components/ui/Logo";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
-import { NAVIGATION_CONFIG } from "@/app/utils/navigation.config";
+import { CONTACT_LINKS_CONFIG } from "@/src/utils/links.constants";
+import { NAVIGATION_CONFIG } from "@/src/utils/navigation.config";
+
+import { SocialLinks } from "./SocialLinks";
+import Container from "../ui/Container";
+import Link from "../ui/Link";
+import Logo from "../ui/Logo";
 
 export default function Footer() {
   return (

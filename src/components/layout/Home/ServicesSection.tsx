@@ -1,8 +1,9 @@
-import Card from "@/app/components/ui/Card";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
+
+import Card from "../../ui/Card";
+import Container from "../../ui/Container";
+import Link from "../../ui/Link";
+import MainSection from "../../ui/MainSection";
 
 export default function ServicesSection() {
   return (

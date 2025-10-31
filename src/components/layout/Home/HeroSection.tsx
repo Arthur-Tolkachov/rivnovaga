@@ -1,8 +1,9 @@
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
 import MouseIcon from "@/public/assets/icons/mouse.svg";
+
+import Button from "../../ui/Button";
+import Container from "../../ui/Container";
+import Link from "../../ui/Link";
+import MainSection from "../../ui/MainSection";
 
 export default function HeroSection() {
   return (

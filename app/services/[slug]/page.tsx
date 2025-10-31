@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import Button from "@/src/components/ui/Button";
+import Container from "@/src/components/ui/Container";
+import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",

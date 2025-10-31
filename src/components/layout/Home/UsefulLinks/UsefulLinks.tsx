@@ -1,6 +1,6 @@
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
+import Container from "@/src/components/ui/Container";
+import Link from "@/src/components/ui/Link";
+import MainSection from "@/src/components/ui/MainSection";
 
 import { USEFUL_LINKS_CONFIG } from "./links.constants";
 

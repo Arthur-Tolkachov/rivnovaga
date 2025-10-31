@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-import Button from "@/app/components/ui/Button";
 import ArrowRightIcon from "@/public/assets/icons/arrow-right.svg";
 import EmailIcon from "@/public/assets/icons/email.svg";
 import PhoneIcon from "@/public/assets/icons/phone.svg";
 import TelegramIcon from "@/public/assets/icons/telegram.svg";
 import ViberIcon from "@/public/assets/icons/viber.svg";
 import WhatsAppIcon from "@/public/assets/icons/whatsapp.svg";
+
+import Button from "../ui/Button";
 
 export default function UtilsPanel() {
   const [show, setShow] = useState(false);

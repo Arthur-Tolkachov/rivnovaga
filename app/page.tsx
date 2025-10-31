@@ -1,12 +1,11 @@
-import AboutSection from "@/app/components/layout/Home/AboutSection";
-import ContactSection from "@/app/components/layout/Home/ContactSection";
-import CtaSection from "@/app/components/layout/Home/CtaSection";
-import HeroSection from "@/app/components/layout/Home/HeroSection";
-import PracticeSection from "@/app/components/layout/Home/PracticeSection";
-import ServicesSection from "@/app/components/layout/Home/ServicesSection";
-
-import { UsefulLinks } from "./components/layout/Home/UsefulLinks";
-import { DESKTOP_HEADER_HEIGHT } from "./utils/rootLayout.constants";
+import AboutSection from "@/src/components/layout/Home/AboutSection";
+import ContactSection from "@/src/components/layout/Home/ContactSection";
+import CtaSection from "@/src/components/layout/Home/CtaSection";
+import HeroSection from "@/src/components/layout/Home/HeroSection";
+import PracticeSection from "@/src/components/layout/Home/PracticeSection";
+import ServicesSection from "@/src/components/layout/Home/ServicesSection";
+import { UsefulLinks } from "@/src/components/layout/Home/UsefulLinks";
+import { DESKTOP_HEADER_HEIGHT } from "@/src/utils/rootLayout.constants";
 
 export default function Home() {
   return (
