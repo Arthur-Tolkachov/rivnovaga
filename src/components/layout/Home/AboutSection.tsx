@@ -1,5 +1,5 @@
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
+import Container from "../../ui/Container";
+import MainSection from "../../ui/MainSection";
 
 export default function AboutSection() {
   return (

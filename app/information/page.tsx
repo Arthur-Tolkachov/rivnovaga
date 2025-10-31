@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import Card from "@/app/components/ui/Card";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import Card from "@/src/components/ui/Card";
+import Container from "@/src/components/ui/Container";
+import Link from "@/src/components/ui/Link";
+import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Корисні матеріали — Зразки документів та нормативно-правові акти",

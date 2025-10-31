@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import Container from "@/src/components/ui/Container";
+import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Відшкодування шкоди після ДТП | Адвокатське об'єднання «Рівновага»",

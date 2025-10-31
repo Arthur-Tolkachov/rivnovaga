@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import Button from "@/src/components/ui/Button";
+import Container from "@/src/components/ui/Container";
+import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title: "Наша практика | Адвокатське об'єднання «Рівновага»",

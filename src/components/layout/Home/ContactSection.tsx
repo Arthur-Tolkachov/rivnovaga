@@ -1,10 +1,11 @@
-import { Map } from "@/app/components/layout/Map";
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
+import { CONTACT_LINKS_CONFIG } from "@/src/utils/links.constants";
+
+import Button from "../../ui/Button";
+import Container from "../../ui/Container";
+import Link from "../../ui/Link";
+import MainSection from "../../ui/MainSection";
+import { Map } from "../Map";
+import { SocialLinks } from "../SocialLinks";
 
 export default function ContactSection() {
   return (

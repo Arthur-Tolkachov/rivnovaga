@@ -1,8 +1,7 @@
 import cn from "classnames";
 
-import Link from "@/app/components/ui/Link";
-
 import { SOCIAL_LINKS_CONFIG } from "./social_links.config";
+import Link from "../../ui/Link";
 
 type SocialLinksColor = "dark" | "light";
 

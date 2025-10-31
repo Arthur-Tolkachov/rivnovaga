@@ -1,11 +1,11 @@
 "use client";
 
-import Container from "@/app/components/ui/Container";
-import { STICKY_POSITION } from "@/app/utils/rootLayout.constants";
+import { STICKY_POSITION } from "@/src/utils/rootLayout.constants";
 
 import HeaderBottom from "./HeaderBottom";
 import { HeaderTop } from "./HeaderTop";
 import { useHeader } from "./useHeader";
+import Container from "../../ui/Container";
 
 export function Header() {
   const { isLoading, opacity } = useHeader();

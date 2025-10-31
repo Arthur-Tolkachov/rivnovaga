@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import { Map } from "@/app/components/layout/Map";
-import { SocialLinks } from "@/app/components/layout/SocialLinks";
-import Button from "@/app/components/ui/Button";
-import Container from "@/app/components/ui/Container";
-import Link from "@/app/components/ui/Link";
-import MainSection from "@/app/components/ui/MainSection";
-import { CONTACT_LINKS_CONFIG } from "@/app/utils/links.constants";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import { Map } from "@/src/components/layout/Map";
+import { SocialLinks } from "@/src/components/layout/SocialLinks";
+import Button from "@/src/components/ui/Button";
+import Container from "@/src/components/ui/Container";
+import Link from "@/src/components/ui/Link";
+import MainSection from "@/src/components/ui/MainSection";
+import { CONTACT_LINKS_CONFIG } from "@/src/utils/links.constants";
 
 export const metadata: Metadata = {
   title: "Контакти | Адвокатське об'єднання «Рівновага»",

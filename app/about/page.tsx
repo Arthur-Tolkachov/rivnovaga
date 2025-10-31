@@ -1,14 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
-import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
-import Container from "@/app/components/ui/Container";
-import MainSection from "@/app/components/ui/MainSection";
 import PhoneIcon from "@/public/assets/icons/phone.svg";
 import AdvokatImg1 from "@/public/assets/images/advokat.jpg";
 import AdvokatImg2 from "@/public/assets/images/advokat2.jpg";
-
-import Link from "../components/ui/Link";
+import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
+import Container from "@/src/components/ui/Container";
+import Link from "@/src/components/ui/Link";
+import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
   title:
