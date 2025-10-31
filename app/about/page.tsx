@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 
 import BreadCrumbs from "@/app/components/layout/BreadCrumbs";
@@ -8,6 +9,31 @@ import AdvokatImg1 from "@/public/assets/images/advokat.jpg";
 import AdvokatImg2 from "@/public/assets/images/advokat2.jpg";
 
 import Link from "../components/ui/Link";
+
+export const metadata: Metadata = {
+  title:
+    "Адвокати — Досвідчена команда юристів | Адвокатське об'єднання «Рівновага»",
+  description:
+    "Команда професійних адвокатів із багаторічним досвідом у різних галузях права. Правова допомога, представництво інтересів у судах, захист прав фізичних і юридичних осіб.",
+  keywords: [
+    "адвокати",
+    "юристи",
+    "правова допомога",
+    "представництво в суді",
+    "захист інтересів",
+    "юридичні послуги",
+    "адвокат Київ",
+    "адвокатська команда",
+  ],
+  openGraph: {
+    title:
+      "Адвокати — Досвідчена команда юристів | Адвокатське об'єднання «Рівновага»",
+    description:
+      "Досвідчені адвокати, які надають професійну правову допомогу та представляють інтереси клієнтів у судах і державних органах.",
+    type: "website",
+    url: "https://zahist-ua.com/about",
+  },
+};
 
 export const BREADCRUMBS_CONFIG = [
   {

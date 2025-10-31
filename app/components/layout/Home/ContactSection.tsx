@@ -1,5 +1,6 @@
 import { Map } from "@/app/components/layout/Map";
 import { SocialLinks } from "@/app/components/layout/SocialLinks";
+import Button from "@/app/components/ui/Button";
 import Container from "@/app/components/ui/Container";
 import Link from "@/app/components/ui/Link";
 import MainSection from "@/app/components/ui/MainSection";
@@ -41,6 +42,30 @@ export default function ContactSection() {
               <SocialLinks color="dark" />
             </div>
           </div>
+        </div>
+
+        <div className="border-y-1 border-secondary-main py-5">
+          <form className="flex flex-col gap-10 py-5">
+            <input
+              type="text"
+              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
+              placeholder="Як до вас звертатись"
+            />
+            <input
+              type="text"
+              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
+              placeholder="Телефон"
+            />
+            <textarea
+              name=""
+              placeholder="Опишiть ваше питання"
+              className="resize-none h-[300px] focus:border-0 text-secondary-darker outline-secondary-main border-1 border-secondary-main  p-3"
+            ></textarea>
+
+            <Button color="secondary" variant="outlined-dark">
+              Надiслати
+            </Button>
+          </form>
         </div>
 
         <div className="border-1 border-secondary-main">
