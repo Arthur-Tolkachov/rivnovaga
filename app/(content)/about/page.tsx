@@ -10,8 +10,7 @@ import Link from "@/src/components/ui/Link";
 import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
-  title:
-    "Адвокати — Досвідчена команда юристів | Адвокатське об'єднання «Рівновага»",
+  title: "Про адвокатiв | Адвокатське об'єднання «Рівновага»",
   description:
     "Команда професійних адвокатів із багаторічним досвідом у різних галузях права. Правова допомога, представництво інтересів у судах, захист прав фізичних і юридичних осіб.",
   keywords: [

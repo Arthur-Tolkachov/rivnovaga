@@ -7,7 +7,7 @@ import Link from "@/src/components/ui/Link";
 import MainSection from "@/src/components/ui/MainSection";
 
 export const metadata: Metadata = {
-  title: "Корисні матеріали — Зразки документів та нормативно-правові акти",
+  title: "Корисні матеріали | Адвокатське об'єднання «Рівновага»",
   description:
     "Добірка корисних матеріалів: зразки процесуальних документів, заяв, договорів та актуальні нормативно-правові акти для практичного використання.",
   keywords: [

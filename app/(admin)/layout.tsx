@@ -1,7 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
-import "./globals.css";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["cyrillic"],
@@ -12,7 +10,7 @@ const geistMono = Geist_Mono({
   subsets: ["cyrillic"],
 });
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -22,7 +20,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
