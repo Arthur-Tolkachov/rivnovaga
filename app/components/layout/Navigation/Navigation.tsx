@@ -1,7 +1,7 @@
 import cn from "classnames";
 import Link from "next/link";
 
-import { NAVIGATION_CONFIG } from "./navigation.config";
+import { NAVIGATION_CONFIG } from "@/app/utils/navigation.config";
 
 interface NavigationProps {
   pathname: string;

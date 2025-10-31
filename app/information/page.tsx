@@ -57,7 +57,7 @@ export default function InformationPage() {
         </div>
 
         <div className="sticky grid grid-cols-[3fr_1fr]">
-          <div className="pr-5">
+          <div className="flex flex-col gap-10 pr-5">
             <h3 className="text-secondary-dark">Зразки документів</h3>
 
             <div className="grid grid-cols-3 gap-5">
