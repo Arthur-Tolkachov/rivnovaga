@@ -4,11 +4,11 @@ import { STICKY_POSITION } from "@/src/utils/rootLayout.constants";
 
 import HeaderBottom from "./HeaderBottom";
 import { HeaderTop } from "./HeaderTop";
-import { useHeader } from "./useHeader";
+import { useMainHeader } from "./useMainHeader";
 import Container from "../../ui/Container";
 
-export function Header() {
-  const { isLoading, opacity } = useHeader();
+export function MainHeader() {
+  const { isLoading, opacity } = useMainHeader();
 
   return (
     <>

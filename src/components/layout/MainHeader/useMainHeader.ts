@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const PAGES_WITH_TRANSPARENT_HEADER = ["/"];
 
-export const useHeader = () => {
+export const useMainHeader = () => {
   const pathname = usePathname();
   const shouldBeTransparent = PAGES_WITH_TRANSPARENT_HEADER.includes(pathname);
   const initialOpacity = shouldBeTransparent ? 0 : 1;
