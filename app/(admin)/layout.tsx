@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { AdminPanel } from "@/src/components/layout/AdminPanel";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["cyrillic"],
@@ -20,7 +22,11 @@ export default function AdminLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main>{children}</main>
+        <main className="grid grid-cols-[1fr_3fr]">
+          <AdminPanel />
+
+          <div className="p-5">{children}</div>
+        </main>
       </body>
     </html>
   );

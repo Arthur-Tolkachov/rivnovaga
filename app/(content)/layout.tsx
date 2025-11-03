@@ -1,6 +1,6 @@
 import "../globals.css";
 import Footer from "@/src/components/layout/Footer";
-import { Header } from "@/src/components/layout/Header";
+import { MainHeader } from "@/src/components/layout/MainHeader";
 import UtilsPanel from "@/src/components/layout/UtilsPanel";
 
 export default function ContentLayout({
@@ -11,7 +11,7 @@ export default function ContentLayout({
   return (
     <>
       <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-        <Header />
+        <MainHeader />
 
         <main>{children}</main>
 
