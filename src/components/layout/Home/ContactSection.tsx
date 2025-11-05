@@ -4,6 +4,8 @@ import Button from "../../ui/Button";
 import Container from "../../ui/Container";
 import Link from "../../ui/Link";
 import MainSection from "../../ui/MainSection";
+import { Textarea } from "../../ui/Textarea/Textarea";
+import { TextInput } from "../../ui/TextInput";
 import { Map } from "../Map";
 import { SocialLinks } from "../SocialLinks";
 
@@ -45,25 +47,21 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="border-y-1 border-secondary-main py-5">
-          <form className="flex flex-col gap-10 py-5">
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Як до вас звертатись"
-            />
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Телефон"
-            />
-            <textarea
-              name=""
-              placeholder="Опишiть ваше питання"
-              className="resize-none h-[300px] focus:border-0 text-secondary-darker outline-secondary-main border-1 border-secondary-main  p-3"
-            ></textarea>
+        <div className="border-y-1 border-secondary-main pb-8">
+          <form className="flex flex-col">
+            <div className="flex flex-col w-[500px]">
+              <TextInput id="name" name="name" label="Як до вас звертатись" />
 
-            <Button color="secondary" variant="outlined-dark">
+              <TextInput id="phone" name="phone" label="Телефон" />
+            </div>
+
+            <Textarea
+              id="message"
+              name="message"
+              label="Опишiть ваше питання"
+            />
+
+            <Button color="secondary" variant="outlined-dark" className="mt-5">
               Надiслати
             </Button>
           </form>
