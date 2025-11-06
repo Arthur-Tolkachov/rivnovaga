@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 
-import BreadCrumbs from "@/src/components/layout/BreadCrumbs";
-import Container from "@/src/components/ui/Container";
-import MainSection from "@/src/components/ui/MainSection";
+import { PracticeExamplePage } from "@pages/content/practiceExample";
 
 export const metadata: Metadata = {
   title: "Відшкодування шкоди після ДТП | Адвокатське об'єднання «Рівновага»",
@@ -26,34 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const BREADCRUMBS_CONFIG = [
-  {
-    key: "practice",
-    title: "Наша практика",
-    href: "/practice",
-  },
-  {
-    key: "practice/123",
-    title:
-      "Відшкодування шкоди, завданої внаслідок дорожньо - транспортної пригоди",
-  },
-];
-
-export default function PracticePreviewPage() {
-  return (
-    <MainSection>
-      <Container className="flex flex-col gap-10">
-        <div className="flex flex-col gap-5">
-          <BreadCrumbs config={BREADCRUMBS_CONFIG} />
-
-          <h1 className="text-primary-dark">
-            Відшкодування шкоди, завданої внаслідок дорожньо - транспортної
-            пригоди
-          </h1>
-        </div>
-
-        <div>рiшення буде тут</div>
-      </Container>
-    </MainSection>
-  );
+export default function PracticeExample() {
+  return <PracticeExamplePage />;
 }

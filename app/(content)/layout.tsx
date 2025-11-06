@@ -1,7 +1,6 @@
-import "../globals.css";
-import Footer from "@/src/components/layout/Footer";
-import { MainHeader } from "@/src/components/layout/MainHeader";
-import UtilsPanel from "@/src/components/layout/UtilsPanel";
+import { Footer } from "@widgets/Footer";
+import { Header } from "@widgets/Header";
+import { QuickActionsPanel } from "@widgets/QuickActionsPanel";
 
 export default function ContentLayout({
   children,
@@ -11,14 +10,14 @@ export default function ContentLayout({
   return (
     <>
       <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-        <MainHeader />
+        <Header />
 
         <main>{children}</main>
 
         <Footer />
       </div>
 
-      <UtilsPanel />
+      <QuickActionsPanel />
     </>
   );
 }
