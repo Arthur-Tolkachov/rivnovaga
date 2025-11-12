@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export interface UseTextInputProps {
   value?: string;
@@ -10,7 +10,7 @@ export interface UseTextInputProps {
 }
 
 export const useTextInput = ({
-  value,
+  value = "",
   defaultFocus = false,
   defaultValue = "",
   onBlur,
@@ -18,7 +18,7 @@ export const useTextInput = ({
   onFocus,
 }: UseTextInputProps) => {
   const [isFocus, setIsFocus] = useState(defaultFocus);
-  const [inputValue, setInputValue] = useState<string>(value || defaultValue);
+  const [inputValue, setInputValue] = useState<string>(value);
 
   const shouldLabelTransform = useMemo(() => {
     if (value || isFocus) {
@@ -27,6 +27,10 @@ export const useTextInput = ({
 
     return false;
   }, [isFocus, value]);
+
+  useEffect(() => {
+    setInputValue(defaultValue);
+  }, [defaultValue]);
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     if (onFocus) {
