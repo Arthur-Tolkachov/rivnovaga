@@ -35,6 +35,7 @@ export const TextField = <T extends FieldValues>({
       id={id}
       name={name}
       value={value}
+      defaultValue={value}
       onChange={onChange}
       {...rest}
     />
