@@ -22,7 +22,7 @@ const defaultValues = {
     lat: "",
     lng: "",
   },
-  working_day_schedule: {
+  working_days_schedule: {
     start: "",
     end: "",
   },
