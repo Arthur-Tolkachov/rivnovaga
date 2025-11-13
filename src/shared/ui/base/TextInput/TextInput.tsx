@@ -45,11 +45,11 @@ export const TextInput: React.FC<TextInputProps> = ({
       <div className="relative">
         {label && (
           <label
-            className="absolute inset-0 cursor-pointer flex items-center text-secondary-main duration-100 translate-x-3"
+            className="absolute inset-0 cursor-pointer flex items-center text-secondary-main duration-100 translate-x-3 origin-left"
             htmlFor={id}
             style={{
               ...(shouldLabelTransform && {
-                transform: "translate(-60px, -40px) scale(.8)",
+                transform: "translate(-12px, -40px) scale(.8)",
               }),
             }}
           >

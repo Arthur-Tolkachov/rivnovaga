@@ -12,18 +12,10 @@ export const AdminPanel = () => {
       <ul className="flex flex-col gap-5 border-t-1 border-secondary-lighter py-5">
         <li>
           <Link
-            href="/admin/profile"
+            href="/admin"
             className="text-secondary-light hover:text-secondary-lighter"
           >
-            Основна iнформацiя
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/admin/profile"
-            className="text-secondary-light hover:text-secondary-lighter"
-          >
-            Головна сторiнка
+            Налаштування профiлю
           </Link>
         </li>
       </ul>
