@@ -1,13 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { getOrganization } from "@entity/organization";
 
+const defaultValues = {
+  name: "",
+  logoUrl: "",
+  email: "",
+  phone: "",
+  telegram: "",
+  viber: "",
+  whatsapp: "",
+  address: {
+    index: "",
+    city: "",
+    street: "",
+    building: "",
+    office: "",
+  },
+  map: {
+    lat: "",
+    lng: "",
+  },
+  working_day_schedule: {
+    start: "",
+    end: "",
+  },
+  working_time_schedule: {
+    start: "",
+    end: "",
+  },
+};
+
 export const useEditMainInformationForm = () => {
-  const defaultValues = {
-    name: "",
-    logoUrl: "",
-  };
+  const [isFetching, setIsFetching] = useState(true);
 
   const methods = useForm({
     defaultValues,
@@ -22,12 +48,15 @@ export const useEditMainInformationForm = () => {
 
         if (data) {
           reset({
+            ...defaultValues,
             name: data.name,
             logoUrl: data.logoUrl,
           });
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsFetching(false);
       }
     };
 
@@ -40,6 +69,7 @@ export const useEditMainInformationForm = () => {
 
   return {
     methods,
+    isFetching,
     onSubmit,
   };
 };
