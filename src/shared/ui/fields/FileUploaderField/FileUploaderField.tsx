@@ -7,15 +7,15 @@ import {
 
 import { FileUploader, FileUploaderProps } from "@shared/ui/base/FileUploader";
 
-export interface FileFieldProps<T extends FieldValues>
+export interface FileUploaderFieldProps<T extends FieldValues>
   extends Omit<FileUploaderProps, "name"> {
   name: FieldPath<T>;
 }
 
-export const FileField = <T extends FieldValues>({
+export const FileUploaderField = <T extends FieldValues>({
   name,
   ...rest
-}: FileFieldProps<T>) => {
+}: FileUploaderFieldProps<T>) => {
   const { control } = useFormContext();
 
   const {
