@@ -1,36 +1,48 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 
 export interface UseTextInputProps {
   value?: string;
   defaultFocus?: boolean;
-  defaultValue?: string;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const useTextInput = ({
-  value = "",
+  value,
   defaultFocus = false,
-  defaultValue = "",
   onBlur,
   onChange,
   onFocus,
 }: UseTextInputProps) => {
+  const id = useId();
+  const hasExternalValue = value !== undefined;
   const [isFocus, setIsFocus] = useState(defaultFocus);
-  const [inputValue, setInputValue] = useState<string>(value);
+  const [inputValue, setInputValue] = useState<string>(value || "");
 
   const shouldLabelTransform = useMemo(() => {
-    if (value || isFocus) {
+    if (inputValue || isFocus) {
       return true;
     }
 
     return false;
-  }, [isFocus, value]);
+  }, [isFocus, inputValue]);
 
   useEffect(() => {
-    setInputValue(defaultValue);
-  }, [defaultValue]);
+    if (hasExternalValue && value !== inputValue) {
+      setInputValue(value);
+    }
+  }, [value]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(event);
+    }
+
+    if (!hasExternalValue) {
+      setInputValue(event.target.value);
+    }
+  };
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
     if (onFocus) {
@@ -48,15 +60,8 @@ export const useTextInput = ({
     setIsFocus(false);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(event);
-    }
-
-    setInputValue(event.target.value);
-  };
-
   return {
+    id,
     inputValue,
     isFocus,
     shouldLabelTransform,
