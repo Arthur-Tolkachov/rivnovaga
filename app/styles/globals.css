@@ -45,4 +45,6 @@ h3 {
   --color-secondary-darker: #5d4112;
   --color-secondary-dark: #31271a;
   --color-secondary-dark-80: rgba(49, 39, 26, 0.8);
+
+  --color-error: #a43010;
 }

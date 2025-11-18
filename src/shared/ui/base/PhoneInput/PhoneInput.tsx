@@ -6,7 +6,7 @@ import { useIMask } from "react-imask";
 import { TextInput, TextInputProps } from "../TextInput";
 
 export interface PhoneInputProps extends Omit<TextInputProps, "onChange"> {
-  onChange: (value: string) => void;
+  onChange: (value: string | null) => void;
 }
 
 export const PhoneInput: React.FC<PhoneInputProps> = ({
@@ -17,6 +17,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   const {
     ref,
     value: maskedInput,
+    unmaskedValue,
     setValue,
   } = useIMask(
     {
@@ -24,7 +25,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
     },
     {
       onAccept: (_v, mask) => {
-        const newValue = mask.unmaskedValue ? `+380${mask.unmaskedValue}` : "";
+        const newValue = mask.unmaskedValue ? `+38${mask.unmaskedValue}` : "";
 
         if (onChange) {
           onChange(newValue);
@@ -34,10 +35,10 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   );
 
   useEffect(() => {
-    if (value) {
-      setValue(value);
+    if (value !== unmaskedValue) {
+      setValue(value || "");
     }
-  }, []);
+  }, [value, unmaskedValue, setValue]);
 
   return (
     <TextInput

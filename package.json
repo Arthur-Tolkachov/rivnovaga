@@ -11,9 +11,12 @@
     "prepare": "husky",
     "prisma:seed": "node --loader ts-node/esm prisma/seed.ts",
     "prisma:push": "prisma db push",
-    "prisma:studio": "prisma studio"
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "prisma:migrate": "prisma migrate"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.19.0",
     "@svgr/webpack": "^8.1.0",
     "@vis.gl/react-google-maps": "^1.6.1",
@@ -24,7 +27,8 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.66.0",
     "react-imask": "^7.6.1",
-    "react-select": "^5.10.2"
+    "react-select": "^5.10.2",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

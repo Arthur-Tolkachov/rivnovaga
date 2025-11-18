@@ -1,8 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
+  get,
   useController,
   useFormContext,
 } from "react-hook-form";
@@ -18,7 +20,10 @@ export const TextField = <T extends FieldValues>({
   name,
   ...rest
 }: TextFieldProps<T>) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const {
     field: { value, onChange },
@@ -27,5 +32,25 @@ export const TextField = <T extends FieldValues>({
     control,
   });
 
-  return <TextInput name={name} value={value} onChange={onChange} {...rest} />;
+  const fieldError = get(errors, name);
+
+  const error = useMemo(() => {
+    const errorMessage = fieldError?.message;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return null;
+  }, [fieldError]);
+
+  return (
+    <TextInput
+      name={name}
+      error={error}
+      value={value}
+      onChange={onChange}
+      {...rest}
+    />
+  );
 };

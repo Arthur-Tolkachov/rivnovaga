@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
@@ -19,7 +20,10 @@ export const PhoneField = <T extends FieldValues>({
   name,
   ...rest
 }: PhoneFieldProps<T>) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const {
     field: { value, onChange },
@@ -28,5 +32,25 @@ export const PhoneField = <T extends FieldValues>({
     control,
   });
 
-  return <PhoneInput name={name} value={value} onChange={onChange} {...rest} />;
+  const fieldError = errors[name];
+
+  const error = useMemo(() => {
+    const errorMessage = fieldError?.message;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return null;
+  }, [fieldError]);
+
+  return (
+    <PhoneInput
+      name={name}
+      value={value}
+      error={error}
+      onChange={onChange}
+      {...rest}
+    />
+  );
 };

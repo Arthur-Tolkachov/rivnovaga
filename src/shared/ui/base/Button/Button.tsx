@@ -5,6 +5,7 @@ type ButtonVariant = "outlined-light" | "outlined-dark" | "filled" | "rounded";
 type ButtonColor = "primary" | "secondary";
 
 export interface ButtonProps {
+  type?: "submit" | "button";
   children: React.ReactNode;
   variant?: ButtonVariant;
   color?: ButtonColor;
@@ -17,6 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   variant = "filled",
   color = "primary",
+  type = "button",
   href,
   className,
   onClick,
@@ -33,13 +35,14 @@ export const Button: React.FC<ButtonProps> = ({
         "w-fit px-8 py-4 bg-primary-main border-primary-main text-primary-dark",
     },
     secondary: {
-      filled: "w-fit px-8 py-4 border-primary-main",
+      filled:
+        "w-fit px-8 py-4 border-secondary-main bg-secondary-main text-secondary-light hover:bg-secondary-lighter hover:border-secondary-lighter duration-200",
       rounded:
         "rounded-full bg-secondary-main border-secondary-main w-[50px] h-[50px] hover:bg-secondary-lighter hover:border-secondary-lighter duration-200",
       ["outlined-light"]:
         "w-fit px-8 py-4 border-secondary-main text-secondary-light hover:bg-secondary-main hover:text-secondary-dark duration-200",
       ["outlined-dark"]:
-        "w-fit px-8 py-4 border-secondary-main text-secondary-darker hover:bg-secondary-main hover:text-secondary-dark duration-200",
+        "w-fit px-8 py-4 border-secondary-main text-secondary-darker hover:bg-secondary-main hover:text-secondary-light duration-200",
     },
   };
 
@@ -60,6 +63,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={cn(
         "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",

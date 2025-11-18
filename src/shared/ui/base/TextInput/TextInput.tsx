@@ -12,6 +12,7 @@ export interface TextInputProps extends UseTextInputProps {
   className?: string;
   readonly?: boolean;
   disabled?: boolean;
+  error?: string | null;
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -21,6 +22,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       className,
       label,
       value,
+      error,
+      transform,
       onFocus,
       onBlur,
       onChange,
@@ -39,13 +42,14 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     } = useTextInput({
       value,
       defaultFocus,
+      transform,
       onBlur,
       onFocus,
       onChange,
     });
 
     return (
-      <div className="pt-8">
+      <div className="pt-5">
         <div className="relative">
           {label && (
             <label
@@ -53,7 +57,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               htmlFor={id}
               style={{
                 ...(shouldLabelTransform && {
-                  transform: "translate(-12px, -40px) scale(.8)",
+                  transform: "translate(-12px, -30px) scale(.8)",
                 }),
               }}
             >
@@ -67,13 +71,18 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             type="text"
             value={inputValue}
             className={cn(
-              "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-3",
+              "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
               className
             )}
             style={{
-              ...(isFocus && {
+              ...(isFocus &&
+                !error && {
+                  borderColor: "transparent",
+                  boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                }),
+              ...(error && {
                 borderColor: "transparent",
-                boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                boxShadow: "0px 0px 0px 1px var(--color-error)",
               }),
             }}
             onFocus={handleFocus}
@@ -82,6 +91,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             {...rest}
           />
         </div>
+
+        {error && <span className="text-sm text-error">{error}</span>}
       </div>
     );
   }

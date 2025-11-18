@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
+  get,
   useController,
   useFormContext,
 } from "react-hook-form";
@@ -17,7 +19,10 @@ export const SelectField = <T extends FieldValues>({
   name,
   ...rest
 }: SelectFieldProps<T>) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const {
     field: { value, onChange },
@@ -26,5 +31,17 @@ export const SelectField = <T extends FieldValues>({
     control,
   });
 
-  return <Select value={value} onChange={onChange} {...rest} />;
+  const fieldError = get(errors, name);
+
+  const error = useMemo(() => {
+    const errorMessage = fieldError?.message;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return null;
+  }, [fieldError]);
+
+  return <Select value={value} error={error} onChange={onChange} {...rest} />;
 };

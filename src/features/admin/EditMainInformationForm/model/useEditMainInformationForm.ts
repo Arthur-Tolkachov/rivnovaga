@@ -1,42 +1,26 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { getOrganization } from "@entity/organization";
+import { getFullOrganization } from "@entity/organization";
 
-const defaultValues = {
-  name: "",
-  logoUrl: "",
-  email: "",
-  phone: "",
-  telegram: "",
-  viber: "",
-  whatsapp: "",
-  address: {
-    index: "",
-    city: "",
-    street: "",
-    building: "",
-    office: "",
-  },
-  map: {
-    lat: "",
-    lng: "",
-  },
-  working_days_schedule: {
-    start: "",
-    end: "",
-  },
-  working_time_schedule: {
-    start: "",
-    end: "",
-  },
-};
+import { DEFAULT_VALUES } from "./form";
+import {
+  EditMainInformationFormSchema,
+  EditMainInformationFormValues,
+} from "./validation";
+import { UpdateMainInformationDTO } from "../api/dto";
+import { createDtoFromData } from "../lib/createDtoFromData";
 
 export const useEditMainInformationForm = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [initialData, setInitialData] =
+    useState<UpdateMainInformationDTO>(DEFAULT_VALUES);
 
-  const methods = useForm({
-    defaultValues,
+  const methods = useForm<EditMainInformationFormValues>({
+    defaultValues: DEFAULT_VALUES,
+    resolver: zodResolver(EditMainInformationFormSchema),
+    reValidateMode: "onChange",
   });
 
   const { reset, handleSubmit } = methods;
@@ -44,14 +28,12 @@ export const useEditMainInformationForm = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await getOrganization();
+        const data = await getFullOrganization();
 
         if (data) {
-          reset({
-            ...defaultValues,
-            name: data.name,
-            logoUrl: data.logoUrl,
-          });
+          const preparedData = createDtoFromData(data);
+
+          setInitialData((prev) => ({ ...prev, ...preparedData }));
         }
       } catch (error) {
         console.error(error);
@@ -63,13 +45,22 @@ export const useEditMainInformationForm = () => {
     getData();
   }, [reset]);
 
-  console.log("watch() :>> ", methods.watch());
+  useEffect(() => {
+    reset(initialData);
+  }, [reset, initialData]);
 
-  const onSubmit = handleSubmit(() => {});
+  const onReset = () => {
+    reset(initialData);
+  };
+
+  const onSubmit = handleSubmit((values) => {
+    console.log("values :>> ", values);
+  });
 
   return {
     methods,
     isFetching,
+    onReset,
     onSubmit,
   };
 };

@@ -3,6 +3,7 @@ import { useEffect, useId, useMemo, useState } from "react";
 export interface UseTextInputProps {
   value?: string;
   defaultFocus?: boolean;
+  transform?: (value: string) => string;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -11,6 +12,7 @@ export interface UseTextInputProps {
 export const useTextInput = ({
   value,
   defaultFocus = false,
+  transform,
   onBlur,
   onChange,
   onFocus,
@@ -35,12 +37,17 @@ export const useTextInput = ({
   }, [value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    const transformedValue = transform ? transform(value) : value;
+
     if (onChange) {
+      event.target.value = transformedValue;
       onChange(event);
     }
 
     if (!hasExternalValue) {
-      setInputValue(event.target.value);
+      setInputValue(transformedValue);
     }
   };
 

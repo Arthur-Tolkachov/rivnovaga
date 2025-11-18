@@ -5,7 +5,14 @@ import { prisma } from "@shared/lib/prisma-client";
 
 export const GET = async () => {
   try {
-    const organization = await prisma.organization.findFirst();
+    const organization = await prisma.organization.findFirst({
+      include: {
+        address: true,
+        map: true,
+        working_days_schedule: true,
+        working_time_schedule: true,
+      },
+    });
 
     if (!organization) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
