@@ -7,6 +7,7 @@ import {
   UpdateMainInformationDTO,
 } from "@entity/organization";
 import { editOrganization } from "@entity/organization/repository";
+import { notify } from "@shared/lib/toastr";
 
 import { DEFAULT_VALUES } from "./form";
 import {
@@ -17,6 +18,8 @@ import { createDtoFromData } from "../lib/createDtoFromData";
 
 export const useEditMainInformationForm = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [initialData, setInitialData] =
     useState<UpdateMainInformationDTO>(DEFAULT_VALUES);
 
@@ -57,14 +60,20 @@ export const useEditMainInformationForm = () => {
   };
 
   const onSubmit = handleSubmit(async (values) => {
-    console.log("values :>> ", values);
-    const response = await editOrganization(values);
-
-    console.log("response :>> ", response);
+    try {
+      setIsLoading(true);
+      await editOrganization(values);
+      notify.success("Основну iнформацію успішно оновлено");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   });
 
   return {
     methods,
+    isLoading,
     isFetching,
     onReset,
     onSubmit,

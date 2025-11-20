@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+
 import { AdminPanel } from "@widgets/AdminPanel";
 
 export default function AdminLayout({
@@ -10,6 +12,8 @@ export default function AdminLayout({
       <AdminPanel />
 
       <div className="p-5">{children}</div>
+
+      <ToastContainer />
     </main>
   );
 }

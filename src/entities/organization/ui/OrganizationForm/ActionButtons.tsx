@@ -3,11 +3,13 @@ import { Skeleton } from "@shared/ui/base/Skeleton";
 
 interface ActionButtonsProps {
   isFetching?: boolean;
+  isLoading?: boolean;
   onReset: VoidFunction;
 }
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({
   isFetching,
+  isLoading,
   onReset,
 }) => {
   if (isFetching) {
@@ -22,11 +24,22 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({
 
   return (
     <div className="flex gap-5">
-      <Button type="submit" variant="filled" color="secondary">
+      <Button
+        type="submit"
+        variant="filled"
+        color="secondary"
+        isLoading={isLoading}
+        disabled={isLoading}
+      >
         Зберiгти
       </Button>
 
-      <Button variant="outlined-dark" color="secondary" onClick={onReset}>
+      <Button
+        variant="outlined-dark"
+        color="secondary"
+        onClick={onReset}
+        disabled={isLoading}
+      >
         Скасувати
       </Button>
     </div>

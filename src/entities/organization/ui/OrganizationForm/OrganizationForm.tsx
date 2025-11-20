@@ -4,13 +4,15 @@ import { OrganizationMainInformation } from "./OrganizationMainInformation";
 import { OrganizationSchedule } from "./OrganizationSchedule";
 
 export interface OrganizationFormProps {
-  isFetching: boolean;
+  isFetching?: boolean;
+  isLoading?: boolean;
   onReset: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
 export const OrganizationForm: React.FC<OrganizationFormProps> = ({
   isFetching,
+  isLoading,
   onSubmit,
   onReset,
 }) => (
@@ -21,6 +23,10 @@ export const OrganizationForm: React.FC<OrganizationFormProps> = ({
       <OrganizationSchedule isFetching={isFetching} />
     </div>
 
-    <ActionButtons isFetching={isFetching} onReset={onReset} />
+    <ActionButtons
+      isFetching={isFetching}
+      isLoading={isLoading}
+      onReset={onReset}
+    />
   </form>
 );

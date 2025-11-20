@@ -4,7 +4,7 @@ import { PhoneField } from "@shared/ui/fields/PhoneField";
 import { TextField } from "@shared/ui/fields/TextField";
 
 interface OrganizationMainInformationProps {
-  isFetching: boolean;
+  isFetching?: boolean;
 }
 
 export const OrganizationMainInformation: React.FC<

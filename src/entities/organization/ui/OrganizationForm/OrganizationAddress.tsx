@@ -7,7 +7,7 @@ import { Skeleton } from "@shared/ui/base/Skeleton";
 import { TextField } from "@shared/ui/fields/TextField";
 
 interface OrganizationAddressProps {
-  isFetching: boolean;
+  isFetching?: boolean;
 }
 
 export const OrganizationAddress: React.FC<OrganizationAddressProps> = ({

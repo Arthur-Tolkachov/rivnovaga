@@ -6,7 +6,7 @@ import { Skeleton } from "@shared/ui/base/Skeleton";
 import { SelectField } from "@shared/ui/fields/SelectField";
 
 interface OrganizationScheduleProps {
-  isFetching: boolean;
+  isFetching?: boolean;
 }
 
 export const OrganizationSchedule: React.FC<OrganizationScheduleProps> = ({

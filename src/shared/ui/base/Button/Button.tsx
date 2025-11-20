@@ -1,6 +1,8 @@
 import cn from "classnames";
 import Link from "next/link";
 
+import { Spinner } from "../Spinner";
+
 type ButtonVariant = "outlined-light" | "outlined-dark" | "filled" | "rounded";
 type ButtonColor = "primary" | "secondary";
 
@@ -11,6 +13,8 @@ export interface ButtonProps {
   color?: ButtonColor;
   className?: string;
   href?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
   onClick?: VoidFunction;
 }
 
@@ -21,6 +25,8 @@ export const Button: React.FC<ButtonProps> = ({
   type = "button",
   href,
   className,
+  disabled,
+  isLoading,
   onClick,
 }) => {
   const buttonStyles = {
@@ -66,12 +72,34 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       className={cn(
-        "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
+        "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
         buttonStyles[color][variant],
         className
       )}
+      style={{
+        ...(disabled && {
+          cursor: "default",
+          opacity: 0.8,
+          pointerEvents: "none",
+        }),
+      }}
+      disabled={disabled}
     >
-      {children}
+      <Spinner
+        className="absolute"
+        width={30}
+        height={30}
+        variant="light"
+        show={isLoading}
+      />
+
+      <span
+        style={{
+          opacity: isLoading ? 0 : 1,
+        }}
+      >
+        {children}
+      </span>
     </button>
   );
 };
