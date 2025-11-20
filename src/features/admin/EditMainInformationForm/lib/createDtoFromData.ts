@@ -1,6 +1,7 @@
-import { OrganizationFullModel } from "@entity/organization";
-
-import { UpdateMainInformationDTO } from "../api/dto";
+import {
+  OrganizationFullModel,
+  UpdateMainInformationDTO,
+} from "@entity/organization";
 
 export const createDtoFromData = ({
   address,

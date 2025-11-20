@@ -6,11 +6,11 @@ import {
 import { Skeleton } from "@shared/ui/base/Skeleton";
 import { TextField } from "@shared/ui/fields/TextField";
 
-interface MainInformationAddressProps {
+interface OrganizationAddressProps {
   isFetching: boolean;
 }
 
-export const MainInformationAddress: React.FC<MainInformationAddressProps> = ({
+export const OrganizationAddress: React.FC<OrganizationAddressProps> = ({
   isFetching,
 }) => {
   if (isFetching) {

@@ -24,6 +24,25 @@ class API {
       return null;
     }
   }
+
+  async put<TData, TResult>(
+    url: string,
+    data: TData,
+    config?: AxiosRequestConfig
+  ) {
+    try {
+      const response: AxiosResponse<TResult> = await axiosClient.put(
+        url,
+        data,
+        config
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 }
 
 const api = new API();

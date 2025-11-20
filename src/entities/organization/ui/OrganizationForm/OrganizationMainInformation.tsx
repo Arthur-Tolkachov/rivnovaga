@@ -3,13 +3,13 @@ import { FileUploaderField } from "@shared/ui/fields/FileUploaderField";
 import { PhoneField } from "@shared/ui/fields/PhoneField";
 import { TextField } from "@shared/ui/fields/TextField";
 
-interface MainInformationProps {
+interface OrganizationMainInformationProps {
   isFetching: boolean;
 }
 
-export const MainInformation: React.FC<MainInformationProps> = ({
-  isFetching,
-}) => {
+export const OrganizationMainInformation: React.FC<
+  OrganizationMainInformationProps
+> = ({ isFetching }) => {
   if (isFetching) {
     return (
       <Skeleton

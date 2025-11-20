@@ -1,70 +1,60 @@
 model Address {
-  id String @id @default(uuid())
-
-  index String?
-  city String
-  street String
-  building String
-  office String?
-  organization Organization @relation(fields: [organizationId], references: [id])
-  organizationId String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String       @id @default(uuid())
+  index          String?
+  city           String
+  street         String
+  building       String
+  office         String?
+  organizationId String       @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
 }
 
 model Map {
-  id String @id @default(uuid())
-
-  lat String
-  lng String
-  organization Organization @relation(fields: [organizationId], references: [id])
-  organizationId String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String       @id @default(uuid())
+  lat            String
+  lng            String
+  organizationId String       @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
 }
 
 model WorkingDaysSchedule {
-  id String @id @default(uuid())
-
-  start String
-  end String
-  organization Organization @relation(fields: [organizationId], references: [id])
-  organizationId String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String       @id @default(uuid())
+  start          String
+  end            String
+  organizationId String       @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
 }
 
 model WorkingTimeSchedule {
-  id String @id @default(uuid())
-
-  start String
-  end String
-  organization Organization @relation(fields: [organizationId], references: [id])
-  organizationId String @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String       @id @default(uuid())
+  start          String
+  end            String
+  organizationId String       @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id])
 }
 
 model Organization {
-  id String @id @default(uuid())
-  
-  name String
-  logoUrl String
-  phone String?
-  email String?
-  telegram String?
-  viber String?
-  whatsapp String?
-  address Address?
-  map Map?
+  id                    String               @id @default(uuid())
+  name                  String
+  logoUrl               String
+  phone                 String?
+  email                 String?
+  telegram              String?
+  viber                 String?
+  whatsapp              String?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  address               Address?
+  map                   Map?
+  user                  User?
   working_days_schedule WorkingDaysSchedule?
   working_time_schedule WorkingTimeSchedule?
-  user User? @relation
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }

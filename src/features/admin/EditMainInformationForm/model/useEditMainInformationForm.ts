@@ -2,14 +2,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { getFullOrganization } from "@entity/organization";
+import {
+  getFullOrganization,
+  UpdateMainInformationDTO,
+} from "@entity/organization";
+import { editOrganization } from "@entity/organization/repository";
 
 import { DEFAULT_VALUES } from "./form";
 import {
   EditMainInformationFormSchema,
   EditMainInformationFormValues,
 } from "./validation";
-import { UpdateMainInformationDTO } from "../api/dto";
 import { createDtoFromData } from "../lib/createDtoFromData";
 
 export const useEditMainInformationForm = () => {
@@ -53,8 +56,11 @@ export const useEditMainInformationForm = () => {
     reset(initialData);
   };
 
-  const onSubmit = handleSubmit((values) => {
+  const onSubmit = handleSubmit(async (values) => {
     console.log("values :>> ", values);
+    const response = await editOrganization(values);
+
+    console.log("response :>> ", response);
   });
 
   return {
