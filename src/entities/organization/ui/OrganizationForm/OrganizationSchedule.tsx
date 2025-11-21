@@ -5,13 +5,13 @@ import {
 import { Skeleton } from "@shared/ui/base/Skeleton";
 import { SelectField } from "@shared/ui/fields/SelectField";
 
-interface MainInformationScheduleProps {
-  isFetching: boolean;
+interface OrganizationScheduleProps {
+  isFetching?: boolean;
 }
 
-export const MainInformationSchedule: React.FC<
-  MainInformationScheduleProps
-> = ({ isFetching }) => {
+export const OrganizationSchedule: React.FC<OrganizationScheduleProps> = ({
+  isFetching,
+}) => {
   if (isFetching) {
     return (
       <Skeleton

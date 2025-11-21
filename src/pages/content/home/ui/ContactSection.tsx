@@ -49,9 +49,9 @@ export const ContactSection = () => {
         <div className="border-y-1 border-secondary-main pb-8">
           <form className="flex flex-col">
             <div className="flex flex-col w-[500px]">
-              <TextInput id="name" name="name" label="Як до вас звертатись" />
+              <TextInput name="name" label="Як до вас звертатись" />
 
-              <TextInput id="phone" name="phone" label="Телефон" />
+              <TextInput name="phone" label="Телефон" />
             </div>
 
             <Textarea

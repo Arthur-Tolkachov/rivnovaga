@@ -31,6 +31,12 @@ h3 {
   @apply text-xl md:text-xl font-normal;
 }
 
+:root {
+  --toastify-color-success: var(--color-success);
+  --toastify-toast-shadow: none;
+  --toastify-toast-bd-radius: 0;
+}
+
 @theme {
   /* Palette */
   --color-primary-light: #546760;
@@ -45,4 +51,7 @@ h3 {
   --color-secondary-darker: #5d4112;
   --color-secondary-dark: #31271a;
   --color-secondary-dark-80: rgba(49, 39, 26, 0.8);
+
+  --color-success: #3a5833;
+  --color-error: #a43010;
 }

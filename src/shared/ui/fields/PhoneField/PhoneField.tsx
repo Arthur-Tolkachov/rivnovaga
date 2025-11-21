@@ -1,24 +1,25 @@
+"use client";
+
 import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
-  get,
   useController,
   useFormContext,
 } from "react-hook-form";
 
-import { Select } from "@shared/ui/base/Select";
-import { SelectProps } from "@shared/ui/base/Select/Select";
+import { PhoneInput } from "@shared/ui/base/PhoneInput";
+import { PhoneInputProps } from "@shared/ui/base/PhoneInput/PhoneInput";
 
-export interface SelectFieldProps<T extends FieldValues>
-  extends Omit<SelectProps, "name" | "onChange"> {
+export interface PhoneFieldProps<T extends FieldValues>
+  extends Omit<PhoneInputProps, "name" | "onChange"> {
   name: FieldPath<T>;
 }
 
-export const SelectField = <T extends FieldValues>({
+export const PhoneField = <T extends FieldValues>({
   name,
   ...rest
-}: SelectFieldProps<T>) => {
+}: PhoneFieldProps<T>) => {
   const {
     control,
     formState: { errors },
@@ -31,7 +32,7 @@ export const SelectField = <T extends FieldValues>({
     control,
   });
 
-  const fieldError = get(errors, name);
+  const fieldError = errors[name];
 
   const error = useMemo(() => {
     const errorMessage = fieldError?.message;
@@ -43,5 +44,13 @@ export const SelectField = <T extends FieldValues>({
     return null;
   }, [fieldError]);
 
-  return <Select value={value} error={error} onChange={onChange} {...rest} />;
+  return (
+    <PhoneInput
+      name={name}
+      value={value}
+      error={error}
+      onChange={onChange}
+      {...rest}
+    />
+  );
 };

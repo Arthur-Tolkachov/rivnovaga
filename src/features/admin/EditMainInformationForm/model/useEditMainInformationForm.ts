@@ -1,42 +1,33 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { getOrganization } from "@entity/organization";
+import {
+  getFullOrganization,
+  UpdateMainInformationDTO,
+} from "@entity/organization";
+import { editOrganization } from "@entity/organization/repository";
+import { objectToFormData } from "@shared/lib/objectToFormData";
+import { notify } from "@shared/lib/toastr";
 
-const defaultValues = {
-  name: "",
-  logoUrl: "",
-  email: "",
-  phone: "",
-  telegram: "",
-  viber: "",
-  whatsapp: "",
-  address: {
-    index: "",
-    city: "",
-    street: "",
-    building: "",
-    office: "",
-  },
-  map: {
-    lat: "",
-    lng: "",
-  },
-  working_days_schedule: {
-    start: "",
-    end: "",
-  },
-  working_time_schedule: {
-    start: "",
-    end: "",
-  },
-};
+import { DEFAULT_VALUES } from "./form";
+import {
+  EditMainInformationFormSchema,
+  EditMainInformationFormValues,
+} from "./validation";
+import { createDtoFromData } from "../lib/createDtoFromData";
 
 export const useEditMainInformationForm = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const methods = useForm({
-    defaultValues,
+  const [initialData, setInitialData] =
+    useState<UpdateMainInformationDTO>(DEFAULT_VALUES);
+
+  const methods = useForm<EditMainInformationFormValues>({
+    defaultValues: DEFAULT_VALUES,
+    resolver: zodResolver(EditMainInformationFormSchema),
+    reValidateMode: "onChange",
   });
 
   const { reset, handleSubmit } = methods;
@@ -44,14 +35,12 @@ export const useEditMainInformationForm = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await getOrganization();
+        const data = await getFullOrganization();
 
         if (data) {
-          reset({
-            ...defaultValues,
-            name: data.name,
-            logoUrl: data.logoUrl,
-          });
+          const preparedData = createDtoFromData(data);
+
+          setInitialData((prev) => ({ ...prev, ...preparedData }));
         }
       } catch (error) {
         console.error(error);
@@ -63,13 +52,33 @@ export const useEditMainInformationForm = () => {
     getData();
   }, [reset]);
 
-  console.log("watch() :>> ", methods.watch());
+  useEffect(() => {
+    reset(initialData);
+  }, [reset, initialData]);
 
-  const onSubmit = handleSubmit(() => {});
+  const onReset = () => {
+    reset(initialData);
+  };
+
+  const onSubmit = handleSubmit(async (values) => {
+    try {
+      setIsLoading(true);
+      const formData = objectToFormData<UpdateMainInformationDTO>(values);
+      await editOrganization(formData);
+
+      notify.success("Основну iнформацію успішно оновлено");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  });
 
   return {
     methods,
+    isLoading,
     isFetching,
+    onReset,
     onSubmit,
   };
 };

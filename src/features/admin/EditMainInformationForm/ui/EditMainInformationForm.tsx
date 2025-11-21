@@ -2,21 +2,16 @@
 
 import { FormProvider } from "react-hook-form";
 
-import { MainInformation } from "./MainInformation";
-import { MainInformationAddress } from "./MainInformationAddress";
-import { MainInformationSchedule } from "./MainInformationSchedule";
+import { OrganizationForm } from "@entity/organization";
+
 import { useEditMainInformationForm } from "../model/useEditMainInformationForm";
 
 export const EditMainInformationForm = () => {
-  const { methods, isFetching, onSubmit } = useEditMainInformationForm();
+  const { methods, ...rest } = useEditMainInformationForm();
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmit} className="flex flex-col gap-5">
-        <MainInformation isFetching={isFetching} />
-        <MainInformationAddress isFetching={isFetching} />
-        <MainInformationSchedule isFetching={isFetching} />
-      </form>
+      <OrganizationForm {...rest} />
     </FormProvider>
   );
 };

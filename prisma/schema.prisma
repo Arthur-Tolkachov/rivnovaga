@@ -4,30 +4,5 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_URL")  
-}
-
-model User {
-  id Int @id @default(autoincrement())
-
-  email String @unique
-  password String
-
-  organization Organization? @relation(fields: [organizationId], references: [id])
-  organizationId Int? @unique
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Organization {
-  id Int @id @default(autoincrement())
-  
-  name String
-  logoUrl String
-
-  user User? @relation
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  url      = env("POSTGRES_URL")
 }

@@ -1,9 +1,10 @@
 "use client";
 
-import { useId } from "react";
+import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
+  get,
   useController,
   useFormContext,
 } from "react-hook-form";
@@ -11,7 +12,7 @@ import {
 import { TextInput, TextInputProps } from "@shared/ui/base/TextInput";
 
 export interface TextFieldProps<T extends FieldValues>
-  extends Omit<TextInputProps, "id" | "name"> {
+  extends Omit<TextInputProps, "name"> {
   name: FieldPath<T>;
 }
 
@@ -19,9 +20,10 @@ export const TextField = <T extends FieldValues>({
   name,
   ...rest
 }: TextFieldProps<T>) => {
-  const id = useId();
-
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const {
     field: { value, onChange },
@@ -30,12 +32,23 @@ export const TextField = <T extends FieldValues>({
     control,
   });
 
+  const fieldError = get(errors, name);
+
+  const error = useMemo(() => {
+    const errorMessage = fieldError?.message;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return null;
+  }, [fieldError]);
+
   return (
     <TextInput
-      id={id}
       name={name}
+      error={error}
       value={value}
-      defaultValue={value}
       onChange={onChange}
       {...rest}
     />

@@ -1,82 +1,101 @@
 "use client";
 
 import cn from "classnames";
+import { forwardRef } from "react";
 
 import { useTextInput, UseTextInputProps } from "./useTextInput";
 
 export interface TextInputProps extends UseTextInputProps {
-  id: string;
   name: string;
   value?: string;
   label?: string;
   className?: string;
+  readonly?: boolean;
+  disabled?: boolean;
+  error?: string | null;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({
-  id,
-  defaultFocus = false,
-  className,
-  label,
-  value,
-  defaultValue = "",
-  onFocus,
-  onBlur,
-  onChange,
-  ...rest
-}) => {
-  const {
-    inputValue,
-    isFocus,
-    shouldLabelTransform,
-    handleBlur,
-    handleChange,
-    handleFocus,
-  } = useTextInput({
-    value,
-    defaultFocus,
-    defaultValue,
-    onBlur,
-    onFocus,
-    onChange,
-  });
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  (
+    {
+      defaultFocus = false,
+      className,
+      label,
+      value,
+      error,
+      transform,
+      onFocus,
+      onBlur,
+      onChange,
+      ...rest
+    },
+    ref
+  ) => {
+    const {
+      id,
+      inputValue,
+      isFocus,
+      shouldLabelTransform,
+      handleBlur,
+      handleChange,
+      handleFocus,
+    } = useTextInput({
+      value,
+      defaultFocus,
+      transform,
+      onBlur,
+      onFocus,
+      onChange,
+    });
 
-  return (
-    <div className="pt-8">
-      <div className="relative">
-        {label && (
-          <label
-            className="absolute inset-0 cursor-pointer flex items-center text-secondary-main duration-100 translate-x-3 origin-left"
-            htmlFor={id}
+    return (
+      <div className="pt-5">
+        <div className="relative">
+          {label && (
+            <label
+              className="absolute inset-0 cursor-pointer flex items-center text-secondary-main duration-100 translate-x-3 origin-left"
+              htmlFor={id}
+              style={{
+                ...(shouldLabelTransform && {
+                  transform: "translate(-12px, -30px) scale(.8)",
+                }),
+              }}
+            >
+              {label}
+            </label>
+          )}
+
+          <input
+            id={id}
+            ref={ref}
+            type="text"
+            value={inputValue}
+            className={cn(
+              "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
+              className
+            )}
             style={{
-              ...(shouldLabelTransform && {
-                transform: "translate(-12px, -40px) scale(.8)",
+              ...(isFocus &&
+                !error && {
+                  borderColor: "transparent",
+                  boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                }),
+              ...(error && {
+                borderColor: "transparent",
+                boxShadow: "0px 0px 0px 1px var(--color-error)",
               }),
             }}
-          >
-            {label}
-          </label>
-        )}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            {...rest}
+          />
+        </div>
 
-        <input
-          id={id}
-          type="text"
-          value={inputValue}
-          className={cn(
-            "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-3",
-            className
-          )}
-          style={{
-            ...(isFocus && {
-              borderColor: "transparent",
-              boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
-            }),
-          }}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          {...rest}
-        />
+        {error && <span className="text-sm text-error">{error}</span>}
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+TextInput.displayName = "TextInput";
