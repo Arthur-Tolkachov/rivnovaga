@@ -1,6 +1,5 @@
 import api from "@shared/lib/axios";
 
-import { UpdateMainInformationDTO } from "./api/dto";
 import { OrganizationFullModel } from "./model";
 
 export const getFullOrganization = async () => {
@@ -9,10 +8,15 @@ export const getFullOrganization = async () => {
   return data;
 };
 
-export const editOrganization = async (values: UpdateMainInformationDTO) => {
-  const data = await api.put<UpdateMainInformationDTO, OrganizationFullModel>(
+export const editOrganization = async (values: FormData) => {
+  const data = await api.put<FormData, OrganizationFullModel>(
     "/organization",
-    values
+    values,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 
   return data;

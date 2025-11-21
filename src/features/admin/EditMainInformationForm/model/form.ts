@@ -1,6 +1,6 @@
 export const DEFAULT_VALUES = {
   name: "",
-  logoUrl: "",
+  logo: "",
   email: "",
   phone: "",
   telegram: "",

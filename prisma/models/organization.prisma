@@ -44,7 +44,7 @@ model WorkingTimeSchedule {
 model Organization {
   id                    String               @id @default(uuid())
   name                  String
-  logoUrl               String
+  logo                  String
   phone                 String?
   email                 String?
   telegram              String?

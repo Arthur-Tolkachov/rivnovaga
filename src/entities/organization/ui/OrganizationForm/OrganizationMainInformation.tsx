@@ -39,7 +39,7 @@ export const OrganizationMainInformation: React.FC<
       </div>
 
       <div className="bg-secondary-light flex justify-center items-center p-5">
-        <FileUploaderField name="logoUrl" label="Логотип компанії" />
+        <FileUploaderField name="logo" label="Логотип компанії" />
       </div>
     </div>
   );

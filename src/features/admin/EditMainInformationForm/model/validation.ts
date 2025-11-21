@@ -37,7 +37,7 @@ export const EditMainInformationFormSchema = z.object({
   telegram: PhoneValidationSchema.nullable(),
   viber: PhoneValidationSchema.nullable(),
   whatsapp: PhoneValidationSchema.nullable(),
-  logoUrl: z.file("File uploading error").or(z.string("Url uploading error")),
+  logo: z.file("File uploading error").or(z.string("Url uploading error")),
   address: AddressSchema,
   map: MapSchema,
   working_days_schedule: WorkingSchedule,

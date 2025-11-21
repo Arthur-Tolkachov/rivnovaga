@@ -7,6 +7,7 @@ import {
   UpdateMainInformationDTO,
 } from "@entity/organization";
 import { editOrganization } from "@entity/organization/repository";
+import { objectToFormData } from "@shared/lib/objectToFormData";
 import { notify } from "@shared/lib/toastr";
 
 import { DEFAULT_VALUES } from "./form";
@@ -62,7 +63,9 @@ export const useEditMainInformationForm = () => {
   const onSubmit = handleSubmit(async (values) => {
     try {
       setIsLoading(true);
-      await editOrganization(values);
+      const formData = objectToFormData<UpdateMainInformationDTO>(values);
+      await editOrganization(formData);
+
       notify.success("Основну iнформацію успішно оновлено");
     } catch (error) {
       console.error(error);

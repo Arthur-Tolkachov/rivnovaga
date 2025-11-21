@@ -5,7 +5,7 @@ export interface UpdateMainInformationDTO {
   telegram: string | null;
   viber: string | null;
   whatsapp: string | null;
-  logoUrl: string | File;
+  logo: string | File;
   address: {
     index: string | null;
     city: string;

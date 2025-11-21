@@ -6,7 +6,7 @@ async function main() {
   const organization = await prisma.organization.create({
     data: {
       name: "Адвокатське об'єднання «Рівновага»",
-      logoUrl: "assets/images/logo.png",
+      logo: "assets/images/logo.png",
       phone: "+380954299650",
       email: "rivnovaga.ao@gmail.com",
       telegram: "+380954299650",

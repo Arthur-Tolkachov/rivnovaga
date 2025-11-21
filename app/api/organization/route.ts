@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { UpdateMainInformationDTO } from "@entity/organization";
 import { prisma } from "@shared/lib/prisma-client";
+import { uploadFile } from "@shared/lib/uploadFile";
 
 export const GET = async () => {
   try {
@@ -36,15 +37,6 @@ export const PUT = async (req: NextRequest) => {
   try {
     const organization = await prisma.organization.findFirst();
 
-    const {
-      address,
-      working_days_schedule,
-      map,
-      working_time_schedule,
-      logoUrl,
-      ...body
-    }: UpdateMainInformationDTO = await req.json();
-
     if (!organization) {
       return NextResponse.json(
         { error: "Organization not found" },
@@ -52,10 +44,62 @@ export const PUT = async (req: NextRequest) => {
       );
     }
 
+    const formStringFieldsArr = [
+      ["name", "string"],
+      ["phone", "string"],
+      ["email", "string"],
+      ["telegram", "string"],
+      ["viber", "string"],
+      ["whatsapp", "string"],
+      ["address", "object"],
+      ["map", "object"],
+      ["working_days_schedule", "object"],
+      ["working_time_schedule", "object"],
+      ["logo", "file"],
+    ] as const;
+
+    const form = await req.formData();
+
+    const {
+      logo,
+      address,
+      map,
+      working_days_schedule,
+      working_time_schedule,
+      ...formValues
+    } = formStringFieldsArr.reduce((acc, [key, value]) => {
+      if (value === "file") {
+        return { ...acc, [key]: form.get(key) as File | string };
+      }
+
+      if (value === "object") {
+        return {
+          ...acc,
+          [key]: JSON.parse(form.get(key) as string),
+        };
+      }
+
+      return {
+        ...acc,
+        [key]: form.get(key) as string,
+      };
+    }, {} as UpdateMainInformationDTO);
+
+    let logoUrl: string;
+
+    if (logo instanceof File) {
+      const url = await uploadFile(logo);
+
+      logoUrl = url;
+    } else {
+      logoUrl = logo;
+    }
+
     const response = await prisma.organization.update({
       where: { id: organization.id },
       data: {
-        ...body,
+        ...formValues,
+        logo: logoUrl,
         address: {
           update: address,
         },
