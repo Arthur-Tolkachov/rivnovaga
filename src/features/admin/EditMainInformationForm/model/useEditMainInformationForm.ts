@@ -58,7 +58,7 @@ export const useEditMainInformationForm = () => {
   const onReset = () => {
     reset(initialData);
   };
-
+  console.log("methods.watch() :>> ", methods.watch());
   const onSubmit = handleSubmit(async (values) => {
     try {
       setIsLoading(true);
