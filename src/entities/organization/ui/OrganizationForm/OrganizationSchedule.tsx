@@ -30,13 +30,13 @@ export const OrganizationSchedule: React.FC<OrganizationScheduleProps> = ({
         <div className="flex items-center gap-3">
           <span className="text-secondary-main">З -</span>
           <SelectField
-            name="working_days_schedule.start"
+            name="workingDaysSchedule.start"
             placeholder="Початок"
             options={DAYS_OF_THE_WEEK_DROPDOWN_OPTIONS}
           />
           <span className="text-secondary-main">По -</span>
           <SelectField
-            name="working_days_schedule.end"
+            name="workingDaysSchedule.end"
             placeholder="Кiнець"
             options={DAYS_OF_THE_WEEK_DROPDOWN_OPTIONS}
           />
@@ -49,13 +49,13 @@ export const OrganizationSchedule: React.FC<OrganizationScheduleProps> = ({
         <div className="flex items-center gap-3">
           <span className="text-secondary-main">З -</span>
           <SelectField
-            name="working_time_schedule.start"
+            name="workingTimeSchedule.start"
             placeholder="Початок"
             options={TIME_OF_THE_DAY_DROPDOWN_OPTIONS}
           />
           <span className="text-secondary-main">По -</span>
           <SelectField
-            name="working_time_schedule.end"
+            name="workingTimeSchedule.end"
             placeholder="Кiнець"
             options={TIME_OF_THE_DAY_DROPDOWN_OPTIONS}
           />

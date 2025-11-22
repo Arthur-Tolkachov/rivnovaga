@@ -8,5 +8,8 @@ export async function uploadFile(file: File) {
 
   fs.writeFileSync(filePath, buffer);
 
-  return `uploads/${fileName}`;
+  return {
+    url: `uploads/${fileName}`,
+    fileName,
+  };
 }

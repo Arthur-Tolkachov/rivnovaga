@@ -37,11 +37,16 @@ export const EditMainInformationFormSchema = z.object({
   telegram: PhoneValidationSchema.nullable(),
   viber: PhoneValidationSchema.nullable(),
   whatsapp: PhoneValidationSchema.nullable(),
-  logo: z.file("File uploading error").or(z.string("Url uploading error")),
+  logo: z.file("File uploading error").or(
+    z.object({
+      url: z.string(),
+      fileName: z.string(),
+    })
+  ),
   address: AddressSchema,
   map: MapSchema,
-  working_days_schedule: WorkingSchedule,
-  working_time_schedule: WorkingSchedule,
+  workingDaysSchedule: WorkingSchedule,
+  workingTimeSchedule: WorkingSchedule,
 });
 
 export type EditMainInformationFormValues = z.infer<

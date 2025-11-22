@@ -6,8 +6,9 @@ export type OrganizationFullModel = Prisma.OrganizationGetPayload<{
   include: {
     address: true;
     map: true;
-    working_days_schedule: true;
-    working_time_schedule: true;
+    workingDaysSchedule: true;
+    workingTimeSchedule: true;
+    logo: true;
   };
   omit: {
     id: true;

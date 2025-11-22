@@ -5,46 +5,53 @@ model Address {
   street         String
   building       String
   office         String?
-  organizationId String       @unique
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  organization Organization?
 }
 
 model Map {
   id             String       @id @default(uuid())
   lat            String
   lng            String
-  organizationId String       @unique
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  organization Organization?
 }
 
 model WorkingDaysSchedule {
   id             String       @id @default(uuid())
   start          String
   end            String
-  organizationId String       @unique
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  organization Organization?
 }
 
 model WorkingTimeSchedule {
   id             String       @id @default(uuid())
   start          String
-  end            String
-  organizationId String       @unique
+  end            String       @unique
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
-  organization   Organization @relation(fields: [organizationId], references: [id])
+
+  organization Organization?
+}
+
+model Logo {
+  id String @id @default(uuid())
+  url String
+  fileName String
+
+  organization Organization?
 }
 
 model Organization {
   id                    String               @id @default(uuid())
   name                  String
-  logo                  String
   phone                 String?
   email                 String?
   telegram              String?
@@ -52,9 +59,21 @@ model Organization {
   whatsapp              String?
   createdAt             DateTime             @default(now())
   updatedAt             DateTime             @updatedAt
-  address               Address?
-  map                   Map?
+  
+  logo                  Logo?                @relation(fields: [logoId], references: [id])
+  logoId                String?               @unique
+
+  address               Address?             @relation(fields: [addressId], references: [id])
+  addressId             String?               @unique
+
+  map                   Map?                 @relation(fields: [mapId], references: [id])
+  mapId                 String?              @unique
+  
   user                  User?
-  working_days_schedule WorkingDaysSchedule?
-  working_time_schedule WorkingTimeSchedule?
+
+  workingDaysSchedule   WorkingDaysSchedule?  @relation(fields: [workingDaysScheduleId], references: [id])
+  workingDaysScheduleId String?               @unique
+
+  workingTimeSchedule   WorkingTimeSchedule?    @relation(fields: [workingTimeScheduleId], references: [id])
+  workingTimeScheduleId String?             @unique
 }

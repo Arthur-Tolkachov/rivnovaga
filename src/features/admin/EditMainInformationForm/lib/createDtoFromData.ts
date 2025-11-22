@@ -6,8 +6,9 @@ import {
 export const createDtoFromData = ({
   address,
   map,
-  working_days_schedule,
-  working_time_schedule,
+  workingDaysSchedule,
+  workingTimeSchedule,
+  logo,
   ...rest
 }: OrganizationFullModel): UpdateMainInformationDTO => {
   const addressDTO = {
@@ -19,13 +20,13 @@ export const createDtoFromData = ({
   };
 
   const workingDaysScheduleDTO = {
-    start: working_days_schedule ? working_days_schedule.start : "",
-    end: working_days_schedule ? working_days_schedule.end : "",
+    start: workingDaysSchedule ? workingDaysSchedule.start : "",
+    end: workingDaysSchedule ? workingDaysSchedule.end : "",
   };
 
   const workingTimeScheduleDTO = {
-    start: working_time_schedule ? working_time_schedule.start : "",
-    end: working_time_schedule ? working_time_schedule.end : "",
+    start: workingTimeSchedule ? workingTimeSchedule.start : "",
+    end: workingTimeSchedule ? workingTimeSchedule.end : "",
   };
 
   const mapDTO = {
@@ -33,11 +34,17 @@ export const createDtoFromData = ({
     lng: map ? map.lng : "",
   };
 
+  const logoDTO = {
+    fileName: logo ? logo.fileName : "",
+    url: logo ? logo.url : "",
+  };
+
   return {
     address: addressDTO,
-    working_days_schedule: workingDaysScheduleDTO,
-    working_time_schedule: workingTimeScheduleDTO,
+    workingDaysSchedule: workingDaysScheduleDTO,
+    workingTimeSchedule: workingTimeScheduleDTO,
     map: mapDTO,
+    logo: logoDTO,
     ...rest,
   };
 };

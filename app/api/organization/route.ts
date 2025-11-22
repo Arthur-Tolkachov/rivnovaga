@@ -3,16 +3,18 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { UpdateMainInformationDTO } from "@entity/organization";
 import { prisma } from "@shared/lib/prisma-client";
+import { removeFile } from "@shared/lib/removeFile";
 import { uploadFile } from "@shared/lib/uploadFile";
 
 export const GET = async () => {
   try {
     const organization = await prisma.organization.findFirst({
       include: {
+        logo: true,
         address: true,
         map: true,
-        working_days_schedule: true,
-        working_time_schedule: true,
+        workingDaysSchedule: true,
+        workingTimeSchedule: true,
       },
     });
 
@@ -35,7 +37,11 @@ export const GET = async () => {
 
 export const PUT = async (req: NextRequest) => {
   try {
-    const organization = await prisma.organization.findFirst();
+    const organization = await prisma.organization.findFirst({
+      include: {
+        logo: true,
+      },
+    });
 
     if (!organization) {
       return NextResponse.json(
@@ -53,8 +59,8 @@ export const PUT = async (req: NextRequest) => {
       ["whatsapp", "string"],
       ["address", "object"],
       ["map", "object"],
-      ["working_days_schedule", "object"],
-      ["working_time_schedule", "object"],
+      ["workingDaysSchedule", "object"],
+      ["workingTimeSchedule", "object"],
       ["logo", "file"],
     ] as const;
 
@@ -64,12 +70,15 @@ export const PUT = async (req: NextRequest) => {
       logo,
       address,
       map,
-      working_days_schedule,
-      working_time_schedule,
+      workingDaysSchedule,
+      workingTimeSchedule,
       ...formValues
     } = formStringFieldsArr.reduce((acc, [key, value]) => {
       if (value === "file") {
-        return { ...acc, [key]: form.get(key) as File | string };
+        return {
+          ...acc,
+          [key]: form.get(key) as File | { url: string; fileName: string },
+        };
       }
 
       if (value === "object") {
@@ -85,35 +94,42 @@ export const PUT = async (req: NextRequest) => {
       };
     }, {} as UpdateMainInformationDTO);
 
-    let logoUrl: string;
+    const oldLogo = organization.logo;
+    let newLogo: { url: string; fileName: string };
 
     if (logo instanceof File) {
-      const url = await uploadFile(logo);
+      const uploadedLogo = await uploadFile(logo);
 
-      logoUrl = url;
+      newLogo = uploadedLogo;
     } else {
-      logoUrl = logo;
+      newLogo = logo;
     }
 
     const response = await prisma.organization.update({
       where: { id: organization.id },
       data: {
         ...formValues,
-        logo: logoUrl,
+        logo: {
+          update: newLogo,
+        },
         address: {
           update: address,
         },
         map: {
           update: map,
         },
-        working_days_schedule: {
-          update: working_days_schedule,
+        workingDaysSchedule: {
+          update: workingDaysSchedule,
         },
-        working_time_schedule: {
-          update: working_time_schedule,
+        workingTimeSchedule: {
+          update: workingTimeSchedule,
         },
       },
     });
+
+    if (oldLogo) {
+      removeFile(oldLogo.fileName);
+    }
 
     return NextResponse.json(response);
   } catch (error) {
