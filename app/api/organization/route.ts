@@ -2,6 +2,10 @@ import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 import { UpdateMainInformationDTO } from "@entity/organization";
+import {
+  formDataToObject,
+  FormDataToObjectSchemeDataType,
+} from "@shared/lib/formDataToObject";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
 import { uploadFile } from "@shared/lib/uploadFile";
@@ -62,7 +66,7 @@ export const PUT = async (req: NextRequest) => {
       ["workingDaysSchedule", "object"],
       ["workingTimeSchedule", "object"],
       ["logo", "file"],
-    ] as const;
+    ] as const satisfies [string, FormDataToObjectSchemeDataType][];
 
     const form = await req.formData();
 
@@ -73,26 +77,10 @@ export const PUT = async (req: NextRequest) => {
       workingDaysSchedule,
       workingTimeSchedule,
       ...formValues
-    } = formStringFieldsArr.reduce((acc, [key, value]) => {
-      if (value === "file") {
-        return {
-          ...acc,
-          [key]: form.get(key) as File | { url: string; fileName: string },
-        };
-      }
-
-      if (value === "object") {
-        return {
-          ...acc,
-          [key]: JSON.parse(form.get(key) as string),
-        };
-      }
-
-      return {
-        ...acc,
-        [key]: form.get(key) as string,
-      };
-    }, {} as UpdateMainInformationDTO);
+    } = formDataToObject<UpdateMainInformationDTO>({
+      formData: form,
+      schema: formStringFieldsArr,
+    });
 
     const oldLogo = organization.logo;
     let newLogo: { url: string; fileName: string };
