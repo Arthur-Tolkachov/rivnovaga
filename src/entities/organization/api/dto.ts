@@ -5,7 +5,7 @@ export interface UpdateMainInformationDTO {
   telegram: string | null;
   viber: string | null;
   whatsapp: string | null;
-  logo: string | File;
+  logo: { url: string; fileName: string } | File;
   address: {
     index: string | null;
     city: string;
@@ -17,11 +17,11 @@ export interface UpdateMainInformationDTO {
     lat: string;
     lng: string;
   };
-  working_days_schedule: {
+  workingDaysSchedule: {
     start: string;
     end: string;
   };
-  working_time_schedule: {
+  workingTimeSchedule: {
     start: string;
     end: string;
   };

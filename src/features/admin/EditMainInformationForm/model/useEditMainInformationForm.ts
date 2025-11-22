@@ -39,7 +39,6 @@ export const useEditMainInformationForm = () => {
 
         if (data) {
           const preparedData = createDtoFromData(data);
-
           setInitialData((prev) => ({ ...prev, ...preparedData }));
         }
       } catch (error) {
@@ -64,6 +63,7 @@ export const useEditMainInformationForm = () => {
     try {
       setIsLoading(true);
       const formData = objectToFormData<UpdateMainInformationDTO>(values);
+
       await editOrganization(formData);
 
       notify.success("Основну iнформацію успішно оновлено");

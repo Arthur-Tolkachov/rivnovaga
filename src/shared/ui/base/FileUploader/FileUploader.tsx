@@ -28,7 +28,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         />
 
         <div className="relative w-[150px] h-[150px]">
-          <img src={previewValue} alt="Логотип" className="w-full" />
+          <img src={previewValue.url} alt="Логотип" className="w-full" />
         </div>
       </label>
     </div>

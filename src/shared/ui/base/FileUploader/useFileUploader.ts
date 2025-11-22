@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
 
 export interface UseFileUploaderProps {
-  value?: File | string;
+  value?: File | { url: string; fileName: string };
   onChange?: (file: File) => void;
 }
 
 export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
-  const [previewValue, setPreviewValue] = useState<string>(
-    EmptyPlaceholderImg.src
-  );
+  const [previewValue, setPreviewValue] = useState({
+    url: EmptyPlaceholderImg.src,
+    fileName: "empty_placeholder.png",
+  });
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -25,7 +26,7 @@ export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
 
     const objUrl = URL.createObjectURL(file);
 
-    setPreviewValue(objUrl);
+    setPreviewValue({ url: objUrl, fileName: file.name });
   };
 
   useEffect(() => {
@@ -34,13 +35,15 @@ export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
     if (value instanceof File) {
       const objUrl = URL.createObjectURL(value);
 
-      return setPreviewValue(objUrl);
+      return setPreviewValue({ url: objUrl, fileName: value.name });
     }
 
-    setPreviewValue(value);
+    if (value.url && value.fileName) {
+      return setPreviewValue(value);
+    }
 
     return () => {
-      URL.revokeObjectURL(previewValue);
+      URL.revokeObjectURL(previewValue.url);
     };
   }, [value]);
 

@@ -6,12 +6,18 @@ async function main() {
   const organization = await prisma.organization.create({
     data: {
       name: "Адвокатське об'єднання «Рівновага»",
-      logo: "assets/images/logo.png",
       phone: "+380954299650",
       email: "rivnovaga.ao@gmail.com",
       telegram: "+380954299650",
       viber: "+380954299650",
       whatsapp: "+380954299650",
+
+      logo: {
+        create: {
+          url: "assets/images/logo.png",
+          fileName: "logo.png",
+        },
+      },
 
       address: {
         create: {
@@ -29,13 +35,13 @@ async function main() {
           lng: "30.20618508465575",
         },
       },
-      working_days_schedule: {
+      workingDaysSchedule: {
         create: {
           start: "monday",
           end: "friday",
         },
       },
-      working_time_schedule: {
+      workingTimeSchedule: {
         create: {
           start: "10:00",
           end: "18:00",

@@ -1,6 +1,9 @@
 export const DEFAULT_VALUES = {
   name: "",
-  logo: "",
+  logo: {
+    url: "",
+    fileName: "",
+  },
   email: "",
   phone: "",
   telegram: "",
@@ -17,11 +20,11 @@ export const DEFAULT_VALUES = {
     lat: "",
     lng: "",
   },
-  working_days_schedule: {
+  workingDaysSchedule: {
     start: "",
     end: "",
   },
-  working_time_schedule: {
+  workingTimeSchedule: {
     start: "",
     end: "",
   },
