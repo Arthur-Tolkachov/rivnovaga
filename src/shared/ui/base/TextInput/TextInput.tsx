@@ -13,9 +13,14 @@ export interface TextInputProps extends UseTextInputProps {
   readonly?: boolean;
   disabled?: boolean;
   error?: string | null;
+  multiline?: boolean;
+  rows?: number;
 }
 
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+export const TextInput = forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  TextInputProps
+>(
   (
     {
       defaultFocus = false,
@@ -23,6 +28,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       label,
       value,
       error,
+      multiline,
+      rows = 3,
       transform,
       onFocus,
       onBlur,
@@ -31,33 +38,29 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     },
     ref
   ) => {
-    const {
-      id,
-      inputValue,
-      isFocus,
-      shouldLabelTransform,
-      handleBlur,
-      handleChange,
-      handleFocus,
-    } = useTextInput({
-      value,
-      defaultFocus,
-      transform,
-      onBlur,
-      onFocus,
-      onChange,
-    });
+    const { inputValue, isFocus, shouldLabelTransform, ...textInput } =
+      useTextInput({
+        value,
+        defaultFocus,
+        transform,
+        onBlur,
+        onFocus,
+        onChange,
+      });
 
     return (
       <div className="pt-5">
         <div className="relative">
           {label && (
             <label
-              className="absolute inset-0 cursor-pointer flex items-center text-secondary-main duration-100 translate-x-3 origin-left"
-              htmlFor={id}
+              className={cn(
+                "absolute inset-0 text-secondary-main cursor-text translate-x-3 top-3 origin-top-left duration-100 pr-[24px]"
+              )}
+              htmlFor={textInput.id}
               style={{
                 ...(shouldLabelTransform && {
-                  transform: "translate(-12px, -30px) scale(.8)",
+                  transform: "translate(-12px, -35px) scale(.8)",
+                  paddingRight: 0,
                 }),
               }}
             >
@@ -65,31 +68,47 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             </label>
           )}
 
-          <input
-            id={id}
-            ref={ref}
-            type="text"
-            value={inputValue}
-            className={cn(
-              "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
-              className
-            )}
-            style={{
-              ...(isFocus &&
-                !error && {
-                  borderColor: "transparent",
+          {multiline ? (
+            <textarea
+              ref={ref as React.Ref<HTMLTextAreaElement>}
+              value={inputValue}
+              className={cn(
+                "outline-none text-secondary-dark border-1 border-secondary-main w-full p-3 resize-none",
+                className
+              )}
+              rows={rows}
+              style={{
+                ...(isFocus && {
                   boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
                 }),
-              ...(error && {
-                borderColor: "transparent",
-                boxShadow: "0px 0px 0px 1px var(--color-error)",
-              }),
-            }}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            {...rest}
-          />
+              }}
+              {...textInput}
+              {...rest}
+            />
+          ) : (
+            <input
+              ref={ref as React.Ref<HTMLInputElement>}
+              value={inputValue}
+              type="text"
+              className={cn(
+                "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
+                className
+              )}
+              style={{
+                ...(isFocus &&
+                  !error && {
+                    borderColor: "transparent",
+                    boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                  }),
+                ...(error && {
+                  borderColor: "transparent",
+                  boxShadow: "0px 0px 0px 1px var(--color-error)",
+                }),
+              }}
+              {...textInput}
+              {...rest}
+            />
+          )}
         </div>
 
         {error && <span className="text-sm text-error">{error}</span>}

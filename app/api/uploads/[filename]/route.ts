@@ -5,7 +5,7 @@ import mime from "mime-types";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
+  _req: Request,
   context: { params: Promise<{ filename: string }> }
 ) {
   const { filename } = await context.params;

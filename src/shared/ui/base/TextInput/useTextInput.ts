@@ -4,9 +4,15 @@ export interface UseTextInputProps {
   value?: string;
   defaultFocus?: boolean;
   transform?: (value: string) => string;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onBlur?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 export const useTextInput = ({
@@ -36,7 +42,9 @@ export const useTextInput = ({
     }
   }, [value]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value } = event.target;
 
     const transformedValue = transform ? transform(value) : value;
@@ -51,7 +59,9 @@ export const useTextInput = ({
     }
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if (onFocus) {
       onFocus(event);
     }
@@ -59,7 +69,9 @@ export const useTextInput = ({
     setIsFocus(true);
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     if (onBlur) {
       onBlur(event);
     }
@@ -72,8 +84,8 @@ export const useTextInput = ({
     inputValue,
     isFocus,
     shouldLabelTransform,
-    handleFocus,
-    handleBlur,
-    handleChange,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    onChange: handleChange,
   };
 };

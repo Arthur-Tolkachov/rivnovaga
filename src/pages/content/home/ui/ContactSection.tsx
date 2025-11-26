@@ -3,7 +3,6 @@ import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
-import { Textarea } from "@shared/ui/base/Textarea";
 import { TextInput } from "@shared/ui/base/TextInput";
 import { Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
@@ -54,11 +53,7 @@ export const ContactSection = () => {
               <TextInput name="phone" label="Телефон" />
             </div>
 
-            <Textarea
-              id="message"
-              name="message"
-              label="Опишiть ваше питання"
-            />
+            <textarea id="message" name="message" />
 
             <Button color="secondary" variant="outlined-dark" className="mt-5">
               Надiслати

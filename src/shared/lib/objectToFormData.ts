@@ -5,14 +5,9 @@ export const objectToFormData = <TData>(obj: TData): FormData => {
     if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
 
     const value = obj[key];
+    const preparedValue = value instanceof File ? value : JSON.stringify(value);
 
-    if (value instanceof File) {
-      formData.append(key, value);
-    } else if (value !== null && typeof value === "object") {
-      formData.append(key, JSON.stringify(value));
-    } else {
-      formData.append(key, `${value}`);
-    }
+    formData.append(key, preparedValue);
   }
 
   return formData;

@@ -1,7 +1,12 @@
 export const NAVIGATION_CONFIG = [
-  { id: "services", label: "Послуги", href: "/services" },
-  { id: "about", label: "Про адвокатiв", href: "/about" },
-  { id: "practice", label: "Наша практика", href: "/practice" },
-  { id: "materials", label: "Кориснi матерiали", href: "/materials" },
-  { id: "contact", label: "Контакти", href: "/contact" },
+  { key: "services", label: "Послуги", href: "/services" },
+  { key: "about", label: "Про адвокатiв", href: "/about" },
+  { key: "practice", label: "Наша практика", href: "/practice" },
+  { key: "materials", label: "Кориснi матерiали", href: "/materials" },
+  { key: "contact", label: "Контакти", href: "/contact" },
+];
+
+export const ADMIN_NAVIGATION_CONFIG = [
+  { key: "profile", label: "Профiль", href: "/admin" },
+  { key: "hero", label: "Головний екран", href: "/admin/hero" },
 ];

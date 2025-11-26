@@ -10,11 +10,11 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ pathname }) => (
   <nav>
     <ul className="flex gap-8">
-      {NAVIGATION_CONFIG.map(({ id, href, label }) => {
+      {NAVIGATION_CONFIG.map(({ key, href, label }) => {
         const active = href === pathname;
 
         return (
-          <li key={id}>
+          <li key={key}>
             <Link
               href={href}
               className={cn(

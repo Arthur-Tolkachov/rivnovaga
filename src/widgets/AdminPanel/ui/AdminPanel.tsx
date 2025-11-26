@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { ADMIN_NAVIGATION_CONFIG } from "@shared/config/navigation.config";
 import { Logo } from "@shared/ui/composite/Logo";
 
 export const AdminPanel = () => {
@@ -10,14 +11,16 @@ export const AdminPanel = () => {
       <Logo />
 
       <ul className="flex flex-col gap-5 border-t-1 border-secondary-lighter py-5">
-        <li>
-          <Link
-            href="/admin"
-            className="text-secondary-light hover:text-secondary-lighter"
-          >
-            Налаштування профiлю
-          </Link>
-        </li>
+        {ADMIN_NAVIGATION_CONFIG.map(({ key, href, label }) => (
+          <li key={key}>
+            <Link
+              href={href}
+              className="text-secondary-light hover:text-secondary-lighter"
+            >
+              {label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
