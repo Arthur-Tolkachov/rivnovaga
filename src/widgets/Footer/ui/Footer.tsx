@@ -13,8 +13,8 @@ export const Footer = () => (
       <Logo />
 
       <ul className="flex flex-col gap-5">
-        {NAVIGATION_CONFIG.map(({ id, href, label }) => (
-          <li key={id}>
+        {NAVIGATION_CONFIG.map(({ key, href, label }) => (
+          <li key={key}>
             <NextLink
               href={href}
               className="text-secondary-light hover:text-secondary-lighter duration-200"
