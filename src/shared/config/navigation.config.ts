@@ -9,4 +9,5 @@ export const NAVIGATION_CONFIG = [
 export const ADMIN_NAVIGATION_CONFIG = [
   { key: "profile", label: "Профiль", href: "/admin" },
   { key: "hero", label: "Головний екран", href: "/admin/hero" },
+  { key: "cta", label: "Секція заклику до дії", href: "/admin/cta" },
 ];

@@ -1,6 +1,11 @@
+import { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 
 import { AdminPanel } from "@widgets/AdminPanel";
+
+export const metadata: Metadata = {
+  title: "Адмiн панель",
+};
 
 export default function AdminLayout({
   children,
