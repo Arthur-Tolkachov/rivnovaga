@@ -40,7 +40,7 @@ export const useTextInput = ({
     if (hasExternalValue && value !== inputValue) {
       setInputValue(value);
     }
-  }, [value]);
+  }, [value, hasExternalValue, setInputValue]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
