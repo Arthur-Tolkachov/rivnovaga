@@ -2,11 +2,11 @@ import { Skeleton } from "@shared/ui/base/Skeleton";
 import { RichTextField } from "@shared/ui/fields/RichTextField";
 import { TextField } from "@shared/ui/fields/TextField";
 
-interface CtaSectionFields {
+interface CtaSectionFieldsProps {
   isFetching?: boolean;
 }
 
-export const CtaSectionFields: React.FC<CtaSectionFields> = ({
+export const CtaSectionFields: React.FC<CtaSectionFieldsProps> = ({
   isFetching,
 }) => {
   if (isFetching) {
