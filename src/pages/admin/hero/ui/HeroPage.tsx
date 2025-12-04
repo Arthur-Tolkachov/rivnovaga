@@ -1,4 +1,4 @@
-import { EditHeroSectionForm } from "@features/admin/EditHeroSectionForm";
+import { EditHeroSectionForm } from "@features/admin/EditHeroSection";
 
 export const HeroPage = () => (
   <div className="flex flex-col gap-5">

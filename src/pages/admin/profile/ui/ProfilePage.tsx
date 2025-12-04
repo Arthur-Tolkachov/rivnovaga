@@ -1,4 +1,4 @@
-import { EditProfileForm } from "@features/admin/EditProfileForm";
+import { EditProfileForm } from "@features/admin/EditProfile";
 
 export const ProfilePage = () => (
   <div className="flex flex-col gap-5">

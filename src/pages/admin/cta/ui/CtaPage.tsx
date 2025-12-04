@@ -1,4 +1,4 @@
-import { EditCtaSectionForm } from "@features/admin/EditCtaSectionForm";
+import { EditCtaSectionForm } from "@features/admin/EditCtaSection";
 
 export const CtaPage = () => (
   <div className="flex flex-col gap-5">
