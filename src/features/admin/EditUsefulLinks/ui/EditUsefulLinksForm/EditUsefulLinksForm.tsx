@@ -8,7 +8,7 @@ import { useEditUsefulLinks } from "../../model/useEditUsefulLinks";
 
 export const EditUsefulLinksForm = () => {
   const { methods, ...rest } = useEditUsefulLinks();
-
+  console.log(1);
   return (
     <FormProvider {...methods}>
       <UsefulLinksForm {...rest} />
