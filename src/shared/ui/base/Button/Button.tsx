@@ -2,6 +2,11 @@ import cn from "classnames";
 import Link from "next/link";
 
 import { Spinner } from "../Spinner";
+import {
+  BUTTON_STYLES,
+  DEFAULT_SIZES_STYLES,
+  ROUNDED_SIZES_STYLES,
+} from "./constants";
 
 type ButtonVariant = "outlined-light" | "outlined-dark" | "filled" | "rounded";
 type ButtonColor = "primary" | "secondary";
@@ -15,6 +20,7 @@ export interface ButtonProps {
   href?: string;
   disabled?: boolean;
   isLoading?: boolean;
+  size?: "sm" | "md";
   onClick?: VoidFunction;
 }
 
@@ -27,30 +33,13 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   disabled,
   isLoading,
+  size = "md",
   onClick,
 }) => {
-  const buttonStyles = {
-    primary: {
-      filled:
-        "w-fit px-8 py-4 bg-primary-main border-primary-main hover:bg-primary-dark duration-200",
-      rounded:
-        "rounded-full bg-primary-main border-primary-main w-[50px] h-[50px] hover:bg-primary-lighter hover:border-primary-lighter duration-200",
-      ["outlined-light"]:
-        "w-fit px-8 py-4 bg-primary-main border-secondary-main text-primary-light",
-      ["outlined-dark"]:
-        "w-fit px-8 py-4 bg-primary-main border-primary-main text-primary-dark",
-    },
-    secondary: {
-      filled:
-        "w-fit px-8 py-4 border-secondary-main bg-secondary-main text-secondary-light hover:bg-secondary-lighter hover:border-secondary-lighter duration-200",
-      rounded:
-        "rounded-full bg-secondary-main border-secondary-main w-[50px] h-[50px] hover:bg-secondary-lighter hover:border-secondary-lighter duration-200",
-      ["outlined-light"]:
-        "w-fit px-8 py-4 border-secondary-main text-secondary-light hover:bg-secondary-main hover:text-secondary-dark duration-200",
-      ["outlined-dark"]:
-        "w-fit px-8 py-4 border-secondary-main text-secondary-darker hover:bg-secondary-main hover:text-secondary-light duration-200",
-    },
-  };
+  const buttonSizeStyles =
+    variant === "rounded"
+      ? ROUNDED_SIZES_STYLES[size]
+      : DEFAULT_SIZES_STYLES[size];
 
   if (href) {
     return (
@@ -58,9 +47,10 @@ export const Button: React.FC<ButtonProps> = ({
         href={href}
         className={cn(
           "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
-          buttonStyles[color][variant],
+          BUTTON_STYLES[color][variant],
           className
         )}
+        style={{ ...buttonSizeStyles }}
       >
         {children}
       </Link>
@@ -73,7 +63,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={cn(
         "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
-        buttonStyles[color][variant],
+        BUTTON_STYLES[color][variant],
         className
       )}
       style={{
@@ -82,6 +72,7 @@ export const Button: React.FC<ButtonProps> = ({
           opacity: 0.8,
           pointerEvents: "none",
         }),
+        ...buttonSizeStyles,
       }}
       disabled={disabled}
     >

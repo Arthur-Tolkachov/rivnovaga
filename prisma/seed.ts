@@ -83,6 +83,78 @@ const settings = [
       },
     ],
   },
+  {
+    key: "useful_links",
+    value: [
+      {
+        title: "Сайти системи судоустрою",
+        key: "sajti-sistemi-sudoustroyu",
+        data: [
+          {
+            key: "sudova-vlada-ukrayini",
+            label: "Судова влада України",
+            link: "https://court.gov.ua/",
+          },
+          {
+            key: "elektronnij-sud",
+            label: "Електронний суд",
+            link: "https://cabinet.court.gov.ua/",
+          },
+          {
+            key: "splata-sudovogo-zboru",
+            label: "Сплата судового збору",
+            link: "https://court.gov.ua/affairs/sudytax/",
+          },
+          {
+            key: "uchast-v-sudovomu-zasidanni-onlajn",
+            label: "Участь в судовому засіданні онлайн",
+            link: "https://vkz.court.gov.ua/",
+          },
+          {
+            key: "spisok-sudovih-sprav-priznachenih-do-rozglyadu",
+            label: "Список судових справ, призначених до розгляду",
+            link: "https://court.gov.ua/assignments/",
+          },
+          {
+            key: "stan-rozglyadu-sprav",
+            label: "Стан розгляду справ",
+            link: "https://court.gov.ua/fair/",
+          },
+        ],
+      },
+      {
+        title: "Правоохоронні органи",
+        key: "pravoohoronni-organi",
+        data: [
+          {
+            key: "byuro-ekonomichnoyi-bezpeki",
+            label: "Бюро економічної безпеки",
+            link: "https://esbu.gov.ua/",
+          },
+          {
+            key: "generalna-prokuratura-ukrayini",
+            label: "Генеральна прокуратура України",
+            link: "https://www.gp.gov.ua/",
+          },
+          {
+            key: "derzhavne-byuro-rozsliduvan",
+            label: "Державне бюро розслідувань",
+            link: "https://dbr.gov.ua/",
+          },
+          {
+            key: "nacionalna-policiya",
+            label: "Національна поліція",
+            link: "https://www.npu.gov.ua/",
+          },
+          {
+            key: "sluzhba-bezpeki-ukrayini",
+            label: "Служба безпеки України",
+            link: "https://ssu.gov.ua/",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 async function main() {

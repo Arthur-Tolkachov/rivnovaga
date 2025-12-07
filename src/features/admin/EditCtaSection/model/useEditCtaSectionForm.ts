@@ -60,19 +60,24 @@ export const useEditCtaSectionForm = () => {
     reset(initialData);
   };
 
-  const onSubmit = handleSubmit(async (values) => {
-    try {
-      setIsLoading(true);
+  const onSubmit = handleSubmit(
+    async (values) => {
+      try {
+        setIsLoading(true);
 
-      await editCta(values);
+        await editCta(values);
 
-      notify.success("Секцiя заклику до дії успішно оновлено");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+        notify.success("Секцiя заклику до дії успішно оновлено");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    () => {
+      notify.error("Упс, форма заповнена з помилками");
     }
-  });
+  );
 
   return {
     methods,

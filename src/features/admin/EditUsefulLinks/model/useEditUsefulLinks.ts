@@ -1,38 +1,44 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 
-import { getProfile, editProfile, UpdateProfileDTO } from "@entity/profile";
-import { objectToFormData } from "@shared/lib/objectToFormData";
+import { getUsefulLinks } from "@entity/usefulLinks";
+import { editUsefulLinks } from "@entity/usefulLinks/api/repository";
 import { notify } from "@shared/lib/toastr";
 
-import { DEFAULT_VALUES } from "./form";
-import { EditProfileFormSchema, EditProfileFormValues } from "./validation";
+import {
+  EditUsefulLinksFormValues,
+  EditUsefulLinksFormSchema,
+} from "./validation";
 import { createDtoFromData } from "../lib/createDtoFromData";
 
-export const useEditProfileForm = () => {
-  const [isFetching, setIsFetching] = useState(true);
+const DEFAULT_VALUES = {
+  useful_links: [],
+};
+
+export const useEditUsefulLinks = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
   const [initialData, setInitialData] =
-    useState<UpdateProfileDTO>(DEFAULT_VALUES);
+    useState<EditUsefulLinksFormValues>(DEFAULT_VALUES);
 
-  const methods = useForm<EditProfileFormValues>({
+  const methods = useForm<EditUsefulLinksFormValues>({
     defaultValues: DEFAULT_VALUES,
-    resolver: zodResolver(EditProfileFormSchema),
+    resolver: zodResolver(EditUsefulLinksFormSchema),
     reValidateMode: "onChange",
   });
 
-  const { reset, handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await getProfile();
+        const data = await getUsefulLinks();
 
         if (data) {
           const preparedData = createDtoFromData(data);
-          setInitialData((prev) => ({ ...prev, ...preparedData }));
+          setInitialData(preparedData);
         }
       } catch (error) {
         console.error(error);
@@ -56,11 +62,10 @@ export const useEditProfileForm = () => {
     async (values) => {
       try {
         setIsLoading(true);
-        const formData = objectToFormData<UpdateProfileDTO>(values);
 
-        await editProfile(formData);
+        await editUsefulLinks(values);
 
-        notify.success("Основну iнформацію успішно оновлено");
+        notify.success("Кориснi посилання успішно оновлено");
       } catch (error) {
         console.error(error);
       } finally {
@@ -73,9 +78,9 @@ export const useEditProfileForm = () => {
   );
 
   return {
-    methods,
     isLoading,
     isFetching,
+    methods,
     onReset,
     onSubmit,
   };

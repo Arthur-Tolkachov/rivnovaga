@@ -13,6 +13,17 @@ class ToastrService {
       },
     });
   }
+
+  error(message: string) {
+    toast(() => <Toastr message={message} />, {
+      type: "error",
+      position: "bottom-right",
+      style: {
+        border: `1px solid var(--color-error)`,
+        color: "var(--color-primary-dark)",
+      },
+    });
+  }
 }
 
 export const notify = new ToastrService();

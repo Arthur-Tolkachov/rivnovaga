@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 import { useTextInput, UseTextInputProps } from "./useTextInput";
 
 export interface TextInputProps extends UseTextInputProps {
-  name: string;
+  name?: string;
   value?: string;
   label?: string;
   className?: string;

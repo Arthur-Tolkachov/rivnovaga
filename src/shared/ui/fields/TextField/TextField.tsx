@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { ChangeEvent, useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
@@ -18,6 +18,7 @@ export interface TextFieldProps<T extends FieldValues>
 
 export const TextField = <T extends FieldValues>({
   name,
+  onChange: externalOnChange,
   ...rest
 }: TextFieldProps<T>) => {
   const {
@@ -26,7 +27,7 @@ export const TextField = <T extends FieldValues>({
   } = useFormContext();
 
   const {
-    field: { value, onChange },
+    field: { value, onChange: onFieldChange },
   } = useController({
     name,
     control,
@@ -43,6 +44,16 @@ export const TextField = <T extends FieldValues>({
 
     return null;
   }, [fieldError]);
+
+  const onChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (externalOnChange) {
+      externalOnChange(event);
+    }
+
+    onFieldChange(event);
+  };
 
   return (
     <TextInput
