@@ -60,19 +60,24 @@ export const useEditHeroSectionForm = () => {
     reset(initialData);
   };
 
-  const onSubmit = handleSubmit(async (values) => {
-    try {
-      setIsLoading(true);
+  const onSubmit = handleSubmit(
+    async (values) => {
+      try {
+        setIsLoading(true);
 
-      await editHero(values);
+        await editHero(values);
 
-      notify.success("Головний екран успішно оновлено");
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+        notify.success("Головний екран успішно оновлено");
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    () => {
+      notify.error("Упс, форма заповнена з помилками");
     }
-  });
+  );
 
   return {
     methods,

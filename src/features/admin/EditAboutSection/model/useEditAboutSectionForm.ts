@@ -62,19 +62,24 @@ export const useEditAboutSectionForm = () => {
     reset(initialData);
   };
 
-  const onSubmit = handleSubmit(async (values) => {
-    try {
-      setIsLoading(true);
+  const onSubmit = handleSubmit(
+    async (values) => {
+      try {
+        setIsLoading(true);
 
-      await editAbout(values);
+        await editAbout(values);
 
-      notify.success('Секцiю "Про нас" успішно оновлено');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
+        notify.success('Секцiю "Про нас" успішно оновлено');
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    () => {
+      notify.error("Упс, форма заповнена з помилками");
     }
-  });
+  );
 
   return {
     fields,
