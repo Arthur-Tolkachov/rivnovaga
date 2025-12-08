@@ -43,7 +43,9 @@ export const PUT = async (req: NextRequest) => {
       data: { value: JSON.stringify(data.useful_links) },
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      useful_links: data.useful_links,
+    });
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return NextResponse.json({ message: error.message }, { status: 500 });

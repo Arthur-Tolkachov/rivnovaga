@@ -3,10 +3,10 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { Button } from "@shared/ui/base/Button";
 import { FormActionButtons } from "@shared/ui/composite/FormActionButtons";
 
-import { UsefulLinksFields } from "./UsefulLinksFields";
+import { UsefulLinksFields, UsefulLinksFieldsProps } from "./UsefulLinksFields";
 
-export interface UsefulLinksFormProps {
-  isFetching?: boolean;
+export interface UsefulLinksFormProps
+  extends Omit<UsefulLinksFieldsProps, "fields"> {
   isLoading?: boolean;
   onReset: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;

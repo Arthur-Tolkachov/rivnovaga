@@ -63,7 +63,11 @@ export const useEditUsefulLinks = () => {
       try {
         setIsLoading(true);
 
-        await editUsefulLinks(values);
+        const response = await editUsefulLinks(values);
+
+        if (response) {
+          setInitialData({ useful_links: response.useful_links });
+        }
 
         notify.success("Кориснi посилання успішно оновлено");
       } catch (error) {

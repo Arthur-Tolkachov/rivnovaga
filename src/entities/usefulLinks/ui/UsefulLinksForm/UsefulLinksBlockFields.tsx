@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import slugify from "slugify";
 
+import { EditUsefulLinksFormValues } from "@features/admin/EditUsefulLinks";
 import TrashIcon from "@public/assets/icons/trash.svg";
 import { Button } from "@shared/ui/base/Button";
 import { TextField } from "@shared/ui/fields/TextField";
