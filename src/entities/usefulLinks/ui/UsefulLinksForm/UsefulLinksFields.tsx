@@ -2,12 +2,13 @@ import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import slugify from "slugify";
 
+import { EditUsefulLinksFormValues } from "@features/admin/EditUsefulLinks";
 import { Skeleton } from "@shared/ui/base/Skeleton";
 import { TextField } from "@shared/ui/fields/TextField";
 
 import { UsefulLinksBlockFields } from "./UsefulLinksBlockFields";
 
-interface UsefulLinksFieldsProps {
+export interface UsefulLinksFieldsProps {
   isFetching?: boolean;
   fields: Record<"id", string>[];
 }
