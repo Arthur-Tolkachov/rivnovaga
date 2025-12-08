@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import slugify from "slugify";
 
 import { Skeleton } from "@shared/ui/base/Skeleton";
@@ -9,17 +9,14 @@ import { UsefulLinksBlockFields } from "./UsefulLinksBlockFields";
 
 interface UsefulLinksFieldsProps {
   isFetching?: boolean;
+  fields: Record<"id", string>[];
 }
 
 export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
   isFetching,
+  fields,
 }) => {
-  const { control, setValue } = useFormContext();
-
-  const { fields } = useFieldArray({
-    control,
-    name: "useful_links",
-  });
+  const { setValue } = useFormContext();
 
   if (isFetching) {
     return (
