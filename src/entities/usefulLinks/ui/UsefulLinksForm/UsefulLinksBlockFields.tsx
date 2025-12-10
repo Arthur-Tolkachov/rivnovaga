@@ -6,12 +6,14 @@ import TrashIcon from "@public/assets/icons/trash.svg";
 import { Button } from "@shared/ui/base/Button";
 import { TextField } from "@shared/ui/fields/TextField";
 
-interface UsefulLinksBlockFieldsProps {
+export interface UsefulLinksBlockFieldsProps {
   fieldIndex: number;
+  onRemoveBlock: (index: number) => void;
 }
 
 export const UsefulLinksBlockFields: React.FC<UsefulLinksBlockFieldsProps> = ({
   fieldIndex,
+  onRemoveBlock,
 }) => {
   const { control, setValue } = useFormContext();
 
@@ -74,9 +76,20 @@ export const UsefulLinksBlockFields: React.FC<UsefulLinksBlockFieldsProps> = ({
         ))}
       </div>
 
-      <Button variant="filled" color="secondary" size="sm" onClick={addLink}>
-        Додати посилання
-      </Button>
+      <div className="flex gap-5">
+        <Button variant="filled" color="secondary" size="sm" onClick={addLink}>
+          Додати посилання
+        </Button>
+
+        <Button
+          variant="outlined-dark"
+          color="secondary"
+          size="sm"
+          onClick={() => onRemoveBlock(fieldIndex)}
+        >
+          Видалити роздiл
+        </Button>
+      </div>
     </div>
   );
 };
