@@ -31,15 +31,26 @@ export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
   onSubmit,
 }) => {
   const { control } = useFormContext();
-  const { fields, append } = useFieldArray({ control, name: "useful_links" });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "useful_links",
+  });
 
   const onAddBlock = () => {
     append(EMPTY_BLOCK);
   };
 
+  const onRemoveBlock = (index: number) => {
+    remove(index);
+  };
+
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-8">
-      <UsefulLinksFields isFetching={isFetching} fields={fields} />
+      <UsefulLinksFields
+        isFetching={isFetching}
+        fields={fields}
+        onRemoveBlock={onRemoveBlock}
+      />
 
       {!isFetching && (
         <Button color="secondary" size="sm" onClick={onAddBlock}>

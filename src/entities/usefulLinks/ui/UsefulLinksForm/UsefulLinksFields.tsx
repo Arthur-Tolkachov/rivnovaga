@@ -5,9 +5,13 @@ import slugify from "slugify";
 import { Skeleton } from "@shared/ui/base/Skeleton";
 import { TextField } from "@shared/ui/fields/TextField";
 
-import { UsefulLinksBlockFields } from "./UsefulLinksBlockFields";
+import {
+  UsefulLinksBlockFields,
+  UsefulLinksBlockFieldsProps,
+} from "./UsefulLinksBlockFields";
 
-interface UsefulLinksFieldsProps {
+interface UsefulLinksFieldsProps
+  extends Omit<UsefulLinksBlockFieldsProps, "fieldIndex"> {
   isFetching?: boolean;
   fields: Record<"id", string>[];
 }
@@ -15,6 +19,7 @@ interface UsefulLinksFieldsProps {
 export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
   isFetching,
   fields,
+  onRemoveBlock,
 }) => {
   const { setValue } = useFormContext();
 
@@ -48,7 +53,10 @@ export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
             onChange={(event) => handleChange(event, idx)}
           />
 
-          <UsefulLinksBlockFields fieldIndex={idx} />
+          <UsefulLinksBlockFields
+            fieldIndex={idx}
+            onRemoveBlock={onRemoveBlock}
+          />
         </div>
       ))}
     </div>
