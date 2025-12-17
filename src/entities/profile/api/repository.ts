@@ -1,5 +1,6 @@
 import api from "@shared/lib/axios";
 
+import { UpdateProfileDTO } from "./dto";
 import { ProfileModel } from "../model/model";
 
 export const getProfile = async () => {
@@ -8,12 +9,11 @@ export const getProfile = async () => {
   return data;
 };
 
-export const editProfile = async (values: FormData) => {
-  const data = await api.put<FormData, ProfileModel>("/profile", values, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+export const editProfile = async (values: UpdateProfileDTO) => {
+  const data = await api.put<UpdateProfileDTO, ProfileModel>(
+    "/profile",
+    values
+  );
 
   return data;
 };

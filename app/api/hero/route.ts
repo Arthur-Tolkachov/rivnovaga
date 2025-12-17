@@ -40,7 +40,7 @@ export const PUT = async (req: NextRequest) => {
       data: { value: JSON.stringify(data.hero) },
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(data);
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return NextResponse.json({ message: error.message }, { status: 500 });

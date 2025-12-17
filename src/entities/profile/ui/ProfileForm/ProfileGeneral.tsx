@@ -39,7 +39,7 @@ export const ProfileGeneral: React.FC<ProfileGeneralProps> = ({
       </div>
 
       <div className="bg-secondary-light flex justify-center items-center p-5">
-        <FileUploaderField name="logo" label="Логотип компанії" />
+        <FileUploaderField name="logo" alt="Логотип" label="Логотип компанії" />
       </div>
     </div>
   );

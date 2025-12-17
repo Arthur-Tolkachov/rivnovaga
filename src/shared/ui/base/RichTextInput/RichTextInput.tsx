@@ -1,8 +1,7 @@
 "use client";
 
+import cn from "classnames";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-
 import "quill/dist/quill.snow.css";
 import "./richTextInput.css";
 
@@ -27,9 +26,15 @@ export const RichTextInput: React.FC<RichTextInputProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      {label && <label className="text-secondary-main">{label}</label>}
+      {label && <label className="text-secondary-main text-sm">{label}</label>}
 
-      <ReactQuill onChange={handleChange} value={value || "<p><br></p>"} />
+      <ReactQuill
+        onChange={handleChange}
+        value={value || "<p><br></p>"}
+        className={cn({
+          error,
+        })}
+      />
 
       {error && <span className="text-sm text-error">{error}</span>}
     </div>

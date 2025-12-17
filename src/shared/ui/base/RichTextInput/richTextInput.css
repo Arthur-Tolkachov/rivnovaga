@@ -2,6 +2,11 @@
   border-color: var(--color-secondary-main);
 }
 
+.error .ql-toolbar.ql-snow,
+.error .ql-container.ql-snow {
+  border-color: var(--color-error);
+}
+
 .ql-container.ql-snow {
   height: 300px;
   border-color: var(--color-secondary-main);

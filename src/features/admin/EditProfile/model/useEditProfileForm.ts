@@ -2,8 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { getProfile, editProfile, UpdateProfileDTO } from "@entity/profile";
-import { objectToFormData } from "@shared/lib/objectToFormData";
+import { getProfile, editProfile } from "@entity/profile";
+import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
 import { DEFAULT_VALUES } from "./form";
@@ -15,7 +15,7 @@ export const useEditProfileForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [initialData, setInitialData] =
-    useState<UpdateProfileDTO>(DEFAULT_VALUES);
+    useState<EditProfileFormValues>(DEFAULT_VALUES);
 
   const methods = useForm<EditProfileFormValues>({
     defaultValues: DEFAULT_VALUES,
@@ -53,14 +53,30 @@ export const useEditProfileForm = () => {
   };
 
   const onSubmit = handleSubmit(
-    async (values) => {
+    async ({ logo, ...values }) => {
       try {
         setIsLoading(true);
-        const formData = objectToFormData<UpdateProfileDTO>(values);
+        let logoDto = logo;
 
-        await editProfile(formData);
+        if (logo instanceof File) {
+          const response = await uploadFile(logo, "logo");
 
-        notify.success("Основну iнформацію успішно оновлено");
+          if (!response) {
+            throw new Error("File uploading error");
+          }
+
+          logoDto = response;
+        }
+
+        const response = await editProfile({
+          logo: logoDto as FileDto,
+          ...values,
+        });
+
+        if (response) {
+          setInitialData(response);
+          notify.success("Основну iнформацію успішно оновлено");
+        }
       } catch (error) {
         console.error(error);
       } finally {

@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
+  get,
   useController,
   useFormContext,
 } from "react-hook-form";
@@ -16,7 +18,10 @@ export const FileUploaderField = <T extends FieldValues>({
   name,
   ...rest
 }: FileUploaderFieldProps<T>) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   const {
     field: { value, onChange },
@@ -25,9 +30,25 @@ export const FileUploaderField = <T extends FieldValues>({
     control,
   });
 
+  const fieldError = get(errors, name);
+
+  const error = useMemo(() => {
+    const errorMessage = fieldError?.message;
+
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    }
+
+    return null;
+  }, [fieldError]);
+
   return (
-    <div>
-      <FileUploader name={name} value={value} onChange={onChange} {...rest} />
-    </div>
+    <FileUploader
+      name={name}
+      error={error}
+      value={value}
+      onChange={onChange}
+      {...rest}
+    />
   );
 };

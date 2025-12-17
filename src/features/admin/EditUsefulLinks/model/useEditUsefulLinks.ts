@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { get, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { getUsefulLinks } from "@entity/usefulLinks";
 import { editUsefulLinks } from "@entity/usefulLinks/api/repository";
@@ -63,9 +63,11 @@ export const useEditUsefulLinks = () => {
       try {
         setIsLoading(true);
 
-        await editUsefulLinks(values);
-
-        notify.success("Кориснi посилання успішно оновлено");
+        const response = await editUsefulLinks(values);
+        if (response) {
+          setInitialData(response);
+          notify.success("Кориснi посилання успішно оновлено");
+        }
       } catch (error) {
         console.error(error);
       } finally {

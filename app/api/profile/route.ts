@@ -2,10 +2,9 @@ import { Prisma } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 import { ProfileModel, UpdateProfileDTO } from "@entity/profile";
-import { formDataToObject } from "@shared/lib/formDataToObject";
+import { FileDto } from "@entity/upload";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
-import { uploadFile } from "@shared/lib/uploadFile";
 
 export const GET = async () => {
   try {
@@ -55,22 +54,11 @@ export const PUT = async (req: NextRequest) => {
       return NextResponse.json({ error: "Profile not found" }, { status: 404 });
     }
 
-    const form = await req.formData();
-    const dataObj = formDataToObject<UpdateProfileDTO>(form);
-    const oldLogo = JSON.parse(logoJSON.value);
-
-    let newLogo: { url: string; fileName: string };
-
-    if (dataObj.logo instanceof File) {
-      const uploadedLogo = await uploadFile(dataObj.logo);
-
-      newLogo = uploadedLogo;
-    } else {
-      newLogo = dataObj.logo;
-    }
+    const oldLogo = JSON.parse(logoJSON.value) as FileDto;
+    const dto = (await req.json()) as UpdateProfileDTO;
 
     await prisma.$transaction(
-      Object.entries({ ...dataObj, logo: newLogo }).map(([key, value]) =>
+      Object.entries(dto).map(([key, value]) =>
         prisma.setting.update({
           where: { key },
           data: { value: JSON.stringify(value) },
@@ -78,11 +66,11 @@ export const PUT = async (req: NextRequest) => {
       )
     );
 
-    if (dataObj.logo instanceof File && oldLogo) {
-      removeFile(oldLogo.fileName);
+    if (oldLogo.fileName !== dto.logo.fileName) {
+      removeFile(oldLogo.fileName, "logo");
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json(dto);
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       return NextResponse.json({ message: error.message }, { status: 500 });
