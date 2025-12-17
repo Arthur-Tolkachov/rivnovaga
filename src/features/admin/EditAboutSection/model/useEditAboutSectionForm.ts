@@ -67,9 +67,12 @@ export const useEditAboutSectionForm = () => {
       try {
         setIsLoading(true);
 
-        await editAbout(values);
+        const response = await editAbout(values);
 
-        notify.success('Секцiю "Про нас" успішно оновлено');
+        if (response) {
+          setInitialData(response);
+          notify.success('Секцiю "Про нас" успішно оновлено');
+        }
       } catch (error) {
         console.error(error);
       } finally {

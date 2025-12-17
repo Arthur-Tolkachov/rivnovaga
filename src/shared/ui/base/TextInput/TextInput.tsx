@@ -10,11 +10,13 @@ export interface TextInputProps extends UseTextInputProps {
   value?: string;
   label?: string;
   className?: string;
+  containerClassName?: string;
   readonly?: boolean;
   disabled?: boolean;
   error?: string | null;
   multiline?: boolean;
   rows?: number;
+  onClick?: VoidFunction;
 }
 
 export const TextInput = forwardRef<
@@ -23,6 +25,7 @@ export const TextInput = forwardRef<
 >(
   (
     {
+      id,
       defaultFocus = false,
       className,
       label,
@@ -30,16 +33,20 @@ export const TextInput = forwardRef<
       error,
       multiline,
       rows = 3,
+      containerClassName,
+      readonly,
       transform,
       onFocus,
       onBlur,
       onChange,
+      onClick,
       ...rest
     },
     ref
   ) => {
     const { inputValue, isFocus, shouldLabelTransform, ...textInput } =
       useTextInput({
+        id,
         value,
         defaultFocus,
         transform,
@@ -49,20 +56,22 @@ export const TextInput = forwardRef<
       });
 
     return (
-      <div className="pt-5">
+      <div className={cn("pt-5 w-full", containerClassName)}>
         <div className="relative">
           {label && (
             <label
               className={cn(
-                "absolute inset-0 text-secondary-main cursor-text translate-x-3 top-3 origin-top-left duration-100 pr-[24px]"
+                "absolute inset-0 text-secondary-main cursor-text translate-x-3 top-2 origin-top-left duration-100 pr-[24px]"
               )}
               htmlFor={textInput.id}
               style={{
                 ...(shouldLabelTransform && {
                   transform: "translate(-12px, -35px) scale(.8)",
+                  top: 12,
                   paddingRight: 0,
                 }),
               }}
+              onClick={onClick}
             >
               {label}
             </label>
@@ -107,6 +116,7 @@ export const TextInput = forwardRef<
               }}
               {...textInput}
               {...rest}
+              readOnly={readonly}
             />
           )}
         </div>

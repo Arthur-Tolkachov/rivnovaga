@@ -1,5 +1,5 @@
 export interface UpdateProfileDTO {
-  logo: { url: string; fileName: string } | File;
+  logo: { url: string; fileName: string };
   general: {
     name: string;
     phone: string | null;

@@ -65,9 +65,12 @@ export const useEditCtaSectionForm = () => {
       try {
         setIsLoading(true);
 
-        await editCta(values);
+        const response = await editCta(values);
 
-        notify.success("Секцiя заклику до дії успішно оновлено");
+        if (response) {
+          setInitialData(response);
+          notify.success("Секцiя заклику до дії успішно оновлено");
+        }
       } catch (error) {
         console.error(error);
       } finally {

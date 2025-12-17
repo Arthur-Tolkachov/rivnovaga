@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useState } from "react";
 
 export interface UseTextInputProps {
+  id?: string;
   value?: string;
   defaultFocus?: boolean;
   transform?: (value: string) => string;
@@ -16,6 +17,7 @@ export interface UseTextInputProps {
 }
 
 export const useTextInput = ({
+  id: inputId,
   value,
   defaultFocus = false,
   transform,
@@ -80,7 +82,7 @@ export const useTextInput = ({
   };
 
   return {
-    id,
+    id: id || inputId,
     inputValue,
     isFocus,
     shouldLabelTransform,

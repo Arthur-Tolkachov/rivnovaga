@@ -65,9 +65,12 @@ export const useEditHeroSectionForm = () => {
       try {
         setIsLoading(true);
 
-        await editHero(values);
+        const response = await editHero(values);
 
-        notify.success("Головний екран успішно оновлено");
+        if (response) {
+          setInitialData(response);
+          notify.success("Головний екран успішно оновлено");
+        }
       } catch (error) {
         console.error(error);
       } finally {
