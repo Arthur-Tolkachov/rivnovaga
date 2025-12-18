@@ -20,11 +20,10 @@ export const LawyersFields: React.FC<LawyersFieldsProps> = ({ isFetching }) => {
 
   if (isFetching) {
     return (
-      <Skeleton
-        className="w-full h-[543px]"
-        containerClassName="flex flex-col gap-8"
-        count={2}
-      />
+      <div className="flex flex-col gap-8">
+        <Skeleton className="w-full h-[366px]" count={1} />
+        <Skeleton className="w-full h-[620px]" count={1} />
+      </div>
     );
   }
 
