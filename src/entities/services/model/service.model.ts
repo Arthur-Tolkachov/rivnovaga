@@ -12,4 +12,6 @@ export const ServiceSchema = z.object({
   createdAt: z.date(),
 });
 
+export const ServicesArraySchema = z.array(ServiceSchema);
+
 export type ServiceModel = z.infer<typeof ServiceSchema>;
