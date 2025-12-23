@@ -27,6 +27,7 @@ export const useTextInput = ({
 }: UseTextInputProps) => {
   const id = useId();
   const hasExternalValue = value !== undefined;
+
   const [isFocus, setIsFocus] = useState(defaultFocus);
   const [inputValue, setInputValue] = useState<string>(value || "");
 

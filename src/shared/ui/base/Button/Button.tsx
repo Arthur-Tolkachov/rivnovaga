@@ -76,13 +76,9 @@ export const Button: React.FC<ButtonProps> = ({
       }}
       disabled={disabled}
     >
-      <Spinner
-        className="absolute"
-        width={30}
-        height={30}
-        variant="light"
-        show={isLoading}
-      />
+      {isLoading && (
+        <Spinner className="absolute" width={30} height={30} variant="light" />
+      )}
 
       <span
         style={{

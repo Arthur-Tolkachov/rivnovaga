@@ -1,14 +1,14 @@
 import api from "@shared/lib/axios";
 
-export const uploadFile = async (file: File, folder: string) => {
+export const uploadFile = async (file: File, filePath: string) => {
   const formData = new FormData();
   const fileName = file.name;
 
   formData.append("file", file);
-  formData.append("folder", folder);
+  formData.append("filePath", filePath);
 
   const data = await api.post<FormData, { url: string; fileName: string }>(
-    `/uploads/${folder}/${fileName}`,
+    `/uploads/${filePath}/${fileName}`,
     formData,
     {
       headers: {

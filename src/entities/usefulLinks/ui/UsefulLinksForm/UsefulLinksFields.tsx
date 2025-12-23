@@ -2,7 +2,6 @@ import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import slugify from "slugify";
 
-import { Skeleton } from "@shared/ui/base/Skeleton";
 import { TextField } from "@shared/ui/fields/TextField";
 
 import {
@@ -12,26 +11,14 @@ import {
 
 interface UsefulLinksFieldsProps
   extends Omit<UsefulLinksBlockFieldsProps, "fieldIndex"> {
-  isFetching?: boolean;
   fields: Record<"id", string>[];
 }
 
 export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
-  isFetching,
   fields,
   onRemoveBlock,
 }) => {
   const { setValue } = useFormContext();
-
-  if (isFetching) {
-    return (
-      <Skeleton
-        className="w-full h-[543px]"
-        containerClassName="flex flex-col gap-8"
-        count={1}
-      />
-    );
-  }
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -40,7 +27,7 @@ export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
     const { value } = event.target;
     const slug = slugify(value);
 
-    setValue(`useful_links[${idx}].key`, slug);
+    setValue(`usefulLinks[${idx}].key`, slug);
   };
 
   return (
@@ -48,7 +35,7 @@ export const UsefulLinksFields: React.FC<UsefulLinksFieldsProps> = ({
       {fields.map(({ id }, idx) => (
         <div className="flex flex-col gap-5 bg-secondary-light p-5" key={id}>
           <TextField
-            name={`useful_links[${idx}].title`}
+            name={`usefulLinks[${idx}].title`}
             label="Заголовок роздiлу"
             onChange={(event) => handleChange(event, idx)}
           />

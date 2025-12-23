@@ -1,32 +1,13 @@
-import cn from "classnames";
-import Link from "next/link";
-
 import { NAVIGATION_CONFIG } from "@shared/config/navigation.config";
 
-interface NavigationProps {
-  pathname: string | null;
-}
+import { NavigationItem } from "./NavigationItem";
 
-export const Navigation: React.FC<NavigationProps> = ({ pathname }) => (
+export const Navigation = () => (
   <nav>
     <ul className="flex gap-8">
-      {NAVIGATION_CONFIG.map(({ key, href, label }) => {
-        const active = href === pathname;
-
-        return (
-          <li key={key}>
-            <Link
-              href={href}
-              className={cn(
-                "text-secondary-light hover:text-secondary-lighter duration-200",
-                { "text-secondary-lighter": active }
-              )}
-            >
-              {label}
-            </Link>
-          </li>
-        );
-      })}
+      {NAVIGATION_CONFIG.map(({ key, href, label }) => (
+        <NavigationItem key={key} href={href} label={label} />
+      ))}
     </ul>
   </nav>
 );

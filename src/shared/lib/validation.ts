@@ -10,7 +10,7 @@ export const PhoneValidationSchema = z.string().superRefine((value, ctx) => {
       origin: "string",
       code: "too_small",
       minimum: 13,
-      message: "Телефон має містити 13 символiв, включаючи +38",
+      message: "Телефон має містити 13 символiв, включно +38",
     });
   }
 });

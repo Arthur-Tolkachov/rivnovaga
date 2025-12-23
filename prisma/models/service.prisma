@@ -1,0 +1,20 @@
+model ServiceCover {
+  id String @id @default(uuid())
+  url String
+  fileName String
+
+  service Service @relation(fields:[serviceId], references: [id], onDelete: Cascade)
+  serviceId String @unique
+}
+
+model Service {
+  id             String       @id @default(uuid())
+  title          String
+  description    String
+  isActive       Boolean
+
+  cover          ServiceCover?
+  
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}

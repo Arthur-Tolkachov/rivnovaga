@@ -12,6 +12,7 @@ export const ADMIN_NAVIGATION_CONFIG = [
   { key: "about", label: 'Секція "Про нас"', href: "/admin/about" },
   { key: "cta", label: "Секція заклику до дії", href: "/admin/cta" },
   { key: "lawyers", label: "Адвокати", href: "/admin/lawyers" },
+  { key: "services", label: "Послуги", href: "/admin/services" },
   {
     key: "useful_links",
     label: "Кориснi посилання",

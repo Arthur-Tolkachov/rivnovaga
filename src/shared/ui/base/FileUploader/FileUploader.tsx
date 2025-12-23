@@ -1,11 +1,12 @@
 "use client";
+
 import { useFileUploader, UseFileUploaderProps } from "./useFileUploader";
 
 export interface FileUploaderProps extends UseFileUploaderProps {
   name: string;
   label?: string;
   error?: string | null;
-  alt: string;
+  alt?: string;
 }
 
 export const FileUploader: React.FC<FileUploaderProps> = ({
@@ -16,7 +17,10 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   onChange,
   ...rest
 }) => {
-  const { previewValue, onFileChange } = useFileUploader({ value, onChange });
+  const { previewValue, onFileChange } = useFileUploader({
+    value,
+    onChange,
+  });
 
   return (
     <div className="flex flex-col gap-3">
@@ -32,7 +36,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         />
 
         <div className="relative">
-          <img src={previewValue.url} alt={alt} />
+          <img src={previewValue.url} alt={alt || previewValue.fileName} />
         </div>
 
         {error && <span className="text-sm text-error">{error}</span>}
