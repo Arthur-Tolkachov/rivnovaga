@@ -1,13 +1,18 @@
-import { EditAboutSectionForm } from "@features/admin/EditAboutSection";
+import { AboutModel } from "@entity/about";
+import { UpdateAboutSectionForm } from "@features/UpdateAboutSection";
 
-export const AboutPage = () => (
+interface AboutPageProps {
+  about: AboutModel[];
+}
+
+export const AboutPage: React.FC<AboutPageProps> = ({ about }) => (
   <div className="flex flex-col gap-5">
     <h2 className="text-primary-dark">
       Налаштування секції &quot;Про нас&quot;
     </h2>
 
     <div className="flex flex-col gap-2">
-      <EditAboutSectionForm />
+      <UpdateAboutSectionForm initialValues={about} />
     </div>
   </div>
 );

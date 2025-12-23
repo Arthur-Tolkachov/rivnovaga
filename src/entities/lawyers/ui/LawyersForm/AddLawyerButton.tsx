@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { LawyerModel } from "@entity/lawyers/model";
+import { LawyerModel } from "@entity/lawyers";
 import { Button } from "@shared/ui/base/Button";
 
 interface AddLawyerButtonProps {

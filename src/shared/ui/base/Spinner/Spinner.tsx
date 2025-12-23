@@ -7,7 +7,6 @@ export interface SpinnerProps {
   width?: number;
   height?: number;
   variant?: "primary" | "secondary" | "light";
-  show?: boolean;
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
@@ -15,7 +14,6 @@ export const Spinner: React.FC<SpinnerProps> = ({
   width = 80,
   height = 80,
   variant = "primary",
-  show = false,
 }) => {
   const color = {
     primary: "var(--color-primary-main)",
@@ -28,7 +26,6 @@ export const Spinner: React.FC<SpinnerProps> = ({
       height={height}
       width={width}
       color={color}
-      visible={show}
       ariaLabel="oval-loading"
       secondaryColor={color}
       strokeWidth={5}

@@ -1,3 +1,5 @@
+"use client";
+
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 import { Button } from "@shared/ui/base/Button";
@@ -6,7 +8,6 @@ import { FormActionButtons } from "@shared/ui/composite/FormActionButtons";
 import { UsefulLinksFields } from "./UsefulLinksFields";
 
 export interface UsefulLinksFormProps {
-  isFetching?: boolean;
   isLoading?: boolean;
   onReset: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
@@ -25,7 +26,6 @@ const EMPTY_BLOCK = {
 };
 
 export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
-  isFetching,
   isLoading,
   onReset,
   onSubmit,
@@ -33,7 +33,7 @@ export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "useful_links",
+    name: "usefulLinks",
   });
 
   const onAddBlock = () => {
@@ -46,23 +46,13 @@ export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-8">
-      <UsefulLinksFields
-        isFetching={isFetching}
-        fields={fields}
-        onRemoveBlock={onRemoveBlock}
-      />
+      <UsefulLinksFields fields={fields} onRemoveBlock={onRemoveBlock} />
 
-      {!isFetching && (
-        <Button color="secondary" size="sm" onClick={onAddBlock}>
-          Додати блок
-        </Button>
-      )}
+      <Button color="secondary" size="sm" onClick={onAddBlock}>
+        Додати блок
+      </Button>
 
-      <FormActionButtons
-        isFetching={isFetching}
-        isLoading={isLoading}
-        onReset={onReset}
-      />
+      <FormActionButtons isLoading={isLoading} onReset={onReset} />
     </form>
   );
 };

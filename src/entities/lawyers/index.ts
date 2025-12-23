@@ -1,7 +1,14 @@
 export { LawyersForm } from "./ui/LawyersForm";
+export { UpdateLawyersFormSchema } from "./model/updateLawyers.schema";
+
+export { getLawyers } from "./repository/lawyers.repository";
+export { updateLawyers } from "./actions/lawyers.actions";
 
 export type { LawyersFormProps } from "./ui/LawyersForm";
-export type { LawyerModel, LawyersModel } from "./model";
-export type { UpdateLawyersDTO } from "./api/dto";
-
-export { getLawyers } from "./api/repository";
+export type {
+  AboutLawyersModel,
+  LawyerModel,
+  LawyersModel,
+} from "./model/lawyers.model";
+export type { UpdateLawyersDTO } from "./model/updateLawyers.dto";
+export type { UpdateLawyersFormValues } from "./model/updateLawyers.schema";

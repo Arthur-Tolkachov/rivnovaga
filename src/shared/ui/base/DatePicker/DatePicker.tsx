@@ -32,7 +32,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         ref={inputRef}
         selected={dateValue}
         onChange={(date) => onDateChange(date)}
-        customInput={<TextInput {...rest} />}
+        customInput={<TextInput readonly {...rest} />}
         locale="uk"
         dateFormat="dd.MM.yyyy"
         showYearDropdown

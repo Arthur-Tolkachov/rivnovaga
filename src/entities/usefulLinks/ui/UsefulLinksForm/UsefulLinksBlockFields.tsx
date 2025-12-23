@@ -19,7 +19,7 @@ export const UsefulLinksBlockFields: React.FC<UsefulLinksBlockFieldsProps> = ({
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `useful_links[${fieldIndex}].data`,
+    name: `usefulLinks[${fieldIndex}].data`,
   });
 
   const addLink = () => {
@@ -41,7 +41,7 @@ export const UsefulLinksBlockFields: React.FC<UsefulLinksBlockFieldsProps> = ({
     const { value } = event.target;
     const slug = slugify(value);
 
-    setValue(`useful_links[${fieldIdx}].data[${sectionIdx}].key`, slug);
+    setValue(`usefulLinks[${fieldIdx}].data[${sectionIdx}].key`, slug);
   };
 
   return (
@@ -55,12 +55,12 @@ export const UsefulLinksBlockFields: React.FC<UsefulLinksBlockFieldsProps> = ({
             <span>{idx + 1}.</span>
 
             <TextField
-              name={`useful_links[${fieldIndex}].data[${idx}].label`}
+              name={`usefulLinks[${fieldIndex}].data[${idx}].label`}
               label="Назва посилання"
               onChange={(event) => handleChange(event, fieldIndex, idx)}
             />
             <TextField
-              name={`useful_links[${fieldIndex}].data[${idx}].link`}
+              name={`usefulLinks[${fieldIndex}].data[${idx}].link`}
               label="Посилання"
             />
 

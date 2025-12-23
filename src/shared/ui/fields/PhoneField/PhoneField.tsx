@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import {
   FieldPath,
   FieldValues,
+  get,
   useController,
   useFormContext,
 } from "react-hook-form";
@@ -32,7 +33,7 @@ export const PhoneField = <T extends FieldValues>({
     control,
   });
 
-  const fieldError = errors[name];
+  const fieldError = get(errors, name);
 
   const error = useMemo(() => {
     const errorMessage = fieldError?.message;

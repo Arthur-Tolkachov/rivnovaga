@@ -1,6 +1,10 @@
 export { AboutSectionForm } from "./ui/AboutSectionForm";
+export { UpdateAboutFormSchema } from "./model/updateAbout.schema";
 
-export type { AboutModel } from "./model";
-export type { UpdateAboutSectionDTO } from "./api/dto";
+export { getAbout } from "./repository/about.repository";
+export { updateAbout } from "./actions/about.actions";
 
-export { getAbout, editAbout } from "./api/repository";
+export type { AboutModel } from "./model/about.model";
+export type { UpdateAboutDTO } from "./model/updateAbout.dto";
+export type { UpdateAboutFormValues } from "./model/updateAbout.schema";
+export type { AboutSectionFormProps } from "./ui/AboutSectionForm";

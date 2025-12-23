@@ -1,31 +1,17 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import { LawyerModel } from "@entity/lawyers/model";
-import { Skeleton } from "@shared/ui/base/Skeleton";
+import { LawyerModel } from "@entity/lawyers";
 import { TextField } from "@shared/ui/fields/TextField";
 
 import { AddLawyerButton } from "./AddLawyerButton";
 import { LawyerField } from "./LawyerField";
 
-interface LawyersFieldsProps {
-  isFetching?: boolean;
-}
-
-export const LawyersFields: React.FC<LawyersFieldsProps> = ({ isFetching }) => {
+export const LawyersFields = () => {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "lawyers",
   });
-
-  if (isFetching) {
-    return (
-      <div className="flex flex-col gap-8">
-        <Skeleton className="w-full h-[366px]" count={1} />
-        <Skeleton className="w-full h-[620px]" count={1} />
-      </div>
-    );
-  }
 
   const onAddLawyer = (value: LawyerModel) => {
     append(value);
