@@ -1,6 +1,6 @@
 import { prisma } from "@shared/lib/prisma-client";
 
-import { ServiceSchema } from "../model/service.model";
+import { ServicesArraySchema, ServiceSchema } from "../model/service.model";
 
 export const getAllServices = async () => {
   const services = await prisma.service.findMany({
@@ -22,7 +22,7 @@ export const getAllServices = async () => {
     },
   });
 
-  return services;
+  return ServicesArraySchema.parse(services);
 };
 
 export const getService = async (id: string) => {
