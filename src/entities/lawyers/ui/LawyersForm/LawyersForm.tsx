@@ -18,6 +18,6 @@ export const LawyersForm: React.FC<LawyersFormProps> = ({
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <LawyersFields />
 
-    <FormActionButtons onReset={onReset} isLoading={isLoading} />
+    <FormActionButtons onCancel={onReset} isLoading={isLoading} />
   </form>
 );

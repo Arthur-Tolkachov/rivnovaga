@@ -18,6 +18,6 @@ export const HeroSectionForm: React.FC<HeroSectionFormProps> = ({
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <HeroSectionFields />
 
-    <FormActionButtons isLoading={isLoading} onReset={onReset} />
+    <FormActionButtons isLoading={isLoading} onCancel={onReset} />
   </form>
 );
