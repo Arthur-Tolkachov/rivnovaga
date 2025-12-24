@@ -52,7 +52,7 @@ export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
         Додати блок
       </Button>
 
-      <FormActionButtons isLoading={isLoading} onReset={onReset} />
+      <FormActionButtons isLoading={isLoading} onCancel={onReset} />
     </form>
   );
 };

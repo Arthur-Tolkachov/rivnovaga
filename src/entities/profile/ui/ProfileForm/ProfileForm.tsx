@@ -24,6 +24,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
       <ProfileSchedule />
     </div>
 
-    <FormActionButtons isLoading={isLoading} onReset={onReset} />
+    <FormActionButtons isLoading={isLoading} onCancel={onReset} />
   </form>
 );
