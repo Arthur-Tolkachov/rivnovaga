@@ -54,3 +54,11 @@ export const updateService = async (
 
   return { cover, ...dto };
 };
+
+export const deleteService = async (id: string) => {
+  await prisma.service.delete({
+    where: {
+      id,
+    },
+  });
+};

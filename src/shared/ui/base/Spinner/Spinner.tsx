@@ -2,11 +2,13 @@
 
 import { Oval } from "react-loader-spinner";
 
+export type SpinnerVariant = "primary" | "secondary" | "light";
+
 export interface SpinnerProps {
   className?: string;
   width?: number;
   height?: number;
-  variant?: "primary" | "secondary" | "light";
+  variant?: SpinnerVariant;
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({

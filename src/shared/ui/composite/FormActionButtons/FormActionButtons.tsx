@@ -4,12 +4,14 @@ import { Button } from "@shared/ui/base/Button";
 
 export interface FormActionButtonsProps {
   isLoading?: boolean;
-  onReset: VoidFunction;
+  onDelete?: VoidFunction;
+  onCancel: VoidFunction;
 }
 
 export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
   isLoading,
-  onReset,
+  onDelete,
+  onCancel,
 }) => {
   const {
     formState: { isDirty },
@@ -25,17 +27,32 @@ export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
         color="secondary"
         isLoading={isLoading}
         disabled={isDisabled}
+        size="sm"
       >
         Зберiгти
       </Button>
 
+      {onDelete && (
+        <Button
+          variant="outlined-dark"
+          color="secondary"
+          size="sm"
+          onClick={onDelete}
+          isLoading={isLoading}
+          disabled={isLoading}
+        >
+          Видалити
+        </Button>
+      )}
+
       <Button
         variant="outlined-dark"
         color="secondary"
-        onClick={onReset}
-        disabled={isDisabled}
+        onClick={onCancel}
+        disabled={isLoading}
+        size="sm"
       >
-        Скасувати
+        Назад
       </Button>
     </div>
   );
