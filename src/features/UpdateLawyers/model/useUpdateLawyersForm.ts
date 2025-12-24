@@ -28,7 +28,7 @@ export const useUpdateLawyersForm = ({
 
   const { handleSubmit, reset } = methods;
 
-  const onReset = () => {
+  const onCancel = () => {
     reset(defaultValues);
   };
 
@@ -70,7 +70,7 @@ export const useUpdateLawyersForm = ({
   return {
     isLoading,
     methods,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };

@@ -30,7 +30,7 @@ export const useUpdateProfileForm = ({
 
   const { reset, handleSubmit } = methods;
 
-  const onReset = useCallback(() => {
+  const onCancel = useCallback(() => {
     reset(defaultValues);
   }, [reset, defaultValues]);
 
@@ -67,7 +67,7 @@ export const useUpdateProfileForm = ({
   return {
     methods,
     isLoading,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };

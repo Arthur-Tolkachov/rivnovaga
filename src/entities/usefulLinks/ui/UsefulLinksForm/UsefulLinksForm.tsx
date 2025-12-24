@@ -9,7 +9,7 @@ import { UsefulLinksFields } from "./UsefulLinksFields";
 
 export interface UsefulLinksFormProps {
   isLoading?: boolean;
-  onReset: VoidFunction;
+  onCancel: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
@@ -27,7 +27,7 @@ const EMPTY_BLOCK = {
 
 export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
   isLoading,
-  onReset,
+  onCancel,
   onSubmit,
 }) => {
   const { control } = useFormContext();
@@ -52,7 +52,7 @@ export const UsefulLinksForm: React.FC<UsefulLinksFormProps> = ({
         Додати блок
       </Button>
 
-      <FormActionButtons isLoading={isLoading} onCancel={onReset} />
+      <FormActionButtons isLoading={isLoading} onCancel={onCancel} />
     </form>
   );
 };

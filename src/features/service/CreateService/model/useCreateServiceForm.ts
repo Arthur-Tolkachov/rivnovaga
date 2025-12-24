@@ -35,7 +35,7 @@ export const useCreateServiceForm = () => {
 
   const { reset, handleSubmit } = methods;
 
-  const onReset = () => {
+  const onCancel = () => {
     reset(DEFAULT_VALUES);
   };
 
@@ -73,7 +73,7 @@ export const useCreateServiceForm = () => {
   return {
     methods,
     isLoading,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };

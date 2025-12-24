@@ -9,7 +9,7 @@ import { TextField } from "@shared/ui/fields/TextField";
 export interface ServiceFormProps {
   isLoading?: boolean;
   onCancel: VoidFunction;
-  onDelete: VoidFunction;
+  onDelete?: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
