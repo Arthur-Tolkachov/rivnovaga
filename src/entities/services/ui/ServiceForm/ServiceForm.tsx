@@ -8,14 +8,16 @@ import { TextField } from "@shared/ui/fields/TextField";
 
 export interface ServiceFormProps {
   isLoading?: boolean;
-  onReset: VoidFunction;
+  onCancel: VoidFunction;
+  onDelete: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
 export const ServiceForm: React.FC<ServiceFormProps> = ({
   isLoading,
   onSubmit,
-  onReset,
+  onDelete,
+  onCancel,
 }) => (
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
@@ -30,6 +32,10 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
       </div>
     </div>
 
-    <FormActionButtons isLoading={isLoading} onReset={onReset} />
+    <FormActionButtons
+      isLoading={isLoading}
+      onCancel={onCancel}
+      onDelete={onDelete}
+    />
   </form>
 );

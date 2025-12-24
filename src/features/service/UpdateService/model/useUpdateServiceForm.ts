@@ -1,8 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
+  deleteService,
   ServiceFormSchema,
   ServiceFormValues,
   ServiceModel,
@@ -18,6 +20,7 @@ export interface UseUpdateServiceFormProps {
 export const useUpdateServiceForm = ({
   initialValues,
 }: UseUpdateServiceFormProps) => {
+  const route = useRouter();
   const [defaultValues, setDefaultValues] =
     useState<ServiceModel>(initialValues);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,9 +33,23 @@ export const useUpdateServiceForm = ({
 
   const { reset, handleSubmit } = methods;
 
-  const onReset = useCallback(() => {
-    reset(defaultValues);
-  }, [reset, defaultValues]);
+  const onCancel = useCallback(() => {
+    route.push("/admin/services");
+  }, []);
+
+  const onDelete = async () => {
+    try {
+      setIsLoading(true);
+
+      await deleteService(initialValues.id);
+      notify.success("Послугу успішно видалено");
+      route.push("/admin/services");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const onSubmit = handleSubmit(async ({ cover, ...values }) => {
     try {
@@ -72,7 +89,8 @@ export const useUpdateServiceForm = ({
   return {
     methods,
     isLoading,
-    onReset,
+    onDelete,
+    onCancel,
     onSubmit,
   };
 };
