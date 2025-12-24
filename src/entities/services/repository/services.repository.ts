@@ -1,49 +1,61 @@
+import { unstable_cache } from "next/cache";
+
 import { prisma } from "@shared/lib/prisma-client";
 
 import { ServicesArraySchema, ServiceSchema } from "../model/service.model";
 
-export const getAllServices = async () => {
-  const services = await prisma.service.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      isActive: true,
-      createdAt: true,
-      cover: {
-        select: {
-          url: true,
-          fileName: true,
+export const getAllServices = unstable_cache(
+  async () => {
+    const services = await prisma.service.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        isActive: true,
+        createdAt: true,
+        cover: {
+          select: {
+            url: true,
+            fileName: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  return ServicesArraySchema.parse(services);
-};
+    return ServicesArraySchema.parse(services);
+  },
+  ["services"],
+  { tags: ["services"] }
+);
 
 export const getService = async (id: string) => {
-  const service = await prisma.service.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      isActive: true,
-      createdAt: true,
-      cover: {
-        select: {
-          url: true,
-          fileName: true,
+  return unstable_cache(
+    async () => {
+      const service = await prisma.service.findUnique({
+        where: {
+          id,
         },
-      },
-    },
-  });
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          isActive: true,
+          createdAt: true,
+          cover: {
+            select: {
+              url: true,
+              fileName: true,
+            },
+          },
+        },
+      });
 
-  return ServiceSchema.parse(service);
+      return ServiceSchema.parse(service);
+    },
+    ["service", id],
+    { tags: ["service"] }
+  )();
 };
