@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+
 import { FileDto } from "@entity/upload";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
@@ -20,6 +22,8 @@ export const createService = async (
     },
   });
 
+  revalidateTag("services");
+
   return dto;
 };
 
@@ -35,7 +39,7 @@ export const updateService = async (
   if (!currentCover) {
     throw new Error("Logo not found");
   }
-  console.log("currentCover :>> ", currentCover);
+
   await prisma.service.update({
     where: {
       id,
@@ -52,6 +56,10 @@ export const updateService = async (
     removeFile(currentCover.fileName, `services/${id}`);
   }
 
+  revalidateTag("services");
+  revalidateTag("service");
+  revalidateTag(`service-${id}`);
+
   return { cover, ...dto };
 };
 
@@ -61,4 +69,6 @@ export const deleteService = async (id: string) => {
       id,
     },
   });
+
+  revalidateTag("services");
 };
