@@ -29,7 +29,7 @@ export const useUpdateHeroSectionForm = ({
 
   const { reset, handleSubmit } = methods;
 
-  const onReset = useCallback(() => {
+  const onCancel = useCallback(() => {
     reset(defaultValues);
   }, [reset, defaultValues]);
 
@@ -52,7 +52,7 @@ export const useUpdateHeroSectionForm = ({
   return {
     methods,
     isLoading,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };

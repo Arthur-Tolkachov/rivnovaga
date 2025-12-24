@@ -29,7 +29,7 @@ export const useUpdateCtaSectionForm = ({
 
   const { handleSubmit, reset } = methods;
 
-  const onReset = () => {
+  const onCancel = () => {
     reset(defaultValues);
   };
 
@@ -53,6 +53,6 @@ export const useUpdateCtaSectionForm = ({
     methods,
     isLoading,
     onSubmit,
-    onReset,
+    onCancel,
   };
 };

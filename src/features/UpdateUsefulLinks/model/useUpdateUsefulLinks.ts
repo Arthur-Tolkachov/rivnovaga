@@ -32,7 +32,7 @@ export const useUpdateUsefulLinks = ({
 
   const { handleSubmit, reset } = methods;
 
-  const onReset = () => {
+  const onCancel = () => {
     reset(defaultValues);
   };
 
@@ -60,7 +60,7 @@ export const useUpdateUsefulLinks = ({
   return {
     isLoading,
     methods,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };

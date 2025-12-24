@@ -8,14 +8,14 @@ import { ProfileSchedule } from "./ProfileSchedule";
 
 export interface ProfileFormProps {
   isLoading?: boolean;
-  onReset: VoidFunction;
+  onCancel: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
 export const ProfileForm: React.FC<ProfileFormProps> = ({
   isLoading,
   onSubmit,
-  onReset,
+  onCancel,
 }) => (
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <div className="flex flex-col gap-5">
@@ -24,6 +24,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
       <ProfileSchedule />
     </div>
 
-    <FormActionButtons isLoading={isLoading} onCancel={onReset} />
+    <FormActionButtons isLoading={isLoading} onCancel={onCancel} />
   </form>
 );

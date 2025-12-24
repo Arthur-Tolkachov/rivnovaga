@@ -6,18 +6,18 @@ import { LawyersFields } from "./LawyersFields";
 
 export interface LawyersFormProps {
   isLoading?: boolean;
-  onReset: VoidFunction;
+  onCancel: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
 export const LawyersForm: React.FC<LawyersFormProps> = ({
   isLoading,
-  onReset,
+  onCancel,
   onSubmit,
 }) => (
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <LawyersFields />
 
-    <FormActionButtons onCancel={onReset} isLoading={isLoading} />
+    <FormActionButtons onCancel={onCancel} isLoading={isLoading} />
   </form>
 );

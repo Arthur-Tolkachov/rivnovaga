@@ -36,7 +36,7 @@ export const useUpdateAboutSectionForm = ({
     control,
   });
 
-  const onReset = useCallback(() => {
+  const onCancel = useCallback(() => {
     reset(defaultValues);
   }, [reset, defaultValues]);
 
@@ -60,7 +60,7 @@ export const useUpdateAboutSectionForm = ({
     fields,
     isLoading,
     methods,
-    onReset,
+    onCancel,
     onSubmit,
   };
 };
