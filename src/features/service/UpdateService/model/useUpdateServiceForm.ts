@@ -9,7 +9,7 @@ import {
   ServiceFormValues,
   ServiceModel,
   updateService,
-} from "@entity/services";
+} from "@entity/service";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
@@ -20,21 +20,19 @@ export interface UseUpdateServiceFormProps {
 export const useUpdateServiceForm = ({
   initialValues,
 }: UseUpdateServiceFormProps) => {
-  const route = useRouter();
-  const [defaultValues, setDefaultValues] =
-    useState<ServiceModel>(initialValues);
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<ServiceFormValues>({
-    defaultValues,
+    defaultValues: initialValues,
     reValidateMode: "onChange",
     resolver: zodResolver(ServiceFormSchema),
   });
 
-  const { reset, handleSubmit } = methods;
+  const { handleSubmit } = methods;
 
   const onCancel = useCallback(() => {
-    route.push("/admin/services");
+    router.push("/admin/services");
   }, []);
 
   const onDelete = async () => {
@@ -43,7 +41,7 @@ export const useUpdateServiceForm = ({
 
       await deleteService(initialValues.id);
       notify.success("Послугу успішно видалено");
-      route.push("/admin/services");
+      router.push("/admin/services");
     } catch (error) {
       console.error(error);
     } finally {
@@ -70,15 +68,13 @@ export const useUpdateServiceForm = ({
         coverDto = response;
       }
 
-      const response = await updateService(initialValues.id, {
+      await updateService(initialValues.id, {
         cover: coverDto as FileDto,
         ...values,
       });
 
-      const updatedService = { ...defaultValues, ...response };
-      setDefaultValues(updatedService);
-      reset(updatedService);
       notify.success("Послугу успішно оновлено");
+      router.push("/admin/services");
     } catch (error) {
       console.error(error);
     } finally {

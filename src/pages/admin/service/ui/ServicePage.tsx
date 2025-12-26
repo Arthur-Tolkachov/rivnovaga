@@ -1,4 +1,4 @@
-import { ServiceModel } from "@entity/services";
+import { ServiceModel } from "@entity/service";
 import { CreateServiceForm, UpdateServiceForm } from "@features/service";
 
 interface ServicePageProps {

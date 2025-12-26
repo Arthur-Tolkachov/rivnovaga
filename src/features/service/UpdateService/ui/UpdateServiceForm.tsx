@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
 
-import { ServiceForm } from "@entity/services";
+import { ServiceForm } from "@entity/service";
 import { Modal } from "@shared/ui/composite/Modal";
 
 import {
@@ -25,6 +25,10 @@ export const UpdateServiceForm: React.FC<UpdateServiceFormProps> = ({
     setIsModalOpen(true);
   };
 
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <FormProvider {...methods}>
@@ -35,6 +39,7 @@ export const UpdateServiceForm: React.FC<UpdateServiceFormProps> = ({
         title="Ви збираєтеся видалити послугу"
         open={isModalOpen}
         onConfirm={onDelete}
+        onCancel={handleCancel}
       >
         Послугу буде видалено без можливості відновити. Ви можете тимчасово її
         приховати, натиснувши на чекбокс відображення, або підтвердіть повне

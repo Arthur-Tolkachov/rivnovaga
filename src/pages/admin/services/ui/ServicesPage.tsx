@@ -1,4 +1,4 @@
-import { ServiceModel } from "@entity/services";
+import { ServiceModel } from "@entity/service";
 import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
 import { Card } from "@shared/ui/composite/Card";
 import { CardButton } from "@shared/ui/composite/CardButton";

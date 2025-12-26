@@ -2,7 +2,7 @@ import cn from "classnames";
 import Link from "next/link";
 import { useMemo } from "react";
 
-import { Spinner, SpinnerVariant } from "../Spinner";
+import { Spinner } from "../Spinner";
 import {
   BUTTON_STYLES,
   DEFAULT_SIZES_STYLES,

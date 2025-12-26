@@ -88,68 +88,70 @@ const settings = [
     value: [
       {
         title: "Сайти системи судоустрою",
-        key: "sajti-sistemi-sudoustroyu",
+        id: "8ed15ce1-cb97-4642-baef-4c367a1e20ee",
+        isActive: true,
         data: [
           {
-            key: "sudova-vlada-ukrayini",
             label: "Судова влада України",
             link: "https://court.gov.ua/",
+            id: "c5d9f1e3-f383-4a40-afb4-8ccc420c2fab",
           },
           {
-            key: "elektronnij-sud",
             label: "Електронний суд",
             link: "https://cabinet.court.gov.ua/",
+            id: "de949f3d-678a-4ee5-97cc-421d677be68e",
           },
           {
-            key: "splata-sudovogo-zboru",
             label: "Сплата судового збору",
             link: "https://court.gov.ua/affairs/sudytax/",
+            id: "fd4930ac-e033-4bab-83c4-8a21e3be9f90",
           },
           {
-            key: "uchast-v-sudovomu-zasidanni-onlajn",
             label: "Участь в судовому засіданні онлайн",
             link: "https://vkz.court.gov.ua/",
+            id: "308991ae-cdd8-44f8-90ba-02f5a28c6ebc",
           },
           {
-            key: "spisok-sudovih-sprav-priznachenih-do-rozglyadu",
             label: "Список судових справ, призначених до розгляду",
             link: "https://court.gov.ua/assignments/",
+            id: "bb483a2b-5222-42fc-bf7a-a6295f734639",
           },
           {
-            key: "stan-rozglyadu-sprav",
             label: "Стан розгляду справ",
             link: "https://court.gov.ua/fair/",
+            id: "66b6032b-46ac-4acc-85a1-88401be344d2",
           },
         ],
       },
       {
         title: "Правоохоронні органи",
-        key: "pravoohoronni-organi",
+        id: "ced0a061-4799-45b6-86ae-e34f581f353d",
+        isActive: true,
         data: [
           {
-            key: "byuro-ekonomichnoyi-bezpeki",
             label: "Бюро економічної безпеки",
             link: "https://esbu.gov.ua/",
+            id: "11ec4092-a49d-4791-98d6-1e1dbc0a835a",
           },
           {
-            key: "generalna-prokuratura-ukrayini",
             label: "Генеральна прокуратура України",
             link: "https://www.gp.gov.ua/",
+            id: "2201cfd2-5643-4aa5-bfec-ca8a2f82f54f",
           },
           {
-            key: "derzhavne-byuro-rozsliduvan",
             label: "Державне бюро розслідувань",
             link: "https://dbr.gov.ua/",
+            id: "ed3966d5-6ed7-40b2-bb63-5049b5f3c136",
           },
           {
-            key: "nacionalna-policiya",
             label: "Національна поліція",
             link: "https://www.npu.gov.ua/",
+            id: "dde8b956-debd-4c17-9d21-361ff1ee2f5d",
           },
           {
-            key: "sluzhba-bezpeki-ukrayini",
             label: "Служба безпеки України",
             link: "https://ssu.gov.ua/",
+            id: "6de3e198-836b-462b-9023-41d99d008bd3",
           },
         ],
       },
