@@ -2,7 +2,7 @@
 
 import { FormProvider } from "react-hook-form";
 
-import { ServiceForm } from "@entity/services";
+import { ServiceForm } from "@entity/service";
 
 import { useCreateServiceForm } from "../model/useCreateServiceForm";
 

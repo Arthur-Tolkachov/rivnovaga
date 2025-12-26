@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 
 import PlusIcon from "@public/assets/icons/plus.svg";
 import { Button } from "@shared/ui/base/Button";
@@ -9,6 +8,7 @@ export interface ModalProps {
   title?: string;
   open?: boolean;
   onConfirm: VoidFunction;
+  onCancel: VoidFunction;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -16,25 +16,11 @@ export const Modal: React.FC<ModalProps> = ({
   title,
   open = false,
   onConfirm,
+  onCancel,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setIsOpen(open);
-  }, [open, setIsOpen]);
-
-  if (!isOpen) {
+  if (!open) {
     return null;
   }
-
-  const onCancel = () => {
-    setIsOpen(false);
-  };
-
-  const onDelete = () => {
-    setIsOpen(false);
-    onConfirm();
-  };
 
   return (
     <div className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-primary-main-30">
@@ -54,7 +40,7 @@ export const Modal: React.FC<ModalProps> = ({
             size="sm"
             variant="filled"
             color="secondary"
-            onClick={onDelete}
+            onClick={onConfirm}
           >
             Видалити
           </Button>

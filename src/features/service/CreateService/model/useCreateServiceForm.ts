@@ -9,7 +9,7 @@ import {
   ServiceFormSchema,
   ServiceFormValues,
   ServiceModel,
-} from "@entity/services";
+} from "@entity/service";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 

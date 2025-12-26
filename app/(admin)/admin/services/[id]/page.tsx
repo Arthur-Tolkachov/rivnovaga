@@ -1,4 +1,4 @@
-import { getService } from "@entity/services";
+import { getService } from "@entity/service";
 import { ServicePage } from "@pages/admin/service";
 
 import Error from "../../../../error";

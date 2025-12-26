@@ -1,4 +1,4 @@
-import { getUsefulLinks } from "@entity/usefulLinks";
+import { getUsefulLinks } from "@entity/usefulLink";
 import { UsefulLinksPage } from "@pages/admin/usefulLinks";
 
 import Error from "../../../error";
