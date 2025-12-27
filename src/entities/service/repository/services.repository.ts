@@ -15,7 +15,6 @@ export const getAllServices = unstable_cache(
         title: true,
         description: true,
         isActive: true,
-        createdAt: true,
         cover: {
           select: {
             url: true,
@@ -43,7 +42,6 @@ export const getService = async (id: string) =>
           title: true,
           description: true,
           isActive: true,
-          createdAt: true,
           cover: {
             select: {
               url: true,
@@ -52,7 +50,7 @@ export const getService = async (id: string) =>
           },
         },
       });
-      console.log("service :>> ", service);
+
       return ServiceSchema.parse(service);
     },
     ["service", id],

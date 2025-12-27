@@ -2,28 +2,28 @@
 
 import { FormActionButtons } from "@shared/ui/composite/FormActionButtons";
 
-import { ServiceFields } from "./ServiceFields";
+import { LawyerFields } from "./LawyerFields";
 
-export interface ServiceFormProps {
+export interface LawyerFormProps {
   isLoading?: boolean;
   onCancel: VoidFunction;
   onDelete?: VoidFunction;
   onSubmit: (event: React.BaseSyntheticEvent) => Promise<void>;
 }
 
-export const ServiceForm: React.FC<ServiceFormProps> = ({
+export const LawyerForm: React.FC<LawyerFormProps> = ({
   isLoading,
-  onSubmit,
-  onDelete,
   onCancel,
+  onDelete,
+  onSubmit,
 }) => (
-  <form onSubmit={onSubmit} className="flex flex-col gap-5">
-    <ServiceFields />
+  <form onSubmit={onSubmit} className="flex flex-col gap-8">
+    <LawyerFields />
 
     <FormActionButtons
-      isLoading={isLoading}
       onCancel={onCancel}
       onDelete={onDelete}
+      isLoading={isLoading}
     />
   </form>
 );

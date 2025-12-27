@@ -4,12 +4,16 @@ import { Button } from "@shared/ui/base/Button";
 
 export interface FormActionButtonsProps {
   isLoading?: boolean;
+  cancelButtonTitle?: string;
+  disableCancelButtonIfNotDirty?: boolean;
   onDelete?: VoidFunction;
   onCancel: VoidFunction;
 }
 
 export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
   isLoading,
+  cancelButtonTitle = "Назад",
+  disableCancelButtonIfNotDirty,
   onDelete,
   onCancel,
 }) => {
@@ -49,10 +53,10 @@ export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
         variant="outlined-dark"
         color="secondary"
         onClick={onCancel}
-        disabled={isLoading}
+        disabled={disableCancelButtonIfNotDirty ? isDisabled : isLoading}
         size="sm"
       >
-        Назад
+        {cancelButtonTitle}
       </Button>
     </div>
   );

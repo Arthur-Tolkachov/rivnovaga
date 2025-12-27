@@ -1,4 +1,4 @@
-import { getLawyers } from "@entity/lawyers";
+import { getLawyers } from "@entity/lawyer";
 import { LawyersPage } from "@pages/admin/lawyers";
 
 import Error from "../../../error";
