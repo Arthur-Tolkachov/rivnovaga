@@ -165,6 +165,7 @@ const settings = [
         name: "Михайло",
         surname: "Тесленко",
         patronymic: "Сергійович",
+        isActive: true,
         certificate: {
           number: "5270",
           date: "28.11.2018",

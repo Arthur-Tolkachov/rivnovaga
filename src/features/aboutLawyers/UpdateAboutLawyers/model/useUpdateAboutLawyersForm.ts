@@ -3,28 +3,29 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
-  CtaModel,
-  updateCta,
-  UpdateCtaFormSchema,
-  UpdateCtaFormValues,
-} from "@entity/cta";
+  AboutLawyersFormSchema,
+  AboutLawyersFormValues,
+  AboutLawyersModel,
+  updateAboutLawyers,
+} from "@entity/aboutLawyers";
 import { notify } from "@shared/lib/toastr";
 
-export interface UseUpdateCtaSectionFormProps {
-  initialValues: CtaModel;
+export interface UseUpdateAboutLawyersForm {
+  initialValues: AboutLawyersModel;
 }
 
-export const useUpdateCtaSectionForm = ({
+export const useUpdateAboutLawyersForm = ({
   initialValues,
-}: UseUpdateCtaSectionFormProps) => {
+}: UseUpdateAboutLawyersForm) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [defaultValues, setDefaultValues] = useState<CtaModel>(initialValues);
+  const [defaultValues, setDefaultValues] =
+    useState<AboutLawyersModel>(initialValues);
 
-  const methods = useForm<UpdateCtaFormValues>({
+  const methods = useForm<AboutLawyersFormValues>({
     defaultValues,
     reValidateMode: "onChange",
-    resolver: zodResolver(UpdateCtaFormSchema),
+    resolver: zodResolver(AboutLawyersFormSchema),
   });
 
   const { handleSubmit, reset } = methods;
@@ -37,11 +38,11 @@ export const useUpdateCtaSectionForm = ({
     try {
       setIsLoading(true);
 
-      const response = await updateCta(values);
+      const response = await updateAboutLawyers(values);
 
       setDefaultValues(response);
       reset(response);
-      notify.success("Секцiю заклику до дії успішно оновлено");
+      notify.success("Секцiю про адвокатiв успішно оновлено");
     } catch (error) {
       console.error(error);
     } finally {
@@ -52,7 +53,7 @@ export const useUpdateCtaSectionForm = ({
   return {
     methods,
     isLoading,
-    onSubmit,
     onCancel,
+    onSubmit,
   };
 };

@@ -9,7 +9,6 @@ export const ServiceSchema = z.object({
     fileName: z.string(),
   }),
   isActive: z.boolean(),
-  createdAt: z.date(),
 });
 
 export const ServicesArraySchema = z.array(ServiceSchema);

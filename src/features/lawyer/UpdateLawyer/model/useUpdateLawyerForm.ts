@@ -3,45 +3,44 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { deleteLawyer, updateLawyer } from "@entity/lawyer";
 import {
-  deleteService,
-  ServiceFormSchema,
-  ServiceFormValues,
-  ServiceModel,
-  updateService,
-} from "@entity/service";
+  LawyerFormSchema,
+  LawyerFormValues,
+  LawyerModel,
+} from "@entity/lawyer";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
-export interface UseUpdateServiceFormProps {
-  initialValues: ServiceModel;
+export interface UseUpdateLawyerFormProps {
+  initialValues: LawyerModel;
 }
 
-export const useUpdateServiceForm = ({
+export const useUpdateLawyerForm = ({
   initialValues,
-}: UseUpdateServiceFormProps) => {
+}: UseUpdateLawyerFormProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const methods = useForm<ServiceFormValues>({
+  const methods = useForm<LawyerFormValues>({
     defaultValues: initialValues,
     reValidateMode: "onChange",
-    resolver: zodResolver(ServiceFormSchema),
+    resolver: zodResolver(LawyerFormSchema),
   });
 
   const { handleSubmit } = methods;
 
   const onCancel = useCallback(() => {
-    router.push("/admin/services");
+    router.push("/admin/lawyers");
   }, [router]);
 
   const onDelete = async () => {
     try {
       setIsLoading(true);
 
-      await deleteService(initialValues.id);
-      notify.success("Послугу успішно видалено");
-      router.push("/admin/services");
+      await deleteLawyer(initialValues.id);
+      notify.success("Адвоката успішно видалено");
+      router.push("/admin/lawyers");
     } catch (error) {
       console.error(error);
     } finally {
@@ -49,32 +48,29 @@ export const useUpdateServiceForm = ({
     }
   };
 
-  const onSubmit = handleSubmit(async ({ cover, ...values }) => {
+  const onSubmit = handleSubmit(async ({ photo, ...values }) => {
     try {
       setIsLoading(true);
 
-      let coverDto = cover;
+      let photoDto = photo;
 
-      if (cover instanceof File) {
-        const response = await uploadFile(
-          cover,
-          `services/${initialValues.id}`
-        );
+      if (photo instanceof File) {
+        const response = await uploadFile(photo, `lawyers/${initialValues.id}`);
 
         if (!response) {
           throw new Error("File uploading error");
         }
 
-        coverDto = response;
+        photoDto = response;
       }
 
-      await updateService(initialValues.id, {
-        cover: coverDto as FileDto,
+      await updateLawyer(initialValues.id, {
+        photo: photoDto as FileDto,
         ...values,
       });
 
-      notify.success("Послугу успішно оновлено");
-      router.push("/admin/services");
+      notify.success("Адвоката успішно оновлено");
+      router.push("/admin/lawyers");
     } catch (error) {
       console.error(error);
     } finally {
@@ -85,8 +81,8 @@ export const useUpdateServiceForm = ({
   return {
     methods,
     isLoading,
-    onDelete,
     onCancel,
+    onDelete,
     onSubmit,
   };
 };

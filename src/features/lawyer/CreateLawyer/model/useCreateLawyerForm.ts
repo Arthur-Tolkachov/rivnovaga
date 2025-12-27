@@ -4,65 +4,72 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
+import { createLawyer } from "@entity/lawyer";
 import {
-  createService,
-  ServiceFormSchema,
-  ServiceFormValues,
-  ServiceModel,
-} from "@entity/service";
+  LawyerFormSchema,
+  LawyerFormValues,
+  LawyerModel,
+} from "@entity/lawyer";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
 const DEFAULT_VALUES = {
-  title: "",
+  name: "",
+  surname: "",
+  patronymic: "",
+  certificate: {
+    number: "",
+    date: "",
+  },
+  phone: "",
   description: "",
   isActive: true,
-  cover: {
+  photo: {
     url: "",
     fileName: "",
   },
-} as ServiceModel;
+} as LawyerModel;
 
-export const useCreateServiceForm = () => {
+export const useCreateLawyerForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const methods = useForm<ServiceFormValues>({
+  const methods = useForm<LawyerFormValues>({
     defaultValues: DEFAULT_VALUES,
     reValidateMode: "onChange",
-    resolver: zodResolver(ServiceFormSchema),
+    resolver: zodResolver(LawyerFormSchema),
   });
 
   const { handleSubmit } = methods;
 
   const onCancel = useCallback(() => {
-    router.push("/admin/services");
+    router.push("/admin/lawyers");
   }, [router]);
 
-  const onSubmit = handleSubmit(async ({ cover, ...values }) => {
+  const onSubmit = handleSubmit(async ({ photo, ...values }) => {
     try {
       setIsLoading(true);
-
       const id = uuidv4();
-      let coverDto = cover;
 
-      if (cover instanceof File) {
-        const response = await uploadFile(cover, `services/${id}`);
+      let photoDto = photo;
+
+      if (photo instanceof File) {
+        const response = await uploadFile(photo, `lawyers/${id}`);
 
         if (!response) {
           throw new Error("File uploading error");
         }
 
-        coverDto = response;
+        photoDto = response;
       }
 
-      await createService(id, {
-        cover: coverDto as FileDto,
+      await createLawyer(id, {
+        photo: photoDto as FileDto,
         ...values,
       });
 
-      notify.success("Послугу успішно створено");
-      router.push("/admin/services");
+      notify.success("Адвоката успішно створено");
+      router.push("/admin/lawyers");
     } catch (error) {
       console.error(error);
     } finally {
