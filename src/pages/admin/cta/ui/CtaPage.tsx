@@ -1,5 +1,5 @@
 import { CtaModel } from "@entity/cta";
-import { UpdateCtaSectionForm } from "@features/UpdateCtaSection";
+import { UpdateCtaSectionForm } from "@features/cta";
 
 interface CtaPageProps {
   cta: CtaModel;

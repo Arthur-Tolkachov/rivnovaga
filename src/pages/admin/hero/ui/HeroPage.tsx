@@ -1,5 +1,5 @@
 import { HeroModel } from "@entity/hero";
-import { UpdateHeroSectionForm } from "@features/UpdateHeroSection";
+import { UpdateHeroSectionForm } from "@features/hero";
 
 interface HeroPageProps {
   hero: HeroModel;

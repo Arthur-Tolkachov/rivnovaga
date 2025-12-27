@@ -1,0 +1,1 @@
+export { UpdateHeroSectionForm } from "./UpdateHeroSection";

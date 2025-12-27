@@ -1,5 +1,5 @@
 import { AboutModel } from "@entity/about";
-import { UpdateAboutSectionForm } from "@features/UpdateAboutSection";
+import { UpdateAboutSectionForm } from "@features/about";
 
 interface AboutPageProps {
   about: AboutModel[];
