@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
+
 import { FileDto } from "@entity/upload";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
@@ -28,6 +30,8 @@ export const updateProfile = async (dto: UpdateProfileDTO) => {
   if (currentLogo.value.fileName !== dto.logo.fileName) {
     removeFile(currentLogo.value.fileName, "logo");
   }
+
+  revalidateTag("profile");
 
   return dto;
 };

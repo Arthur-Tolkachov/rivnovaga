@@ -1,5 +1,5 @@
 import { ProfileModel } from "@entity/profile";
-import { UpdateProfileForm } from "@features/UpdateProfile";
+import { UpdateProfileForm } from "@features/profile";
 
 interface ProfilePageProps {
   profile: ProfileModel;

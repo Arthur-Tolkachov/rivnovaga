@@ -12,8 +12,10 @@ export const AdminPanelItem: React.FC<AdminPanelItemProps> = ({
   label,
 }) => {
   const segments = useSelectedLayoutSegments() || [];
+  const segment = segments[1];
+  const path = segment ? `/admin/${segments[1]}` : "/admin";
 
-  const isActive = `/admin/${segments[1]}` === href;
+  const isActive = path === href;
 
   return (
     <li>
