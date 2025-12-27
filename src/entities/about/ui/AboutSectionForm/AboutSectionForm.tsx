@@ -20,6 +20,11 @@ export const AboutSectionForm: React.FC<AboutSectionFormProps> = ({
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <AboutSectionFields fields={fields} />
 
-    <FormActionButtons onCancel={onCancel} isLoading={isLoading} />
+    <FormActionButtons
+      onCancel={onCancel}
+      isLoading={isLoading}
+      cancelButtonTitle="Скасувати"
+      disableCancelButtonIfNotDirty
+    />
   </form>
 );

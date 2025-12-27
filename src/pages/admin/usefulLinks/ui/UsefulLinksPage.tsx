@@ -1,4 +1,5 @@
 import { UsefulLinkModel } from "@entity/usefulLink";
+import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 import { CardButton } from "@shared/ui/composite/CardButton";
 
 interface UsefulLinksPageProps {
@@ -9,6 +10,10 @@ export const UsefulLinksPage: React.FC<UsefulLinksPageProps> = ({
   usefulLinks,
 }) => (
   <div className="flex flex-col gap-5">
+    <BreadCrumbs
+      home={{ title: "Кориснi посилання", href: "/admin/useful_links" }}
+    />
+
     <h2 className="text-primary-dark">Кориснi посилання</h2>
 
     <div className="grid grid-cols-4 gap-5">

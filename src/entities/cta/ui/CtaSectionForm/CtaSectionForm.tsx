@@ -18,6 +18,11 @@ export const CtaSectionForm: React.FC<CtaSectionFormProps> = ({
   <form onSubmit={onSubmit} className="flex flex-col gap-8">
     <CtaSectionFields />
 
-    <FormActionButtons onCancel={onCancel} isLoading={isLoading} />
+    <FormActionButtons
+      onCancel={onCancel}
+      isLoading={isLoading}
+      cancelButtonTitle="Скасувати"
+      disableCancelButtonIfNotDirty
+    />
   </form>
 );
