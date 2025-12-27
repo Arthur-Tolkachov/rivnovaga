@@ -1,5 +1,6 @@
 import { ServiceModel } from "@entity/service";
 import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
+import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 import { Card } from "@shared/ui/composite/Card";
 import { CardButton } from "@shared/ui/composite/CardButton";
 
@@ -11,6 +12,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = async ({
   services,
 }) => (
   <div className="flex flex-col gap-5">
+    <BreadCrumbs home={{ title: "Послуги", href: "/admin/services" }} />
+
     <h2 className="text-primary-dark">Послуги</h2>
 
     <div className="grid grid-cols-4 gap-5">

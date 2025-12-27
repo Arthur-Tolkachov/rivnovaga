@@ -1,5 +1,6 @@
 import { LawyerModel } from "@entity/lawyer";
 import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
+import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 import { Card } from "@shared/ui/composite/Card";
 import { CardButton } from "@shared/ui/composite/CardButton";
 
@@ -9,6 +10,8 @@ interface LawyersPageProps {
 
 export const LawyersPage: React.FC<LawyersPageProps> = ({ lawyers }) => (
   <div className="flex flex-col gap-5">
+    <BreadCrumbs home={{ title: "Адвокати", href: "/admin/lawyers" }} />
+
     <h2 className="text-primary-dark">Адвокати</h2>
 
     <div className="grid grid-cols-4 gap-5">
