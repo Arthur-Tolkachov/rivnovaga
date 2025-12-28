@@ -2,11 +2,13 @@ import { AboutPracticeModel } from "@entity/aboutPractice";
 import { UpdateAboutPracticeForm } from "@features/aboutPractice";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
-interface PracticePageProps {
+interface AboutPracticePageProps {
   practice: AboutPracticeModel;
 }
 
-export const PracticePage: React.FC<PracticePageProps> = ({ practice }) => {
+export const AboutPracticePage: React.FC<AboutPracticePageProps> = ({
+  practice,
+}) => {
   return (
     <div className="flex flex-col gap-5">
       <BreadCrumbs

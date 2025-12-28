@@ -16,13 +16,18 @@ export const ADMIN_NAVIGATION_CONFIG = [
     label: "Сторiнка адвокатiв",
     href: "/admin/about_lawyers",
   },
-  { key: "lawyers", label: "Адвокати", href: "/admin/lawyers" },
-  { key: "services", label: "Послуги", href: "/admin/services" },
   {
     key: "about_practice",
     label: "Сторiнка практики",
     href: "/admin/about_practice",
   },
+  {
+    key: "about_services",
+    label: "Сторiнка послуг",
+    href: "/admin/about_services",
+  },
+  { key: "lawyers", label: "Адвокати", href: "/admin/lawyers" },
+  { key: "services", label: "Послуги", href: "/admin/services" },
   {
     key: "useful_links",
     label: "Кориснi посилання",

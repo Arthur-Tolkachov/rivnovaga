@@ -1,5 +1,5 @@
 import { getAboutLawyers } from "@entity/aboutLawyers";
-import { AboutLawyersPage } from "@pages/admin/about_lawyers";
+import { AboutLawyersPage } from "@pages/admin/aboutLawyers";
 
 import Error from "../../../error";
 
