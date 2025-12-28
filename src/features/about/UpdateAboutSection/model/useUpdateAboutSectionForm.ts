@@ -5,8 +5,8 @@ import { useFieldArray, useForm } from "react-hook-form";
 import {
   AboutModel,
   updateAbout,
-  UpdateAboutFormSchema,
-  UpdateAboutFormValues,
+  AboutFormSchema,
+  AboutFormValues,
 } from "@entity/about";
 import { notify } from "@shared/lib/toastr";
 
@@ -19,14 +19,14 @@ export const useUpdateAboutSectionForm = ({
 }: UseUpdateAboutSectionFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [defaultValues, setDefaultValues] = useState<UpdateAboutFormValues>({
+  const [defaultValues, setDefaultValues] = useState<AboutFormValues>({
     about: initialValues,
   });
 
   const methods = useForm({
     defaultValues,
     reValidateMode: "onChange",
-    resolver: zodResolver(UpdateAboutFormSchema),
+    resolver: zodResolver(AboutFormSchema),
   });
 
   const { handleSubmit, control, reset } = methods;
