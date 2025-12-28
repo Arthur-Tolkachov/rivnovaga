@@ -4,9 +4,9 @@ import { revalidateTag } from "next/cache";
 
 import { prisma } from "@shared/lib/prisma-client";
 
-import { UpdateHeroDTO } from "../model/updateHero.dto";
+import { HeroDTO } from "../model/hero.dto";
 
-export const updateHero = async (dto: UpdateHeroDTO) => {
+export const updateHero = async (dto: HeroDTO) => {
   await prisma.setting.update({
     where: { key: "hero" },
     data: { value: dto },

@@ -2,24 +2,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { CtaModel, updateCta, CtaFormSchema, CtaFormValues } from "@entity/cta";
+import {
+  AboutPracticeModel,
+  AboutPracticeFormSchema,
+  AboutPracticeFormValues,
+  updateAboutPractice,
+} from "@entity/aboutPractice";
 import { notify } from "@shared/lib/toastr";
 
-export interface UseUpdateCtaSectionFormProps {
-  initialValues: CtaModel;
+export interface UseUpdateAboutPracticeFormProps {
+  initialValues: AboutPracticeModel;
 }
 
-export const useUpdateCtaSectionForm = ({
+export const useUpdateAboutPracticeForm = ({
   initialValues,
-}: UseUpdateCtaSectionFormProps) => {
+}: UseUpdateAboutPracticeFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [defaultValues, setDefaultValues] =
+    useState<AboutPracticeModel>(initialValues);
 
-  const [defaultValues, setDefaultValues] = useState<CtaModel>(initialValues);
-
-  const methods = useForm<CtaFormValues>({
+  const methods = useForm<AboutPracticeFormValues>({
     defaultValues,
     reValidateMode: "onChange",
-    resolver: zodResolver(CtaFormSchema),
+    resolver: zodResolver(AboutPracticeFormSchema),
   });
 
   const { handleSubmit, reset } = methods;
@@ -32,11 +37,11 @@ export const useUpdateCtaSectionForm = ({
     try {
       setIsLoading(true);
 
-      const response = await updateCta(values);
+      const response = await updateAboutPractice(values);
 
       setDefaultValues(response);
       reset(response);
-      notify.success("Секцiю заклику до дії успішно оновлено");
+      notify.success("Сторiнку практики успішно оновлено");
     } catch (error) {
       console.error(error);
     } finally {
@@ -47,7 +52,7 @@ export const useUpdateCtaSectionForm = ({
   return {
     methods,
     isLoading,
-    onSubmit,
     onCancel,
+    onSubmit,
   };
 };

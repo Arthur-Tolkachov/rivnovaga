@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import {
   HeroModel,
   updateHero,
-  UpdateHeroFormSchema,
-  UpdateHeroFormValues,
+  HeroFormSchema,
+  HeroFormValues,
 } from "@entity/hero";
 import { notify } from "@shared/lib/toastr";
 
@@ -21,10 +21,10 @@ export const useUpdateHeroSectionForm = ({
 
   const [defaultValues, setDefaultValues] = useState<HeroModel>(initialValues);
 
-  const methods = useForm<UpdateHeroFormValues>({
+  const methods = useForm<HeroFormValues>({
     defaultValues,
     reValidateMode: "onChange",
-    resolver: zodResolver(UpdateHeroFormSchema),
+    resolver: zodResolver(HeroFormSchema),
   });
 
   const { reset, handleSubmit } = methods;
