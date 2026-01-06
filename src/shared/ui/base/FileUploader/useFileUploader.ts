@@ -4,14 +4,22 @@ import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
 
 export interface UseFileUploaderProps {
   value?: File | { url: string; fileName: string };
+  accept?: string;
   onChange?: (file: File) => void;
 }
 
-export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
-  const [previewValue, setPreviewValue] = useState({
+export const useFileUploader = ({
+  value,
+  accept,
+  onChange,
+}: UseFileUploaderProps) => {
+  const [placeholder, setPlaceholder] = useState({
     url: EmptyPlaceholderImg.src,
     fileName: "empty_placeholder.png",
   });
+  const [hasValue, setHasValue] = useState(false);
+
+  const isPdf = accept === "application/pdf";
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -26,7 +34,9 @@ export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
 
     const objUrl = URL.createObjectURL(file);
 
-    setPreviewValue({ url: objUrl, fileName: file.name });
+    setHasValue(true);
+
+    setPlaceholder({ url: objUrl, fileName: file.name });
   };
 
   useEffect(() => {
@@ -35,20 +45,24 @@ export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
     if (value instanceof File) {
       const objUrl = URL.createObjectURL(value);
 
-      return setPreviewValue({ url: objUrl, fileName: value.name });
+      setHasValue(true);
+      return setPlaceholder({ url: objUrl, fileName: value.name });
     }
 
     if (value.url && value.fileName) {
-      return setPreviewValue(value);
+      setHasValue(true);
+      return setPlaceholder(value);
     }
 
     return () => {
-      URL.revokeObjectURL(previewValue.url);
+      URL.revokeObjectURL(placeholder.url);
     };
   }, [value]);
 
   return {
-    previewValue,
+    isPdf,
+    hasValue,
+    placeholder,
     onFileChange,
   };
 };

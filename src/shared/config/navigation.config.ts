@@ -27,6 +27,7 @@ export const ADMIN_NAVIGATION_CONFIG = [
     href: "/admin/about_services",
   },
   { key: "lawyers", label: "Адвокати", href: "/admin/lawyers" },
+  { key: "practices", label: "Практика", href: "/admin/practices" },
   { key: "services", label: "Послуги", href: "/admin/services" },
   {
     key: "useful_links",

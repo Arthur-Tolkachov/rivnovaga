@@ -2,12 +2,12 @@
 
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-import { Props as ReactSelectProps } from "react-select";
+import { ActionMeta, Props as ReactSelectProps } from "react-select";
 
 const ReactSelect = dynamic(() => import("react-select"), { ssr: false });
 
 export interface SelectOption {
-  value: string;
+  value: unknown;
   label: string;
 }
 
@@ -17,25 +17,27 @@ export interface SelectProps
     "classNames" | "unstyled" | "onChange" | "options"
   > {
   error?: string | null;
+  width?: string;
   options: SelectOption[];
-  onChange: (value: string) => void;
+  onChange: (value: unknown) => void;
 }
 
 export const Select: React.FC<SelectProps> = ({
   error,
   value,
+  width,
   options,
   onChange,
   ...rest
 }) => {
-  const handleChange = (option: unknown) => {
+  const handleChange = (option: unknown, actionMeta: ActionMeta<unknown>) => {
+    if (actionMeta.action === "clear") {
+      onChange(null);
+    }
+
     if (!option || !onChange) return;
 
-    if (
-      typeof option === "object" &&
-      "value" in option &&
-      typeof option.value === "string"
-    ) {
+    if (typeof option === "object" && "value" in option) {
       onChange(option.value);
     }
   };
@@ -45,7 +47,7 @@ export const Select: React.FC<SelectProps> = ({
 
     return newOption || null;
   }, [value, options]);
-
+  console.log("selectedOption :>> ", selectedOption);
   return (
     <div>
       <ReactSelect
@@ -55,6 +57,7 @@ export const Select: React.FC<SelectProps> = ({
             "flex gap-5 border-1 border-secondary-main px-5 py-2 bg-secondary-light",
           placeholder: () => "text-secondary-main",
           indicatorsContainer: () => "text-secondary-darker cursor-pointer",
+          noOptionsMessage: () => "p-2 text-primary-dark",
           menu: () =>
             "border-1 border-t-0 border-secondary-main bg-secondary-light",
           option: ({ isSelected }) =>
@@ -64,7 +67,17 @@ export const Select: React.FC<SelectProps> = ({
             ].join(" "),
         }}
         styles={{
-          option: () => ({ cursor: "pointer" }),
+          container: (base) => ({
+            ...base,
+            width,
+          }),
+          option: () => ({
+            cursor: "pointer",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            maxWidth: "100%",
+          }),
           ...(error && {
             control: () => ({
               boxShadow: "0px 0px 0px 1px var(--color-error)",
@@ -72,11 +85,13 @@ export const Select: React.FC<SelectProps> = ({
             }),
           }),
         }}
+        noOptionsMessage={() => "Список порожнiй"}
         menuPlacement="auto"
         menuPosition="fixed"
         onChange={handleChange}
         options={options}
         value={selectedOption}
+        isClearable
         unstyled
         {...rest}
       />

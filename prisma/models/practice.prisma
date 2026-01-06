@@ -1,0 +1,26 @@
+model PracticeFile {
+  id String @id @default(uuid())
+  url String
+  fileName String
+
+  service Practice @relation(fields:[practiceId], references: [id], onDelete: Cascade)
+  practiceId String @unique
+}
+
+model Practice {
+  id             String       @id @default(uuid())
+  title          String
+  caseNumber       String
+  proceedingNumber       String
+  isActive       Boolean
+  city           String
+
+  url           String?
+  file          PracticeFile?
+
+  service           Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  serviceId         String? 
+  
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
