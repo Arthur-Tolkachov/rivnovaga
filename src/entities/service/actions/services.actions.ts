@@ -64,11 +64,22 @@ export const updateService = async (
 };
 
 export const deleteService = async (id: string) => {
+  const { cover: currentCover } = (await prisma.service.findUnique({
+    where: { id },
+    select: { cover: true },
+  })) as { cover: FileDto };
+
+  if (!currentCover) {
+    throw new Error("Logo not found");
+  }
+
   await prisma.service.delete({
     where: {
       id,
     },
   });
+
+  removeFile(currentCover.fileName, `services/${id}`);
 
   revalidateTag("services");
 };

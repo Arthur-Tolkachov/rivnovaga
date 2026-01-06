@@ -50,12 +50,17 @@ export const updateLawyer = async (id: string, dto: LawyerDTO) => {
 
 export const deleteLawyer = async (id: string) => {
   const currentLawyers = await getLawyers();
+  const currentLawyer = currentLawyers.find((lawyer) => lawyer.id === id);
+  const currentPhoto = currentLawyer?.photo || { fileName: "", url: "" };
+
   const newLawyers = currentLawyers.filter((lawyer) => lawyer.id !== id);
 
   await prisma.setting.update({
     where: { key: "lawyers" },
     data: { value: newLawyers },
   });
+
+  removeFile(currentPhoto.fileName, `lawyers/${id}`);
 
   revalidateTag("lawyers");
 };

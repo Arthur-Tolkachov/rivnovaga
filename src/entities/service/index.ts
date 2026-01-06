@@ -1,5 +1,6 @@
 export { ServiceForm } from "./ui/ServiceForm";
 export { ServiceFormSchema } from "./model/service.validation";
+export { ServiceSchema } from "./model/service.model";
 
 export { getAllServices, getService } from "./repository/services.repository";
 export {

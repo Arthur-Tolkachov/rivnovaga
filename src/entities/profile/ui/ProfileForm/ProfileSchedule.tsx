@@ -13,12 +13,14 @@ export const ProfileSchedule = () => (
         <span className="text-secondary-main">З -</span>
         <SelectField
           name="workingDaysSchedule.start"
+          width="200px"
           placeholder="Початок"
           options={DAYS_OF_THE_WEEK_DROPDOWN_OPTIONS}
         />
         <span className="text-secondary-main">По -</span>
         <SelectField
           name="workingDaysSchedule.end"
+          width="200px"
           placeholder="Кiнець"
           options={DAYS_OF_THE_WEEK_DROPDOWN_OPTIONS}
         />
@@ -32,12 +34,14 @@ export const ProfileSchedule = () => (
         <span className="text-secondary-main">З -</span>
         <SelectField
           name="workingTimeSchedule.start"
+          width="100"
           placeholder="Початок"
           options={TIME_OF_THE_DAY_DROPDOWN_OPTIONS}
         />
         <span className="text-secondary-main">По -</span>
         <SelectField
           name="workingTimeSchedule.end"
+          width="100"
           placeholder="Кiнець"
           options={TIME_OF_THE_DAY_DROPDOWN_OPTIONS}
         />

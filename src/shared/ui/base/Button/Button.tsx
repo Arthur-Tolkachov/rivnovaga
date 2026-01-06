@@ -16,6 +16,7 @@ export interface ButtonProps {
   type?: "submit" | "button";
   children: React.ReactNode;
   variant?: ButtonVariant;
+  target?: string;
   color?: ButtonColor;
   className?: string;
   href?: string;
@@ -48,6 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
   href,
   className,
   disabled,
+  target,
   isLoading,
   size = "md",
   onClick,
@@ -66,12 +68,16 @@ export const Button: React.FC<ButtonProps> = ({
     return (
       <Link
         href={href}
+        target={target}
         className={cn(
           "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
           BUTTON_STYLES[color][variant],
           className
         )}
-        style={{ ...buttonSizeStyles }}
+        style={{
+          pointerEvents: disabled ? "none" : "auto",
+          ...buttonSizeStyles,
+        }}
       >
         {children}
       </Link>

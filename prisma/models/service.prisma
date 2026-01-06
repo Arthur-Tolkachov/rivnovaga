@@ -13,6 +13,7 @@ model Service {
   description    String
   isActive       Boolean
 
+  practices      Practice[]
   cover          ServiceCover?
   
   createdAt      DateTime     @default(now())
