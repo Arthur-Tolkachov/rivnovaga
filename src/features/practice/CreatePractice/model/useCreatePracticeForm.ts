@@ -24,7 +24,7 @@ const DEFAULT_VALUES = {
     url: "",
     fileName: "",
   },
-  serviceId: null,
+  services: null,
 };
 
 export interface UseCreatePracticeFormProps {

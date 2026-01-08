@@ -2,24 +2,36 @@
 
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-import { ActionMeta, Props as ReactSelectProps } from "react-select";
+import {
+  ActionMeta,
+  MultiValue,
+  Props as ReactSelectProps,
+  SingleValue,
+} from "react-select";
 
-const ReactSelect = dynamic(() => import("react-select"), { ssr: false });
+type RSProps = ReactSelectProps<SelectOption, boolean>;
+
+const ReactSelect = dynamic<RSProps>(
+  () => import("react-select").then((m) => m.default),
+  { ssr: false }
+);
 
 export interface SelectOption {
   value: unknown;
   label: string;
 }
 
-export interface SelectProps
-  extends Omit<
-    ReactSelectProps,
-    "classNames" | "unstyled" | "onChange" | "options"
-  > {
+type BaseProps = Omit<
+  ReactSelectProps<SelectOption, boolean>,
+  "classNames" | "unstyled" | "onChange" | "options" | "value"
+>;
+
+export interface SelectProps extends BaseProps {
   error?: string | null;
   width?: string;
   options: SelectOption[];
-  onChange: (value: unknown) => void;
+  value?: unknown | unknown[] | null;
+  onChange: (value: unknown | unknown[] | null) => void;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -27,32 +39,43 @@ export const Select: React.FC<SelectProps> = ({
   value,
   width,
   options,
+  isMulti,
   onChange,
   ...rest
 }) => {
-  const handleChange = (option: unknown, actionMeta: ActionMeta<unknown>) => {
+  const handleChange = (
+    option: SingleValue<SelectOption> | MultiValue<SelectOption>,
+    actionMeta: ActionMeta<SelectOption>
+  ) => {
     if (actionMeta.action === "clear") {
       onChange(null);
+      return;
     }
 
-    if (!option || !onChange) return;
-
-    if (typeof option === "object" && "value" in option) {
-      onChange(option.value);
+    if (isMulti) {
+      const values = (option as MultiValue<SelectOption>)?.map(
+        (opt) => opt.value
+      );
+      onChange(values ?? []);
+      return;
     }
+
+    onChange((option as SingleValue<SelectOption>)?.value ?? null);
   };
 
   const selectedOption = useMemo(() => {
-    const newOption = options?.find((option) => option.value === value);
+    if (isMulti && Array.isArray(value)) {
+      return options.filter((opt) => value.includes(opt.value));
+    }
 
-    return newOption || null;
-  }, [value, options]);
-  console.log("selectedOption :>> ", selectedOption);
+    return options.find((opt) => opt.value === value) ?? null;
+  }, [value, options, isMulti]);
+
   return (
     <div>
       <ReactSelect
         classNames={{
-          valueContainer: () => "cursor-pointer",
+          valueContainer: () => "cursor-pointer flex flex-wrap gap-1",
           control: () =>
             "flex gap-5 border-1 border-secondary-main px-5 py-2 bg-secondary-light",
           placeholder: () => "text-secondary-main",
@@ -62,9 +85,10 @@ export const Select: React.FC<SelectProps> = ({
             "border-1 border-t-0 border-secondary-main bg-secondary-light",
           option: ({ isSelected }) =>
             [
-              "px-5 py-1 text-secondary-dark",
+              "px-5 py-1 text-secondary-dark hover:bg-secondary-main hover:text-secondary-light",
               isSelected && "bg-secondary-main text-secondary-light",
             ].join(" "),
+          multiValue: () => "bg-secondary-main text-secondary-light px-2",
         }}
         styles={{
           container: (base) => ({
@@ -90,6 +114,7 @@ export const Select: React.FC<SelectProps> = ({
         menuPosition="fixed"
         onChange={handleChange}
         options={options}
+        isMulti={isMulti}
         value={selectedOption}
         isClearable
         unstyled

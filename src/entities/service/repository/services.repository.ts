@@ -15,6 +15,11 @@ export const getAllServices = unstable_cache(
         title: true,
         description: true,
         isActive: true,
+        practices: {
+          select: {
+            id: true,
+          },
+        },
         cover: {
           select: {
             url: true,
@@ -24,7 +29,14 @@ export const getAllServices = unstable_cache(
       },
     });
 
-    return ServicesArraySchema.parse(services);
+    const servicesWithMappedPractices = services.map(
+      ({ practices, ...service }) => ({
+        ...service,
+        practices: practices.map(({ id }) => id),
+      })
+    );
+
+    return ServicesArraySchema.parse(servicesWithMappedPractices);
   },
   ["services"],
   { tags: ["services"] }
@@ -42,6 +54,11 @@ export const getService = async (id: string) =>
           title: true,
           description: true,
           isActive: true,
+          practices: {
+            select: {
+              id: true,
+            },
+          },
           cover: {
             select: {
               url: true,
@@ -51,7 +68,9 @@ export const getService = async (id: string) =>
         },
       });
 
-      return ServiceSchema.parse(service);
+      const mappedPractice = service?.practices.map(({ id }) => id);
+
+      return ServiceSchema.parse({ ...service, practices: mappedPractice });
     },
     ["service", id],
     { tags: ["service"] }

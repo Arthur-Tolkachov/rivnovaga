@@ -18,7 +18,7 @@ export const getAllPractices = unstable_cache(
         proceedingNumber: true,
         isActive: true,
         url: true,
-        serviceId: true,
+        services: true,
         file: {
           select: {
             url: true,
@@ -28,7 +28,14 @@ export const getAllPractices = unstable_cache(
       },
     });
 
-    return PracticesArraySchema.parse(practices);
+    const practicesWithMappedServices = practices.map(
+      ({ services, ...practice }) => ({
+        ...practice,
+        services: services.map(({ id }) => id),
+      })
+    );
+
+    return PracticesArraySchema.parse(practicesWithMappedServices);
   },
   ["practices"],
   { tags: ["practices"] }
@@ -49,7 +56,7 @@ export const getPractice = async (id: string) =>
           proceedingNumber: true,
           isActive: true,
           url: true,
-          serviceId: true,
+          services: true,
           file: {
             select: {
               url: true,
@@ -59,7 +66,9 @@ export const getPractice = async (id: string) =>
         },
       });
 
-      return PracticeSchema.parse(practice);
+      const mappedServices = practice?.services.map(({ id }) => id);
+
+      return PracticeSchema.parse({ ...practice, services: mappedServices });
     },
     ["practice", id],
     { tags: ["practice"] }

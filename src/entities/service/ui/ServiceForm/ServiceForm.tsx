@@ -2,9 +2,9 @@
 
 import { FormActionButtons } from "@shared/ui/composite/FormActionButtons";
 
-import { ServiceFields } from "./ServiceFields";
+import { ServiceFields, ServiceFieldsProps } from "./ServiceFields";
 
-export interface ServiceFormProps {
+export interface ServiceFormProps extends ServiceFieldsProps {
   isLoading?: boolean;
   onCancel: VoidFunction;
   onDelete?: VoidFunction;
@@ -13,12 +13,13 @@ export interface ServiceFormProps {
 
 export const ServiceForm: React.FC<ServiceFormProps> = ({
   isLoading,
+  practicesDropdownOptions,
   onSubmit,
   onDelete,
   onCancel,
 }) => (
   <form onSubmit={onSubmit} className="flex flex-col gap-5">
-    <ServiceFields />
+    <ServiceFields practicesDropdownOptions={practicesDropdownOptions} />
 
     <FormActionButtons
       isLoading={isLoading}

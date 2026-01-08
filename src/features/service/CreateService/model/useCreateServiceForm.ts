@@ -1,9 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
+import { PracticeModel } from "@entity/practice";
 import {
   createService,
   ServiceFormSchema,
@@ -23,7 +24,13 @@ const DEFAULT_VALUES = {
   },
 } as ServiceModel;
 
-export const useCreateServiceForm = () => {
+export interface UseCreateServiceFormProps {
+  practices: PracticeModel[];
+}
+
+export const useCreateServiceForm = ({
+  practices,
+}: UseCreateServiceFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -34,6 +41,15 @@ export const useCreateServiceForm = () => {
   });
 
   const { handleSubmit } = methods;
+
+  const practicesDropdownOptions = useMemo(
+    () =>
+      practices.map((practice) => ({
+        label: practice.title,
+        value: practice.id,
+      })),
+    [practices]
+  );
 
   const onCancel = useCallback(() => {
     router.push("/admin/services");
@@ -72,6 +88,7 @@ export const useCreateServiceForm = () => {
 
   return {
     methods,
+    practicesDropdownOptions,
     isLoading,
     onCancel,
     onSubmit,

@@ -1,6 +1,7 @@
 export { PracticeForm } from "./ui/PracticeForm";
 export { PracticeFormSchema } from "./model/practice.validation";
 export { PracticeCard } from "./ui/PracticeCard";
+export { PracticeSchema } from "./model/practice.model";
 
 export { getAllPractices, getPractice } from "./repository/practice.repository";
 export {

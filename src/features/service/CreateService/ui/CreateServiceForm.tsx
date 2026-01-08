@@ -4,10 +4,17 @@ import { FormProvider } from "react-hook-form";
 
 import { ServiceForm } from "@entity/service";
 
-import { useCreateServiceForm } from "../model/useCreateServiceForm";
+import {
+  useCreateServiceForm,
+  UseCreateServiceFormProps,
+} from "../model/useCreateServiceForm";
 
-export const CreateServiceForm = () => {
-  const { methods, ...rest } = useCreateServiceForm();
+export type CreateServiceFormProps = UseCreateServiceFormProps;
+
+export const CreateServiceForm: React.FC<CreateServiceFormProps> = ({
+  practices,
+}) => {
+  const { methods, ...rest } = useCreateServiceForm({ practices });
 
   return (
     <FormProvider {...methods}>

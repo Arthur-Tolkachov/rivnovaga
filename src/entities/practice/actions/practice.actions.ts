@@ -10,8 +10,10 @@ import { PracticeDTO } from "../model/practice.dto";
 
 export const createPractice = async (
   id: string,
-  { file, serviceId, ...dto }: PracticeDTO
+  { file, services, ...dto }: PracticeDTO
 ) => {
+  const servicesArray = services?.map((serviceId) => ({ id: serviceId }));
+
   await prisma.practice.create({
     data: {
       id,
@@ -19,26 +21,24 @@ export const createPractice = async (
         create: file,
       },
 
-      ...(serviceId && {
-        service: {
-          connect: {
-            id: serviceId,
-          },
-        },
-      }),
+      services: {
+        connect: servicesArray,
+      },
 
       ...dto,
     },
   });
 
   revalidateTag("practices");
+  revalidateTag("services");
+  revalidateTag("service");
 
   return dto;
 };
 
 export const updatePractice = async (
   id: string,
-  { file, ...dto }: PracticeDTO
+  { file, services, ...dto }: PracticeDTO
 ) => {
   const { file: currentFile } = (await prisma.practice.findUnique({
     where: { id },
@@ -49,6 +49,8 @@ export const updatePractice = async (
     throw new Error("File not found");
   }
 
+  const servicesArray = services?.map((servicesId) => ({ id: servicesId }));
+
   await prisma.practice.update({
     where: {
       id,
@@ -56,6 +58,9 @@ export const updatePractice = async (
     data: {
       file: {
         update: file,
+      },
+      services: {
+        set: servicesArray,
       },
       ...dto,
     },
@@ -66,7 +71,9 @@ export const updatePractice = async (
   }
 
   revalidateTag("practices");
+  revalidateTag("services");
   revalidateTag("practice");
+  revalidateTag("service");
   revalidateTag(`practice-${id}`);
 
   return { file, ...dto };
@@ -91,4 +98,6 @@ export const deletePractice = async (id: string) => {
   removeFile(currentFile.fileName, `practices/${id}`);
 
   revalidateTag("practices");
+  revalidateTag("services");
+  revalidateTag("service");
 };

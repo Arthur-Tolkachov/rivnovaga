@@ -10,13 +10,18 @@ import { ServiceDTO } from "../model/service.dto";
 
 export const createService = async (
   id: string,
-  { cover, ...dto }: ServiceDTO
+  { cover, practices, ...dto }: ServiceDTO
 ) => {
+  const practicesArray = practices?.map((practiceId) => ({ id: practiceId }));
+
   await prisma.service.create({
     data: {
       id,
       cover: {
         create: cover,
+      },
+      practices: {
+        connect: practicesArray,
       },
       ...dto,
     },
@@ -29,7 +34,7 @@ export const createService = async (
 
 export const updateService = async (
   id: string,
-  { cover, ...dto }: ServiceDTO
+  { cover, practices, ...dto }: ServiceDTO
 ) => {
   const { cover: currentCover } = (await prisma.service.findUnique({
     where: { id },
@@ -40,6 +45,8 @@ export const updateService = async (
     throw new Error("Logo not found");
   }
 
+  const practicesArray = practices?.map((practiceId) => ({ id: practiceId }));
+
   await prisma.service.update({
     where: {
       id,
@@ -47,6 +54,9 @@ export const updateService = async (
     data: {
       cover: {
         update: cover,
+      },
+      practices: {
+        set: practicesArray,
       },
       ...dto,
     },
