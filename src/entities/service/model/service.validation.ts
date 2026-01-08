@@ -9,6 +9,7 @@ export const ServiceFormSchema = ServiceDTOSchema.extend({
       fileName: z.string(),
     })
   ),
+  practices: z.array(z.string()),
 });
 
 export type ServiceFormValues = z.infer<typeof ServiceFormSchema>;

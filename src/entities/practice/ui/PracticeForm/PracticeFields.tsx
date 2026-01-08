@@ -35,14 +35,15 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
 
     <div className="bg-secondary-light flex items-center gap-5 p-5">
       <SelectField
-        name="serviceId"
+        name="services"
         width="300px"
         options={dropdownOptions}
         placeholder="Пов'язана послуга"
+        isMulti
       />
 
       <span className="text-primary-dark">
-        - користавач буде бачити цю практику переглядуючи обрану послугу
+        - користавач буде бачити цю практику переглядуючи обранi послуги
       </span>
     </div>
 

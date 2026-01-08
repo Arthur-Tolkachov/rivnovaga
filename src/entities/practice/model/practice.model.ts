@@ -10,7 +10,7 @@ export const PracticeSchema = z.object({
 
   url: z.string().nullable(),
 
-  serviceId: z.string().nullable(),
+  services: z.array(z.string()).optional(),
 
   file: z.object({
     url: z.string(),

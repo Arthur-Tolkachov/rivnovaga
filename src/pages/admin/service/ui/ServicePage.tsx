@@ -1,12 +1,17 @@
+import { PracticeModel } from "@entity/practice";
 import { ServiceModel } from "@entity/service";
 import { CreateServiceForm, UpdateServiceForm } from "@features/service";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
 interface ServicePageProps {
   service?: ServiceModel;
+  practices: PracticeModel[];
 }
 
-export const ServicePage: React.FC<ServicePageProps> = async ({ service }) => {
+export const ServicePage: React.FC<ServicePageProps> = async ({
+  service,
+  practices,
+}) => {
   const title = service ? "Редагування послуги" : "Нова послуга";
 
   const breadCrumbsConfig = [
@@ -26,9 +31,9 @@ export const ServicePage: React.FC<ServicePageProps> = async ({ service }) => {
       <h2 className="text-primary-dark">{title}</h2>
 
       {service ? (
-        <UpdateServiceForm initialValues={service} />
+        <UpdateServiceForm initialValues={service} practices={practices} />
       ) : (
-        <CreateServiceForm />
+        <CreateServiceForm practices={practices} />
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+import { getAllPractices } from "@entity/practice";
 import { getService } from "@entity/service";
 import { ServicePage } from "@pages/admin/service";
 
@@ -11,8 +12,9 @@ export default async function UpdateService({ params }: Props) {
   try {
     const { id } = await params;
     const service = await getService(id);
+    const practices = await getAllPractices();
 
-    return <ServicePage service={service} />;
+    return <ServicePage service={service} practices={practices} />;
   } catch (error) {
     console.error(error);
 

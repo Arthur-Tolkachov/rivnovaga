@@ -15,10 +15,12 @@ export type UpdateServiceFormProps = UseUpdateServiceFormProps;
 
 export const UpdateServiceForm: React.FC<UpdateServiceFormProps> = ({
   initialValues,
+  practices,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { methods, onDelete, ...rest } = useUpdateServiceForm({
     initialValues,
+    practices,
   });
 
   const handleDelete = () => {

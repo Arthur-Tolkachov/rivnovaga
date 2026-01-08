@@ -9,6 +9,7 @@ export const ServiceSchema = z.object({
     fileName: z.string(),
   }),
   isActive: z.boolean(),
+  practices: z.array(z.string()).optional(),
 });
 
 export const ServicesArraySchema = z.array(ServiceSchema);
