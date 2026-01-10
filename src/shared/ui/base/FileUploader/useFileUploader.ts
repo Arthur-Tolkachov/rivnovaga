@@ -4,22 +4,15 @@ import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
 
 export interface UseFileUploaderProps {
   value?: File | { url: string; fileName: string };
-  accept?: string;
   onChange?: (file: File) => void;
 }
 
-export const useFileUploader = ({
-  value,
-  accept,
-  onChange,
-}: UseFileUploaderProps) => {
+export const useFileUploader = ({ value, onChange }: UseFileUploaderProps) => {
   const [placeholder, setPlaceholder] = useState({
     url: EmptyPlaceholderImg.src,
     fileName: "empty_placeholder.png",
   });
   const [hasValue, setHasValue] = useState(false);
-
-  const isPdf = accept === "application/pdf";
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -60,7 +53,6 @@ export const useFileUploader = ({
   }, [value]);
 
   return {
-    isPdf,
     hasValue,
     placeholder,
     onFileChange,

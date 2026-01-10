@@ -35,7 +35,6 @@ export const TextInput = forwardRef<
       rows = 3,
       containerClassName,
       readonly,
-      transform,
       onFocus,
       onBlur,
       onChange,
@@ -49,7 +48,6 @@ export const TextInput = forwardRef<
         id,
         value,
         defaultFocus,
-        transform,
         onBlur,
         onFocus,
         onChange,
@@ -82,7 +80,7 @@ export const TextInput = forwardRef<
               ref={ref as React.Ref<HTMLTextAreaElement>}
               value={inputValue}
               className={cn(
-                "outline-none text-secondary-dark border-1 border-secondary-main w-full p-3 resize-none",
+                "outline-none text-secondary-dark border-1 border-secondary-main w-full p-3 resize-none relative z-1",
                 className
               )}
               rows={rows}

@@ -7,6 +7,8 @@ export interface FileUploaderProps extends UseFileUploaderProps {
   label?: string;
   error?: string | null;
   alt?: string;
+  accept?: string;
+  isDocument?: boolean;
 }
 
 export const FileUploader: React.FC<FileUploaderProps> = ({
@@ -15,12 +17,12 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   alt,
   error,
   accept = "image/*",
+  isDocument,
   onChange,
   ...rest
 }) => {
-  const { placeholder, hasValue, isPdf, onFileChange } = useFileUploader({
+  const { placeholder, hasValue, onFileChange } = useFileUploader({
     value,
-    accept,
     onChange,
   });
 
@@ -37,9 +39,14 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
           {...rest}
         />
 
-        {isPdf ? (
-          <div className="border-1 border-secondary-main w-70 max-w-full p-2">
-            {hasValue ? placeholder.fileName : "Оберiть PDF файл"}
+        {isDocument ? (
+          <div
+            className="border-1 border-secondary-main w-70 max-w-full p-2"
+            style={{
+              ...(error && { borderColor: "var(--color-error)" }),
+            }}
+          >
+            {hasValue ? placeholder.fileName : "Оберiть файл"}
           </div>
         ) : (
           <div className="relative">

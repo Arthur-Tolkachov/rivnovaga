@@ -16,7 +16,7 @@ export const getLawyers = unstable_cache(
       },
     });
 
-    return LawyersArraySchema.parse(lawyers?.value);
+    return LawyersArraySchema.parse(lawyers?.value || []);
   },
   ["lawyers"],
   { tags: ["lawyers"] }

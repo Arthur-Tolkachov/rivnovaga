@@ -13,7 +13,7 @@ export const getAbout = unstable_cache(
       },
     });
 
-    return z.array(AboutSchema).parse(about?.value);
+    return z.array(AboutSchema).parse(about?.value || []);
   },
   ["about"],
   { tags: ["about"] }

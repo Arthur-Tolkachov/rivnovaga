@@ -16,7 +16,7 @@ export const getUsefulLinks = unstable_cache(
       },
     });
 
-    return UsefulLinksSchema.parse(usefulLinks?.value);
+    return UsefulLinksSchema.parse(usefulLinks?.value || []);
   },
   ["usefulLinks"],
   { tags: ["usefulLinks"] }
