@@ -28,6 +28,7 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
             name="file"
             label="PDF файл"
             accept="application/pdf"
+            isDocument
           />
         </div>
       </div>

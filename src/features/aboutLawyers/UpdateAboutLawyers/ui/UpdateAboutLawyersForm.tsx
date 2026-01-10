@@ -5,11 +5,11 @@ import { FormProvider } from "react-hook-form";
 import { AboutLawyersForm } from "@entity/aboutLawyers";
 
 import {
-  UseUpdateAboutLawyersForm,
+  UseUpdateAboutLawyersFormProps,
   useUpdateAboutLawyersForm,
 } from "../model/useUpdateAboutLawyersForm";
 
-export type UpdateAboutLawyersFormProps = UseUpdateAboutLawyersForm;
+export type UpdateAboutLawyersFormProps = UseUpdateAboutLawyersFormProps;
 
 export const UpdateAboutLawyersForm: React.FC<UpdateAboutLawyersFormProps> = ({
   initialValues,

@@ -16,7 +16,7 @@ export const getAboutLawyers = unstable_cache(
       },
     });
 
-    return AboutLawyersSchema.parse(aboutLawyers?.value);
+    return AboutLawyersSchema.parse(aboutLawyers?.value || {});
   },
   ["aboutLawyers"],
   { tags: ["aboutLawyers"] }

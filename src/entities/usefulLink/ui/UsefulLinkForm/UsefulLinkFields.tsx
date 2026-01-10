@@ -48,11 +48,9 @@ export const UsefulLinkFields = () => {
         ))}
       </div>
 
-      <div className="flex gap-5">
-        <Button variant="filled" color="secondary" size="sm" onClick={addLink}>
-          Додати посилання
-        </Button>
-      </div>
+      <Button variant="filled" color="secondary" size="sm" onClick={addLink}>
+        Додати посилання
+      </Button>
     </div>
   );
 };

@@ -1,10 +1,9 @@
-import { useEffect, useId, useMemo, useState } from "react";
+import { useCallback, useId, useState } from "react";
 
 export interface UseTextInputProps {
   id?: string;
   value?: string;
   defaultFocus?: boolean;
-  transform?: (value: string) => string;
   onFocus?: (
     event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -20,7 +19,6 @@ export const useTextInput = ({
   id: inputId,
   value,
   defaultFocus = false,
-  transform,
   onBlur,
   onChange,
   onFocus,
@@ -31,60 +29,53 @@ export const useTextInput = ({
   const [isFocus, setIsFocus] = useState(defaultFocus);
   const [inputValue, setInputValue] = useState<string>(value || "");
 
-  const shouldLabelTransform = useMemo(() => {
-    if (inputValue || isFocus) {
-      return true;
-    }
+  const currentValue = hasExternalValue ? value : inputValue;
+  const shouldLabelTransform = isFocus || currentValue.length;
 
-    return false;
-  }, [isFocus, inputValue]);
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { value } = event.target;
 
-  useEffect(() => {
-    if (hasExternalValue && value !== inputValue) {
-      setInputValue(value);
-    }
-  }, [value, hasExternalValue, setInputValue]);
+      if (onChange) {
+        onChange(event);
+      }
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { value } = event.target;
+      if (!hasExternalValue) {
+        setInputValue(value);
+      }
+    },
+    [setInputValue, hasExternalValue, onChange]
+  );
 
-    const transformedValue = transform ? transform(value) : value;
+  const handleFocus = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (onFocus) {
+        onFocus(event);
+      }
 
-    if (onChange) {
-      event.target.value = transformedValue;
-      onChange(event);
-    }
+      if (!isFocus) {
+        setIsFocus(true);
+      }
+    },
+    [setIsFocus, onFocus, isFocus]
+  );
 
-    if (!hasExternalValue) {
-      setInputValue(transformedValue);
-    }
-  };
+  const handleBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (onBlur) {
+        onBlur(event);
+      }
 
-  const handleFocus = (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    if (onFocus) {
-      onFocus(event);
-    }
-
-    setIsFocus(true);
-  };
-
-  const handleBlur = (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    if (onBlur) {
-      onBlur(event);
-    }
-
-    setIsFocus(false);
-  };
+      if (isFocus) {
+        setIsFocus(false);
+      }
+    },
+    [setIsFocus, onBlur, isFocus]
+  );
 
   return {
     id: id || inputId,
-    inputValue,
+    inputValue: currentValue,
     isFocus,
     shouldLabelTransform,
     onFocus: handleFocus,

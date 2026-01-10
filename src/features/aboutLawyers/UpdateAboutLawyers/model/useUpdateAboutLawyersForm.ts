@@ -10,13 +10,13 @@ import {
 } from "@entity/aboutLawyers";
 import { notify } from "@shared/lib/toastr";
 
-export interface UseUpdateAboutLawyersForm {
+export interface UseUpdateAboutLawyersFormProps {
   initialValues: AboutLawyersModel;
 }
 
 export const useUpdateAboutLawyersForm = ({
   initialValues,
-}: UseUpdateAboutLawyersForm) => {
+}: UseUpdateAboutLawyersFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [defaultValues, setDefaultValues] =
