@@ -4,6 +4,7 @@ export { UsefulLinkFormSchema } from "./model/usefulLink.validation";
 export {
   getUsefulLinks,
   getUsefulLink,
+  getAvailableUsefulLinks,
 } from "./repository/usefulLinks.repository";
 export {
   createUsefulLink,

@@ -10,7 +10,21 @@ import ViberIcon from "@public/assets/icons/viber.svg";
 import WhatsAppIcon from "@public/assets/icons/whatsapp.svg";
 import { Button } from "@shared/ui/base/Button";
 
-export const QuickActionsPanel = () => {
+export interface QuickActionPanelProps {
+  phone?: string | null;
+  telegram?: string | null;
+  viber?: string | null;
+  whatsapp?: string | null;
+  email?: string | null;
+}
+
+export const QuickActionsPanel: React.FC<QuickActionPanelProps> = ({
+  phone,
+  telegram,
+  viber,
+  whatsapp,
+  email,
+}) => {
   const [show, setShow] = useState(false);
 
   const onScroll = () => {
@@ -44,25 +58,38 @@ export const QuickActionsPanel = () => {
       )}
 
       <div className="flex flex-col gap-3">
-        <Button href="/" variant="rounded">
-          <PhoneIcon className="w-5 h-5 fill-secondary-light" />
-        </Button>
+        {phone && (
+          <Button href={`tel:${phone}`} variant="rounded">
+            <PhoneIcon className="w-5 h-5 fill-secondary-light" />
+          </Button>
+        )}
 
-        <Button href="/" variant="rounded">
-          <TelegramIcon className="w-5 h-5 fill-secondary-light" />
-        </Button>
+        {telegram && (
+          <Button href={`https://t.me/${telegram}`} variant="rounded">
+            <TelegramIcon className="w-5 h-5 fill-secondary-light" />
+          </Button>
+        )}
 
-        <Button href="/" variant="rounded">
-          <ViberIcon className="w-5 h-5 fill-secondary-light" />
-        </Button>
+        {viber && (
+          <Button href={`viber://chat?number=${viber}`} variant="rounded">
+            <ViberIcon className="w-5 h-5 fill-secondary-light" />
+          </Button>
+        )}
 
-        <Button href="/" variant="rounded">
-          <WhatsAppIcon className="w-5 h-5 fill-secondary-light" />
-        </Button>
+        {whatsapp && (
+          <Button
+            href={`https://wa.me/${whatsapp.replace(/\+/g, "")}`}
+            variant="rounded"
+          >
+            <WhatsAppIcon className="w-5 h-5 fill-secondary-light" />
+          </Button>
+        )}
 
-        <Button href="/" variant="rounded">
-          <EmailIcon className="w-5 h-5 fill-secondary-light" />
-        </Button>
+        {email && (
+          <Button href={`mailto:${email}`} variant="rounded">
+            <EmailIcon className="w-5 h-5 fill-secondary-light" />
+          </Button>
+        )}
       </div>
     </div>
   );

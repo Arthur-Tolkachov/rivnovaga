@@ -22,6 +22,19 @@ export const getUsefulLinks = unstable_cache(
   { tags: ["usefulLinks"] }
 );
 
+export const getAvailableUsefulLinks = unstable_cache(
+  async () => {
+    const usefulLinks = await getUsefulLinks();
+    const availableUsefulLinks = usefulLinks.filter(
+      (usefulLink) => usefulLink.isActive
+    );
+
+    return availableUsefulLinks;
+  },
+  ["usefulLinks"],
+  { tags: ["usefulLinks"] }
+);
+
 export const getUsefulLink = async (id: string) =>
   unstable_cache(
     async () => {

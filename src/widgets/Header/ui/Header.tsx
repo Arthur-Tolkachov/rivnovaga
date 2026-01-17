@@ -5,12 +5,22 @@ import { usePathname } from "next/navigation";
 import { HEADER_STICKY_POSITION } from "@shared/config/layout.constants";
 import { Container } from "@shared/ui/base/Container";
 
-import HeaderBottomPanel from "./HeaderBottomPanel";
-import { HeaderTopPanel } from "./HeaderTopPanel";
+import { HeaderBottomPanel, HeaderBottomPanelProps } from "./HeaderBottomPanel";
+import { HeaderTopPanel, HeaderTopPanelProps } from "./HeaderTopPanel";
 import { useHeaderTransparency } from "./useHeaderTransparency";
 import { PAGES_WITH_TRANSPARENT_HEADER } from "../config/header.config";
 
-export const Header = () => {
+export interface HeaderProps
+  extends HeaderTopPanelProps,
+    HeaderBottomPanelProps {}
+
+export const Header: React.FC<HeaderProps> = ({
+  email,
+  phone,
+  logo,
+  organizationName,
+  ...rest
+}) => {
   const pathname = usePathname();
   const shouldBeTransparent = pathname
     ? PAGES_WITH_TRANSPARENT_HEADER.includes(pathname)
@@ -39,9 +49,9 @@ export const Header = () => {
         ></div>
 
         <Container className="relative z-1">
-          <HeaderTopPanel />
+          <HeaderTopPanel email={email} phone={phone} {...rest} />
 
-          <HeaderBottomPanel />
+          <HeaderBottomPanel logo={logo} organizationName={organizationName} />
         </Container>
       </header>
     </>

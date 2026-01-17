@@ -14,8 +14,21 @@ export const createService = async (
 ) => {
   const practicesArray = practices?.map((practiceId) => ({ id: practiceId }));
 
-  await prisma.service.create({
-    data: {
+  await prisma.service.upsert({
+    where: { id },
+    update: {
+      cover: {
+        upsert: {
+          update: cover,
+          create: cover,
+        },
+      },
+      practices: {
+        set: practicesArray,
+      },
+      ...dto,
+    },
+    create: {
       id,
       cover: {
         create: cover,

@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 
+import { getServiceWithPractices } from "@entity/service";
 import { ServicePage } from "@pages/content/service";
+
+import Error from "../../../error";
 
 export const metadata: Metadata = {
   title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",
@@ -24,6 +27,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Service() {
-  return <ServicePage />;
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function Service({ params }: PageProps) {
+  try {
+    const { id } = params;
+    const service = await getServiceWithPractices(id);
+    return <ServicePage service={service} />;
+  } catch (error) {
+    console.error(error);
+    return <Error />;
+  }
 }

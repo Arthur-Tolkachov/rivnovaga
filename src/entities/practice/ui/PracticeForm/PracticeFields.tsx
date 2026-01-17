@@ -41,6 +41,7 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
         options={dropdownOptions}
         placeholder="Пов'язана послуга"
         isMulti
+        isClearable
       />
 
       <span className="text-primary-dark">

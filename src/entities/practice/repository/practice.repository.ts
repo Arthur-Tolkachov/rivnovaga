@@ -41,6 +41,16 @@ export const getAllPractices = unstable_cache(
   { tags: ["practices"] }
 );
 
+export const getAvailablePractices = unstable_cache(
+  async () => {
+    const practices = await getAllPractices();
+
+    return practices;
+  },
+  ["practices"],
+  { tags: ["practices"] }
+);
+
 export const getPractice = async (id: string) =>
   unstable_cache(
     async () => {

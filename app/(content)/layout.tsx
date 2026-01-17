@@ -1,23 +1,58 @@
+import { getProfile } from "@entity/profile";
 import { Footer } from "@widgets/Footer";
 import { Header } from "@widgets/Header";
 import { QuickActionsPanel } from "@widgets/QuickActionsPanel";
 
-export default function ContentLayout({
+import Error from "../error";
+
+export default async function ContentLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-        <Header />
+  try {
+    const {
+      general: { email, phone, telegram, viber, whatsapp, name },
+      logo,
+    } = await getProfile();
 
-        {children}
+    return (
+      <>
+        <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+          <Header
+            email={email}
+            phone={phone}
+            telegram={telegram}
+            viber={viber}
+            whatsapp={whatsapp}
+            logo={logo}
+            organizationName={name}
+          />
 
-        <Footer />
-      </div>
+          {children}
 
-      <QuickActionsPanel />
-    </>
-  );
+          <Footer
+            logo={logo}
+            organizationName={name}
+            email={email}
+            phone={phone}
+            telegram={telegram}
+            whatsapp={whatsapp}
+            viber={viber}
+          />
+        </div>
+
+        <QuickActionsPanel
+          email={email}
+          phone={phone}
+          telegram={telegram}
+          viber={viber}
+          whatsapp={whatsapp}
+        />
+      </>
+    );
+  } catch (error) {
+    console.error(error);
+    return <Error />;
+  }
 }

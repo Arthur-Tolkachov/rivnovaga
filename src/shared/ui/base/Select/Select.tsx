@@ -40,6 +40,7 @@ export const Select: React.FC<SelectProps> = ({
   width,
   options,
   isMulti,
+  isClearable,
   onChange,
   ...rest
 }) => {
@@ -116,7 +117,7 @@ export const Select: React.FC<SelectProps> = ({
         options={options}
         isMulti={isMulti}
         value={selectedOption}
-        isClearable
+        isClearable={isClearable}
         unstyled
         {...rest}
       />

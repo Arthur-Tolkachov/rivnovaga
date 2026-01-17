@@ -1,5 +1,10 @@
 import z from "zod";
 
+export const LogoSchema = z.object({
+  url: z.string(),
+  fileName: z.string(),
+});
+
 export const ProfileSchema = z.object({
   general: z.object({
     name: z.string(),
@@ -9,10 +14,7 @@ export const ProfileSchema = z.object({
     viber: z.string().nullable(),
     whatsapp: z.string().nullable(),
   }),
-  logo: z.object({
-    url: z.string(),
-    fileName: z.string(),
-  }),
+  logo: LogoSchema,
   address: z.object({
     index: z.string().nullable(),
     city: z.string(),

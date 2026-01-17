@@ -50,13 +50,14 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
             target="_blank"
             disabled={disabled}
           >
-            Рiшення
+            Рішення в ЄРДСР
           </Button>
         )}
 
         {fileUrl && (
           <Button
             href={fileUrl}
+            target="_blank"
             size="sm"
             color="secondary"
             variant="filled"

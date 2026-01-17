@@ -1,8 +1,16 @@
 export { ServiceForm } from "./ui/ServiceForm";
 export { ServiceFormSchema } from "./model/service.validation";
-export { ServiceSchema } from "./model/service.model";
+export {
+  ServiceSchema,
+  ServiceWithPracticesSchema,
+} from "./model/service.model";
 
-export { getAllServices, getService } from "./repository/services.repository";
+export {
+  getAllServices,
+  getAllAvailableServices,
+  getServiceWithPractices,
+  getService,
+} from "./repository/services.repository";
 export {
   createService,
   updateService,
@@ -10,6 +18,9 @@ export {
 } from "./actions/services.actions";
 
 export type { ServiceFormProps } from "./ui/ServiceForm";
-export type { ServiceModel } from "./model/service.model";
+export type {
+  ServiceModel,
+  ServiceWithPracticesModel,
+} from "./model/service.model";
 export type { ServiceDTO } from "./model/service.dto";
 export type { ServiceFormValues } from "./model/service.validation";
