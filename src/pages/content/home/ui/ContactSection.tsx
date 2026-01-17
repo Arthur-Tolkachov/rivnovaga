@@ -1,4 +1,8 @@
-import { CONTACT_LINKS_CONFIG } from "@shared/config/contact.constants";
+import { getProfile } from "@entity/profile";
+import EmailIcon from "@public/assets/icons/email.svg";
+import PhoneIcon from "@public/assets/icons/phone.svg";
+import { DAYS_OF_THE_WEEK } from "@shared/config/date.constants";
+import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFriendly";
 import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
@@ -7,15 +11,41 @@ import { TextInput } from "@shared/ui/base/TextInput";
 import { Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
 
-export const ContactSection = () => {
+export const ContactSection = async () => {
+  const {
+    general: { phone, email, viber, telegram, whatsapp },
+    address,
+    workingDaysSchedule,
+    workingTimeSchedule,
+    map,
+  } = await getProfile();
+
+  const index = address.index ? `${address.index},` : "";
+  const city = address.city ? `${address.city},` : "";
+  const street = address.street ? `${address.street},` : "";
+  const building = address.building ? `${address.building},` : "";
+  const office = address.office ? `${address.office},` : "";
+
+  const displayPhone = transformPhoneToUserFriendly(phone);
+  const addressString = `${index} ${city} ${street} ${building} ${office}`;
+
+  const startDay =
+    DAYS_OF_THE_WEEK[
+      workingDaysSchedule.start as keyof typeof DAYS_OF_THE_WEEK
+    ];
+  const endDay =
+    DAYS_OF_THE_WEEK[workingDaysSchedule.end as keyof typeof DAYS_OF_THE_WEEK];
+
+  const workingRangeString = `Графік роботи: ${startDay} - ${endDay}: ${workingTimeSchedule.start} - ${workingTimeSchedule.end}`;
+
   return (
     <MainSection>
       <Container className="flex flex-col gap-10">
         <h1 className="text-secondary-dark w-fit">Контакти</h1>
 
         <div className="flex flex-col gap-3 text-secondary-dark">
-          <h3>08200, м. Ірпінь, вул. Джерельна, 14, офіс 119</h3>
-          <h3>Графік роботи: понеділок - п&apos;ятниця: 10:00 - 18:00</h3>
+          <h3>{addressString}</h3>
+          <h3>{workingRangeString}</h3>
 
           <div className="flex flex-col gap-5 bg-secondary-light border-1 border-secondary-main p-5">
             <h3>
@@ -24,23 +54,42 @@ export const ContactSection = () => {
             </h3>
 
             <div className="flex gap-10">
-              {CONTACT_LINKS_CONFIG.map(({ id, href, Icon, label }) => (
+              {phone && (
                 <Link
-                  key={id}
-                  href={href}
+                  href={`tel:${phone}`}
                   className="text-secondary-dark group"
                   gap={15}
                   startAdornment={
-                    <Icon className="w-5 h-5 fill-secondary-dark group-hover:fill-secondary-main duration-200" />
+                    <PhoneIcon className="w-5 h-5 fill-secondary-dark group-hover:fill-secondary-main duration-200" />
                   }
                 >
                   <span className="text-secondary-dark group-hover:underline">
-                    {label}
+                    {displayPhone}
                   </span>
                 </Link>
-              ))}
+              )}
 
-              <SocialLinks color="dark" />
+              {email && (
+                <Link
+                  href={`mailto:${email}`}
+                  className="text-secondary-dark group"
+                  gap={15}
+                  startAdornment={
+                    <EmailIcon className="w-5 h-5 fill-secondary-dark group-hover:fill-secondary-main duration-200" />
+                  }
+                >
+                  <span className="text-secondary-dark group-hover:underline">
+                    {email}
+                  </span>
+                </Link>
+              )}
+
+              <SocialLinks
+                color="dark"
+                telegram={telegram}
+                viber={viber}
+                whatsapp={whatsapp}
+              />
             </div>
           </div>
         </div>
@@ -62,7 +111,7 @@ export const ContactSection = () => {
         </div>
 
         <div className="border-1 border-secondary-main">
-          <Map />
+          <Map lat={Number(map.lat)} lng={Number(map.lng)} />
         </div>
       </Container>
     </MainSection>

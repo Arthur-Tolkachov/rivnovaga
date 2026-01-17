@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { AboutPage } from "@pages/content/about";
+import { LawyersPage } from "@pages/content/lawyers";
 
 export const metadata: Metadata = {
   title: "Про адвокатiв | Адвокатське об'єднання «Рівновага»",
@@ -27,5 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function About() {
-  return <AboutPage />;
+  return <LawyersPage />;
 }

@@ -15,6 +15,7 @@ import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
 const DEFAULT_VALUES = {
+  id: "",
   title: "",
   description: "",
   isActive: true,
@@ -22,6 +23,7 @@ const DEFAULT_VALUES = {
     url: "",
     fileName: "",
   },
+  practices: [],
 } as ServiceModel;
 
 export interface UseCreateServiceFormProps {

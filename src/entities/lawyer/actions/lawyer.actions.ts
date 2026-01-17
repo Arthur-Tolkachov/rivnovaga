@@ -9,9 +9,15 @@ import { removeFile } from "@shared/lib/removeFile";
 export const createLawyer = async (id: string, dto: LawyerDTO) => {
   const currentLawyers = await getLawyers();
 
-  await prisma.setting.update({
+  await prisma.setting.upsert({
     where: { key: "lawyers" },
-    data: { value: [...currentLawyers, { id, ...dto }] },
+    update: {
+      value: [...currentLawyers, { id, ...dto }],
+    },
+    create: {
+      key: "lawyers",
+      value: [{ id, ...dto }],
+    },
   });
 
   revalidateTag("lawyers");

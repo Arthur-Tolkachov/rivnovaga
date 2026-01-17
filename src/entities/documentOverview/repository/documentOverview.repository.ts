@@ -25,6 +25,19 @@ export const getAllDocumentOverviews = unstable_cache(
   { tags: ["documentOverviews"] }
 );
 
+export const getAvailableDocumentOverviews = unstable_cache(
+  async () => {
+    const documentOverviews = await getAllDocumentOverviews();
+    const availableDocumentOverviews = documentOverviews.filter(
+      (documentOverview) => documentOverview.isActive
+    );
+
+    return availableDocumentOverviews;
+  },
+  ["documentOverviews"],
+  { tags: ["documentOverviews"] }
+);
+
 export const getDocumentOverview = async (id: string) =>
   unstable_cache(
     async () => {

@@ -5,6 +5,7 @@ export { DocumentOverviewSchema } from "./model/documentOverview.model";
 export {
   getAllDocumentOverviews,
   getDocumentOverview,
+  getAvailableDocumentOverviews,
 } from "./repository/documentOverview.repository";
 export {
   createDocumentOverview,

@@ -28,6 +28,7 @@ export const ServiceFields: React.FC<ServiceFieldsProps> = ({
             options={practicesDropdownOptions}
             placeholder="Пов'язанi практики"
             isMulti
+            isClearable
           />
         </div>
       </div>

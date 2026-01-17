@@ -2,14 +2,24 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-import LogoImg from "@public/assets/images/logo.png";
+export interface LogoProps {
+  logo: {
+    url: string;
+    fileName: string;
+  };
+  organizationName: string;
+}
 
-export const Logo = () => {
+export const Logo: React.FC<LogoProps> = ({ logo, organizationName }) => {
+  if (!logo) {
+    return null;
+  }
+
   return (
     <Link href="/" className="flex gap-6 items-center w-fit group">
       <Image
-        src={LogoImg}
-        alt="Адвокатське об'єднання «Рівновага»"
+        src={logo.url}
+        alt={organizationName || logo.fileName}
         width={70}
         height={70}
         priority
@@ -17,13 +27,11 @@ export const Logo = () => {
 
       <div
         className={cn(
-          "flex flex-col text-secondary-light duration-200",
+          "text-secondary-light duration-200",
           "group-hover:text-secondary-lighter"
         )}
       >
-        <span className="text-xl">Адвокатське об&apos;єднання</span>
-
-        <span className="text-2xl">«Рівновага»</span>
+        <div className="text-xl max-w-80">{organizationName}</div>
       </div>
     </Link>
   );

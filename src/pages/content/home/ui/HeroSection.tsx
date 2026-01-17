@@ -1,20 +1,20 @@
+import { getHero } from "@entity/hero";
 import MouseIcon from "@public/assets/icons/mouse.svg";
 import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
 
-export const HeroSection = () => {
+export const HeroSection = async () => {
+  const hero = await getHero();
+
   return (
     <MainSection className="bg-[url(/assets/images/hero_bg.jpg)] bg-fixed bg-cover w-full h-screen relative">
       <Container className="flex h-full">
         <div className="flex flex-col justify-center gap-10">
-          <h2 className="text-secondary-lighter">Ваш захист — наш пріоритет</h2>
+          <h2 className="text-secondary-lighter">{hero.subtitle}</h2>
 
-          <h1 className="text-secondary-light">
-            Професійна юридична підтримка у всіх сферах права. Захищаємо ваші
-            інтереси ефективно та чесно
-          </h1>
+          <h1 className="text-secondary-light">{hero.title}</h1>
 
           <Button color="secondary" variant="outlined-light">
             Консультацiя

@@ -1,3 +1,4 @@
+import { maxLength } from "@shared/lib/transforms";
 import { FileUploaderField } from "@shared/ui/fields/FileUploaderField";
 import { PhoneField } from "@shared/ui/fields/PhoneField";
 import { TextField } from "@shared/ui/fields/TextField";
@@ -7,7 +8,11 @@ export const ProfileGeneral = () => (
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
       <h3 className="text-primary-dark">Основна iнформацiя:</h3>
 
-      <TextField name="general.name" label="Назва компанії" />
+      <TextField
+        name="general.name"
+        label="Назва компанії (максимум 40 символiв)"
+        transform={(value) => maxLength(value, 40)}
+      />
       <TextField name="general.email" label="Електронна пошта" />
       <PhoneField name="general.phone" label="Телефон" />
     </div>

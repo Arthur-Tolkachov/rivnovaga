@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { MaterialsPage } from "@pages/content/materials";
+import { UsefulMaterialsPage } from "@pages/content/usefulMaterials";
 
 export const metadata: Metadata = {
   title: "Корисні матеріали | Адвокатське об'єднання «Рівновага»",
@@ -24,6 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Materials() {
-  return <MaterialsPage />;
+export default function UsefulMaterials() {
+  return <UsefulMaterialsPage />;
 }

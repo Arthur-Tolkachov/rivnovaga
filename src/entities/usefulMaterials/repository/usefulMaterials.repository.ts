@@ -6,7 +6,7 @@ import { UsefulMaterialsSchema } from "../model/usefulMaterials.model";
 
 export const getUsefulMaterials = unstable_cache(
   async () => {
-    const aboutLawyers = await prisma.setting.findUnique({
+    const usefulMaterials = await prisma.setting.findUnique({
       where: {
         key: "useful_materials",
       },
@@ -16,7 +16,7 @@ export const getUsefulMaterials = unstable_cache(
       },
     });
 
-    return UsefulMaterialsSchema.parse(aboutLawyers?.value);
+    return UsefulMaterialsSchema.parse(usefulMaterials?.value);
   },
   ["usefulMaterials"],
   { tags: ["usefulMaterials"] }
