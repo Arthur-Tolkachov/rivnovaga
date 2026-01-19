@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { PracticeCard } from "@entity/practice";
 import { ServiceWithPracticesModel } from "@entity/service";
-import { Button } from "@shared/ui/base/Button";
+import { SendMessageForm } from "@features/contactUs/SendMessage";
 import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
@@ -51,33 +51,13 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
           />
         </div>
 
-        <div className="border-y-1 border-secondary-main py-5">
+        <div className="border-y-1 border-secondary-main py-5 flex flex-col gap-5">
           <h3 className="text-secondary-darker">
             Для отримання консультації заповніть форму нижче або зв’яжіться з
             нами у зручний для вас спосіб:
           </h3>
 
-          <form className="flex flex-col gap-10 py-5">
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Як до вас звертатись"
-            />
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Телефон"
-            />
-            <textarea
-              name=""
-              placeholder="Опишiть ваше питання"
-              className="resize-none h-[300px] focus:border-0 text-secondary-darker outline-secondary-main border-1 border-secondary-main  p-3"
-            ></textarea>
-
-            <Button color="secondary" variant="outlined-dark">
-              Надiслати
-            </Button>
-          </form>
+          <SendMessageForm />
         </div>
 
         {!!service.practices.length && (

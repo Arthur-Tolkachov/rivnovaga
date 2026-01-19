@@ -8,15 +8,23 @@ export interface LogoProps {
     fileName: string;
   };
   organizationName: string;
+  className?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({ logo, organizationName }) => {
+export const Logo: React.FC<LogoProps> = ({
+  logo,
+  organizationName,
+  className,
+}) => {
   if (!logo) {
     return null;
   }
 
   return (
-    <Link href="/" className="flex gap-6 items-center w-fit group">
+    <Link
+      href="/"
+      className={cn("flex gap-6 items-center w-fit group", className)}
+    >
       <Image
         src={logo.url}
         alt={organizationName || logo.fileName}

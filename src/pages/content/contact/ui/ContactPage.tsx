@@ -1,9 +1,9 @@
 import { getProfile } from "@entity/profile";
+import { SendMessageForm } from "@features/contactUs/SendMessage";
 import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
 import { DAYS_OF_THE_WEEK } from "@shared/config/date.constants";
 import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFriendly";
-import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
@@ -100,27 +100,7 @@ export const ContactPage = async () => {
         </div>
 
         <div className="border-y-1 border-secondary-main py-5">
-          <form className="flex flex-col gap-10 py-5">
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Як до вас звертатись"
-            />
-            <input
-              type="text"
-              className="focus:outline focus:px-3 focus:border-0 text-secondary-darker outline-secondary-main border-b-1 border-secondary-main w-full max-w-[500px] py-3"
-              placeholder="Телефон"
-            />
-            <textarea
-              name=""
-              placeholder="Опишiть ваше питання"
-              className="resize-none h-[300px] focus:border-0 text-secondary-darker outline-secondary-main border-1 border-secondary-main  p-3"
-            ></textarea>
-
-            <Button color="secondary" variant="outlined-dark">
-              Надiслати
-            </Button>
-          </form>
+          <SendMessageForm />
         </div>
 
         <div className="border-1 border-secondary-main">
