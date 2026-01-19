@@ -1,3 +1,5 @@
+export const runtime = "nodejs";
+
 import fs from "fs";
 import path from "path";
 
@@ -9,7 +11,7 @@ import { saveFile } from "@shared/lib/saveFile";
 
 export async function GET(
   _req: NextRequest,
-  context: { params: Promise<{ filePath: string[] }> }
+  context: { params: Promise<{ filePath: string[] }> },
 ) {
   const { filePath } = await context.params;
 
@@ -44,7 +46,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { message: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
