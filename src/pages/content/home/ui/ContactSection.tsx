@@ -1,4 +1,5 @@
 import { getProfile } from "@entity/profile";
+import { SendMessageForm } from "@features/contactUs/SendMessage";
 import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
 import { DAYS_OF_THE_WEEK } from "@shared/config/date.constants";
@@ -94,20 +95,8 @@ export const ContactSection = async () => {
           </div>
         </div>
 
-        <div className="border-y-1 border-secondary-main pb-8">
-          <form className="flex flex-col">
-            <div className="flex flex-col w-[500px]">
-              <TextInput name="name" label="Як до вас звертатись" />
-
-              <TextInput name="phone" label="Телефон" />
-            </div>
-
-            <textarea id="message" name="message" />
-
-            <Button color="secondary" variant="outlined-dark" className="mt-5">
-              Надiслати
-            </Button>
-          </form>
+        <div className="border-y-1 border-secondary-main py-8">
+          <SendMessageForm />
         </div>
 
         <div className="border-1 border-secondary-main">
