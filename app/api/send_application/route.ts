@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       ${message || "-"}
     `;
 
-    const res = await fetch(
+    const response = await fetch(
       `https://api.telegram.org/bot${process.env.TG_BOT_TOKEN}/sendMessage`,
       {
         method: "POST",
@@ -34,9 +34,14 @@ export async function POST(req: NextRequest) {
       },
     );
 
-    if (!res.ok) {
+    const tgBody = await response.text();
+
+    if (!response.ok) {
       throw new Error("Telegram API error");
     }
+
+    console.log("TG STATUS:", response.status);
+    console.log("TG BODY:", tgBody);
 
     return NextResponse.json({ success: true });
   } catch (error) {
