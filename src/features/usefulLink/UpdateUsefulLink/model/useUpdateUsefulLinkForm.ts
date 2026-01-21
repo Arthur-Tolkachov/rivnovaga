@@ -31,7 +31,7 @@ export const useUpdateUsefulLinkForm = ({
   const { handleSubmit } = methods;
 
   const onCancel = () => {
-    router.push("/admin/useful_links");
+    router.push("/admin/useful-links");
   };
 
   const onDelete = async () => {
@@ -40,7 +40,7 @@ export const useUpdateUsefulLinkForm = ({
 
       await deleteUsefulLink(initialValues.id);
       notify.success("Роздiл корисних посилань успішно видалено");
-      router.push("/admin/useful_links");
+      router.push("/admin/useful-links");
     } catch (error) {
       console.error(error);
     } finally {
@@ -55,7 +55,7 @@ export const useUpdateUsefulLinkForm = ({
       await updateUsefulLink(initialValues.id, values);
 
       notify.success("Роздiл корисних посилань успішно оновлено");
-      router.push("/admin/useful_links");
+      router.push("/admin/useful-links");
     } catch (error) {
       console.error(error);
 

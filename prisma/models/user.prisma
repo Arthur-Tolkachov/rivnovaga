@@ -2,7 +2,24 @@ model User {
   id             String        @id @default(uuid())
   email          String        @unique
   password       String
-  
+  role           Role          @default(ADMIN)
   createdAt      DateTime      @default(now())
   updatedAt      DateTime      @updatedAt
+  forcePasswordChange Boolean     @default(true)
+
+  sessions      Session[]
+}
+
+model Session {
+  id        String  @id @default(cuid())
+  userId    String
+
+  user      User    @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+
+  @@index([userId])
+}
+
+enum Role {
+  ADMIN
 }

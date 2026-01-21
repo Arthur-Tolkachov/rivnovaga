@@ -36,7 +36,7 @@ export const useCreateUsefulLinkForm = () => {
   const { handleSubmit } = methods;
 
   const onCancel = () => {
-    router.push("/admin/useful_links");
+    router.push("/admin/useful-links");
   };
 
   const onSubmit = handleSubmit(async (values) => {
@@ -51,7 +51,7 @@ export const useCreateUsefulLinkForm = () => {
       await createUsefulLink(payload);
 
       notify.success("Роздiл корисних посилань успішно оновлено");
-      router.push("/admin/useful_links");
+      router.push("/admin/useful-links");
     } catch (error) {
       console.error(error);
 

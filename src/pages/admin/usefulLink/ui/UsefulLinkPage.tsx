@@ -24,7 +24,7 @@ export const UsefulLinkPage: React.FC<UsefulLinkPageProps> = ({
   return (
     <div className="flex flex-col gap-5">
       <BreadCrumbs
-        home={{ title: "Кориснi посилання", href: "/admin/useful_links" }}
+        home={{ title: "Кориснi посилання", href: "/admin/useful-links" }}
         config={breadCrumbsConfig}
       />
 

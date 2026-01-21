@@ -35,7 +35,7 @@ export const useCreateDocumentOverviewForm = () => {
   const { handleSubmit } = methods;
 
   const onCancel = useCallback(() => {
-    router.push("/admin/document_overviews");
+    router.push("/admin/document-overviews");
   }, [router]);
 
   const onSubmit = handleSubmit(async ({ file, ...values }) => {
@@ -46,7 +46,7 @@ export const useCreateDocumentOverviewForm = () => {
       let fileDto = file;
 
       if (file instanceof File) {
-        const response = await uploadFile(file, `document_overviews/${id}`);
+        const response = await uploadFile(file, `document-overviews/${id}`);
 
         if (!response) {
           throw new Error("File uploading error");
@@ -61,7 +61,7 @@ export const useCreateDocumentOverviewForm = () => {
       });
 
       notify.success("Новий зразок документа успішно створено");
-      router.push("/admin/document_overviews");
+      router.push("/admin/document0overviews");
     } catch (error) {
       console.error(error);
     } finally {

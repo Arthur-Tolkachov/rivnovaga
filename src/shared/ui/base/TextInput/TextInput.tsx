@@ -16,6 +16,7 @@ export interface TextInputProps extends UseTextInputProps {
   error?: string | null;
   multiline?: boolean;
   rows?: number;
+  type?: "password" | "email";
   onClick?: VoidFunction;
 }
 
@@ -35,13 +36,14 @@ export const TextInput = forwardRef<
       rows = 3,
       containerClassName,
       readonly,
+      type = "text",
       onFocus,
       onBlur,
       onChange,
       onClick,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { inputValue, isFocus, shouldLabelTransform, ...textInput } =
       useTextInput({
@@ -59,7 +61,7 @@ export const TextInput = forwardRef<
           {label && (
             <label
               className={cn(
-                "absolute inset-0 text-secondary-main cursor-text translate-x-3 top-2 origin-top-left duration-100 pr-[24px]"
+                "absolute inset-0 text-secondary-main cursor-text translate-x-3 top-2 origin-top-left duration-100 pr-[24px]",
               )}
               htmlFor={textInput.id}
               style={{
@@ -81,7 +83,7 @@ export const TextInput = forwardRef<
               value={inputValue}
               className={cn(
                 "outline-none text-secondary-dark border-1 border-secondary-main w-full p-3 resize-none relative z-1",
-                className
+                className,
               )}
               rows={rows}
               style={{
@@ -96,10 +98,10 @@ export const TextInput = forwardRef<
             <input
               ref={ref as React.Ref<HTMLInputElement>}
               value={inputValue}
-              type="text"
+              type={type}
               className={cn(
                 "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
-                className
+                className,
               )}
               style={{
                 ...(isFocus &&
@@ -122,7 +124,7 @@ export const TextInput = forwardRef<
         {error && <span className="text-sm text-error">{error}</span>}
       </div>
     );
-  }
+  },
 );
 
 TextInput.displayName = "TextInput";

@@ -61,7 +61,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const spinnerVariant = useMemo(
     () => spinnerVariants[color][variant],
-    [color, variant]
+    [color, variant],
   );
 
   if (href) {
@@ -70,16 +70,31 @@ export const Button: React.FC<ButtonProps> = ({
         href={href}
         target={target}
         className={cn(
-          "flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
+          "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
           BUTTON_STYLES[color][variant],
-          className
+          className,
         )}
         style={{
           pointerEvents: disabled ? "none" : "auto",
           ...buttonSizeStyles,
         }}
       >
-        {children}
+        {isLoading && (
+          <Spinner
+            className="absolute"
+            width={30}
+            height={30}
+            variant={spinnerVariant}
+          />
+        )}
+
+        <span
+          style={{
+            opacity: isLoading ? 0 : 1,
+          }}
+        >
+          {children}
+        </span>
       </Link>
     );
   }
@@ -91,7 +106,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={cn(
         "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
         BUTTON_STYLES[color][variant],
-        className
+        className,
       )}
       style={{
         ...(disabled && {

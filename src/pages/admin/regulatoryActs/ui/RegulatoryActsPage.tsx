@@ -13,7 +13,7 @@ export const RegulatoryActsPage: React.FC<RegulatoryActsPageProps> = ({
     <BreadCrumbs
       home={{
         title: "Нормативно-правові акти",
-        href: "/admin/regulatory_acts",
+        href: "/admin/regulatory-acts",
       }}
     />
 

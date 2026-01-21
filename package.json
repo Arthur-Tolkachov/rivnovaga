@@ -21,6 +21,7 @@
     "@svgr/webpack": "^8.1.0",
     "@vis.gl/react-google-maps": "^1.6.1",
     "axios": "^1.13.2",
+    "bcrypt": "^6.0.0",
     "classnames": "^2.5.1",
     "is-hotkey": "^0.2.0",
     "mime-types": "^3.0.2",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^6.0.0",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^20",
     "@types/react": "^19",

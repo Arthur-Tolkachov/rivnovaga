@@ -11,7 +11,7 @@ export const AboutLawyersPage: React.FC<AboutLawyersPageProps> = async ({
 }) => (
   <div className="flex flex-col gap-5">
     <BreadCrumbs
-      home={{ title: "Сторiнка адвокатiв", href: "/admin/about_lawyers" }}
+      home={{ title: "Сторiнка адвокатiв", href: "/admin/about-lawyers" }}
     />
 
     <h2 className="text-primary-dark">Сторiнка адвокатiв</h2>

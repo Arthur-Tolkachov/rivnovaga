@@ -32,7 +32,7 @@ export const useUpdateDocumentOverviewForm = ({
   const { handleSubmit } = methods;
 
   const onCancel = useCallback(() => {
-    router.push("/admin/document_overviews");
+    router.push("/admin/document-overviews");
   }, [router]);
 
   const onDelete = async () => {
@@ -41,7 +41,7 @@ export const useUpdateDocumentOverviewForm = ({
 
       await deleteDocumentOverview(initialValues.id);
       notify.success("Зразок документа успішно видалено");
-      router.push("/admin/document_overviews");
+      router.push("/admin/document-overviews");
     } catch (error) {
       console.error(error);
     } finally {
@@ -58,7 +58,7 @@ export const useUpdateDocumentOverviewForm = ({
       if (file instanceof File) {
         const response = await uploadFile(
           file,
-          `document_overviews/${initialValues.id}`
+          `document-overviews/${initialValues.id}`,
         );
 
         if (!response) {
@@ -74,7 +74,7 @@ export const useUpdateDocumentOverviewForm = ({
       });
 
       notify.success("Зразок документа успішно оновлено");
-      router.push("/admin/document_overviews");
+      router.push("/admin/document-overviews");
     } catch (error) {
       console.error(error);
     } finally {
