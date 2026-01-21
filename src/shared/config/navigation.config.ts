@@ -54,3 +54,11 @@ export const ADMIN_NAVIGATION_CONFIG = [
     href: "/admin/useful-materials",
   },
 ];
+
+export const ADMIN_SETTINGS_NAVIGATION_CONFIG = [
+  {
+    key: "change_password",
+    label: "Змiнити пароль",
+    href: "/change-password",
+  },
+];
