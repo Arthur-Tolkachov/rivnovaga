@@ -34,14 +34,9 @@ export async function POST(req: NextRequest) {
       },
     );
 
-    const tgBody = await response.text();
-
     if (!response.ok) {
       throw new Error("Telegram API error");
     }
-
-    console.log("TG STATUS:", response.status);
-    console.log("TG BODY:", tgBody);
 
     return NextResponse.json({ success: true });
   } catch (error) {

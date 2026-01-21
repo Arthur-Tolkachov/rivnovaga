@@ -13,18 +13,18 @@ export const DocumentOverviewsPage: React.FC<DocumentOverviewsProps> = async ({
 }) => (
   <div className="flex flex-col gap-5">
     <BreadCrumbs
-      home={{ title: "Зразки документiв", href: "/admin/document_overviews" }}
+      home={{ title: "Зразки документiв", href: "/admin/document-overviews" }}
     />
 
     <h2 className="text-primary-dark">Зразки документiв</h2>
 
     <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/document_overviews/new" />
+      <CardButton className="h-[350px]" href="/admin/document-overviews/new" />
 
       {documentOverviews.map(({ id, title }) => (
         <Card
           key={id}
-          href={`/admin/document_overviews/${id}`}
+          href={`/admin/document-overviews/${id}`}
           backgroundImageUrl={EmptyDocPlaceholder.src}
           className="h-[350px]"
           variant="secondary"

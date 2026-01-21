@@ -13,7 +13,7 @@ export const UsefulMaterialsPage: React.FC<UsefulMaterialsPageProps> = async ({
     <BreadCrumbs
       home={{
         title: "Сторiнка корисних матерiалiв",
-        href: "/admin/useful_materials",
+        href: "/admin/useful-materials",
       }}
     />
 

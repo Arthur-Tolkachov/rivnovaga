@@ -13,7 +13,7 @@ export const ProfileGeneral = () => (
         label="Назва компанії (максимум 40 символiв)"
         transform={(value) => maxLength(value, 40)}
       />
-      <TextField name="general.email" label="Електронна пошта" />
+      <TextField name="general.email" label="Електронна пошта" type="email" />
       <PhoneField name="general.phone" label="Телефон" />
     </div>
 

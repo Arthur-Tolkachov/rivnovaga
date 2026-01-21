@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 
 import { getProfile } from "@entity/profile";
+import { requireAuth } from "@shared/lib/auth/auth-guard";
 import { AdminPanel } from "@widgets/AdminPanel";
 
 export const metadata: Metadata = {
@@ -13,6 +14,8 @@ export default async function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await requireAuth();
+
   const {
     logo,
     general: { name },

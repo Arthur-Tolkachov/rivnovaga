@@ -22,7 +22,7 @@ export const DocumentOverviewPage: React.FC<
   return (
     <div className="flex flex-col gap-5">
       <BreadCrumbs
-        home={{ title: "Зразки документiв", href: "/admin/document_overviews" }}
+        home={{ title: "Зразки документiв", href: "/admin/document-overviews" }}
         config={breadCrumbsConfig}
       />
 

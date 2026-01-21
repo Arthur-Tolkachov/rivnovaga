@@ -5,7 +5,7 @@ export const NAVIGATION_CONFIG = [
   {
     key: "usefulMaterials",
     label: "Кориснi матерiали",
-    href: "/useful_materials",
+    href: "/useful-materials",
   },
   { key: "contact", label: "Контакти", href: "/contact" },
 ];
@@ -21,36 +21,36 @@ export const ADMIN_NAVIGATION_CONFIG = [
   {
     key: "useful_links",
     label: "Кориснi посилання",
-    href: "/admin/useful_links",
+    href: "/admin/useful-links",
   },
   {
     key: "regulatory_acts",
     label: "Нормативно-правові акти",
-    href: "/admin/regulatory_acts",
+    href: "/admin/regulatory-acts",
   },
   {
     key: "document_overviews",
     label: "Зразки документів",
-    href: "/admin/document_overviews",
+    href: "/admin/document-overviews",
   },
   {
     key: "about_lawyers",
     label: "Сторiнка адвокатiв",
-    href: "/admin/about_lawyers",
+    href: "/admin/about-lawyers",
   },
   {
     key: "about_practice",
     label: "Сторiнка практики",
-    href: "/admin/about_practice",
+    href: "/admin/about-practice",
   },
   {
     key: "about_services",
     label: "Сторiнка послуг",
-    href: "/admin/about_services",
+    href: "/admin/about-services",
   },
   {
     key: "useful_materials",
     label: "Сторiнка корисних матерiалiв",
-    href: "/admin/useful_materials",
+    href: "/admin/useful-materials",
   },
 ];

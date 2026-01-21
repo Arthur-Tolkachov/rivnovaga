@@ -12,7 +12,7 @@ export const AboutPracticePage: React.FC<AboutPracticePageProps> = ({
   return (
     <div className="flex flex-col gap-5">
       <BreadCrumbs
-        home={{ title: "Сторiнка практики", href: "/admin/about_practice" }}
+        home={{ title: "Сторiнка практики", href: "/admin/about-practice" }}
       />
 
       <h2 className="text-primary-dark">Сторiнка практики</h2>
