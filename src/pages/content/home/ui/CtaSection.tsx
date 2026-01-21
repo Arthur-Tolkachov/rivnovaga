@@ -1,8 +1,8 @@
 import { getCta } from "@entity/cta";
 import { getProfile } from "@entity/profile";
-import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
+import { FeedbackModal } from "@widgets/FeedbackModal";
 import { SocialLinks } from "@widgets/SocialLinks";
 
 export const CtaSection = async () => {
@@ -23,9 +23,7 @@ export const CtaSection = async () => {
           />
 
           <div className="flex justify-between items-center border-t-1 border-secondary-light pt-10">
-            <Button variant="outlined-light" color="secondary">
-              Консультацiя
-            </Button>
+            <FeedbackModal />
 
             <SocialLinks
               telegram={telegram}
