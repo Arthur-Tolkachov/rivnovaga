@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 import PlusIcon from "@public/assets/icons/plus.svg";
 import { Button } from "@shared/ui/base/Button";
 
@@ -22,13 +24,25 @@ export const Modal: React.FC<ModalProps> = ({
   onConfirm,
   onCancel,
 }) => {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   if (!open) {
     return null;
   }
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-primary-main-30"
+      className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-primary-main-30 z-2"
       onClick={onCancel}
     >
       <div
