@@ -6,8 +6,14 @@ import { ContactUsForm } from "@entity/contactUs";
 
 import { useSendMessageForm } from "../model/useSendMessageForm";
 
-export const SendMessageForm = () => {
-  const { methods, isLoading, onSubmit } = useSendMessageForm();
+interface SendMessageFormProps {
+  onSuccess?: () => void;
+}
+
+export const SendMessageForm: React.FC<SendMessageFormProps> = ({
+  onSuccess,
+}) => {
+  const { methods, isLoading, onSubmit } = useSendMessageForm(onSuccess);
 
   return (
     <FormProvider {...methods}>

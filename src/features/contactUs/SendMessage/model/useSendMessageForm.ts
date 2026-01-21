@@ -11,7 +11,7 @@ const DEFAULT_VALUES = {
   message: "",
 };
 
-export const useSendMessageForm = () => {
+export const useSendMessageForm = (onSuccess?: VoidFunction) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<ContactUsFormValues>({
@@ -33,6 +33,11 @@ export const useSendMessageForm = () => {
       notify.success(
         "Ваше повiдомлення успiшно вiдправлено. Скоро ми з вами зв'яжемося.",
       );
+
+      if (onSuccess) {
+        onSuccess();
+      }
+
       reset(DEFAULT_VALUES);
     } catch (error) {
       console.error(error);

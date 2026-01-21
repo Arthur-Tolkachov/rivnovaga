@@ -11,8 +11,8 @@ export interface PasswordFormProps {
 }
 
 export const PasswordForm: React.FC<PasswordFormProps> = ({
-  onSubmit,
   isLoading,
+  onSubmit,
 }) => {
   const router = useRouter();
 
