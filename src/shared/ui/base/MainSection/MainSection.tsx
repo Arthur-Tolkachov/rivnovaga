@@ -1,5 +1,3 @@
-import cn from "classnames";
-
 export interface MainSectionProps {
   id?: string;
   className?: string;
@@ -12,7 +10,6 @@ export const MainSection: React.FC<MainSectionProps> = ({
   ...rest
 }) => (
   <section className={className} {...rest}>
-    {/* <section className={cn("py-5 md:py-15", className)} {...rest}> */}
     {children}
   </section>
 );
