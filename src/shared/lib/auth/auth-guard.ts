@@ -2,14 +2,20 @@ import { redirect } from "next/navigation";
 
 import { getUser } from "./auth";
 
-export const requireAuth = async () => {
+interface RequireAuthProps {
+  forcePasswordChange?: boolean;
+}
+
+export const requireAuth = async ({
+  forcePasswordChange = true,
+}: RequireAuthProps) => {
   const user = await getUser();
 
   if (!user) {
     redirect("/login");
   }
 
-  if (user.forcePasswordChange) {
+  if (forcePasswordChange && user.forcePasswordChange) {
     redirect("/change-password");
   }
 

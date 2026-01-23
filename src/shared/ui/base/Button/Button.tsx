@@ -9,7 +9,12 @@ import {
   ROUNDED_SIZES_STYLES,
 } from "./constants";
 
-type ButtonVariant = "outlined-light" | "outlined-dark" | "filled" | "rounded";
+type ButtonVariant =
+  | "outlined-light"
+  | "outlined-dark"
+  | "filled"
+  | "rounded"
+  | "text";
 type ButtonColor = "primary" | "secondary";
 
 export interface ButtonProps {
@@ -22,7 +27,7 @@ export interface ButtonProps {
   href?: string;
   disabled?: boolean;
   isLoading?: boolean;
-  size?: "sm" | "md";
+  size?: "xs" | "sm" | "md";
   onClick?: VoidFunction;
 }
 
@@ -32,12 +37,14 @@ const spinnerVariants = {
     "outlined-dark": "secondary",
     filled: "light",
     rounded: "light",
+    text: "light",
   },
   primary: {
     "outlined-light": "primary",
     "outlined-dark": "primary",
     filled: "light",
     rounded: "light",
+    text: "light",
   },
 } as const;
 
@@ -70,7 +77,7 @@ export const Button: React.FC<ButtonProps> = ({
         href={href}
         target={target}
         className={cn(
-          "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
+          "relative flex justify-center items-center cursor-pointer text-xl text-center",
           BUTTON_STYLES[color][variant],
           className,
         )}
@@ -88,13 +95,13 @@ export const Button: React.FC<ButtonProps> = ({
           />
         )}
 
-        <span
+        <div
           style={{
             opacity: isLoading ? 0 : 1,
           }}
         >
           {children}
-        </span>
+        </div>
       </Link>
     );
   }
@@ -104,7 +111,7 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       className={cn(
-        "relative flex justify-center items-center cursor-pointer text-xl border-solid border-2 text-center",
+        "relative flex justify-center items-center cursor-pointer text-md md:text-xl text-center",
         BUTTON_STYLES[color][variant],
         className,
       )}
@@ -127,13 +134,13 @@ export const Button: React.FC<ButtonProps> = ({
         />
       )}
 
-      <span
+      <div
         style={{
           opacity: isLoading ? 0 : 1,
         }}
       >
         {children}
-      </span>
+      </div>
     </button>
   );
 };

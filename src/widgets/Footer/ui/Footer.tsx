@@ -27,11 +27,11 @@ export const Footer: React.FC<FooterProps> = ({
   const displayPhone = transformPhoneToUserFriendly(phone);
 
   return (
-    <footer className="bg-secondary-main py-15 h-fit">
-      <Container className="grid grid-cols-3 items-start">
+    <footer className="bg-secondary-main py-5 md:py-15 h-fit">
+      <Container className="grid md:grid-cols-3 gap-5 md:gap-0 items-start">
         <Logo logo={logo} organizationName={organizationName} />
 
-        <ul className="flex flex-col gap-5">
+        <ul className="flex flex-col gap-1 md:gap-5">
           {NAVIGATION_CONFIG.map(({ key, href, label }) => (
             <li key={key}>
               <NextLink
@@ -44,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({
           ))}
         </ul>
 
-        <ul className="flex flex-col gap-5">
+        <ul className="flex flex-col gap-5 md:gap-5">
           {phone && (
             <Link
               href={`tel:${phone}`}

@@ -29,10 +29,10 @@ export const useChangePasswordForm = () => {
   const onSubmit = handleSubmit(async (values) => {
     try {
       setIsLoading(true);
-      await changePassword(values);
+      const { redirectTo } = await changePassword(values);
 
       notify.success("Пароль змiнено успiшно");
-      router.push("/admin");
+      router.push(redirectTo);
     } catch (error) {
       console.error(error);
       notify.error("Пароль не змiнено. Спробуйте ще раз.");

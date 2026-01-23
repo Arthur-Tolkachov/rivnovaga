@@ -1,24 +1,49 @@
 import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
+import { MOBILE_HEADER_HEIGHT } from "@shared/config/layout.constants";
+import { NAVIGATION_CONFIG } from "@shared/config/navigation.config";
 import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFriendly";
 import { Link } from "@shared/ui/base/Link";
-import { SocialLinks, SocialLinksProps } from "@widgets/SocialLinks";
+import { SocialLinks } from "@widgets/SocialLinks";
 
 import { HeaderProps } from "../types/header.types";
 
-type HeaderTopPanelProps = Pick<HeaderProps, "phone" | "email"> &
-  Omit<SocialLinksProps, "color">;
+interface MobileMenuProps extends Omit<
+  HeaderProps,
+  "logo" | "organizationName"
+> {
+  isOpen: boolean;
+}
 
-export const HeaderTopPanel: React.FC<HeaderTopPanelProps> = ({
+export const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
   email,
   phone,
-  ...rest
+  telegram,
+  viber,
+  whatsapp,
 }) => {
   const displayPhone = transformPhoneToUserFriendly(phone);
 
   return (
-    <div className="flex justify-between items-center border-b border-b-secondary-main py-6">
-      <div className="flex gap-10">
+    <div
+      className="fixed right-0 bottom-0 w-full md:w-2/5 flex flex-col gap-5 bg-primary-main duration-200 px-4 overflow-auto"
+      style={{
+        top: MOBILE_HEADER_HEIGHT,
+        transform: isOpen ? "translateX(0)" : `translateX(100%)`,
+      }}
+    >
+      <ul className="flex flex-col mt-5 gap-5 border-b-1 border-secondary-main pb-5">
+        {NAVIGATION_CONFIG.map(({ key, href, label }) => (
+          <li key={key}>
+            <a href={href} className="text-secondary-light">
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-col gap-5">
         {phone && (
           <Link
             href={`tel:${phone}`}
@@ -50,7 +75,7 @@ export const HeaderTopPanel: React.FC<HeaderTopPanelProps> = ({
         )}
       </div>
 
-      <SocialLinks {...rest} />
+      <SocialLinks telegram={telegram} viber={viber} whatsapp={whatsapp} />
     </div>
   );
 };

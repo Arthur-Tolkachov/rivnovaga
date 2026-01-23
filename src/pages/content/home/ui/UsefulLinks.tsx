@@ -12,10 +12,10 @@ export const UsefulLinks = async () => {
 
   return (
     <MainSection>
-      <Container className="flex flex-col gap-10">
+      <Container className="flex flex-col gap-5 md:gap-10">
         <h2 className="text-secondary-dark">Кориснi посилання</h2>
 
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5">
           {availableUsefulLinks.map(({ id, title, data }) => (
             <div key={id} className="flex flex-col gap-2">
               <h3 className="text-secondary-dark">{title}:</h3>

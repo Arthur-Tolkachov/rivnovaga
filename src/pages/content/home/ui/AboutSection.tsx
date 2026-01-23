@@ -7,21 +7,22 @@ export const AboutSection = async () => {
 
   return (
     <MainSection className="scroll-mt-[110px]" id="about">
-      <Container className="flex flex-col gap-10">
-        <div className="flex gap-15">
-          {about.map(({ title, description }) => (
-            <div className="flex flex-col gap-10 w-2/4" key={title}>
-              <h2 className="text-primary-dark w-fit">{title}</h2>
+      <Container className="flex flex-col md:flex-row gap-5 md:gap-15">
+        {about.map(({ title, description }) => (
+          <div
+            className="flex flex-col gap-5 md:gap-10 w-full md:w-2/4"
+            key={title}
+          >
+            <h2 className="text-primary-dark w-fit">{title}</h2>
 
-              <div
-                className="text-primary-lighter"
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-              />
-            </div>
-          ))}
-        </div>
+            <div
+              className="text-primary-lighter"
+              dangerouslySetInnerHTML={{
+                __html: description,
+              }}
+            />
+          </div>
+        ))}
       </Container>
     </MainSection>
   );

@@ -10,10 +10,9 @@ export const MainSection: React.FC<MainSectionProps> = ({
   children,
   className,
   ...rest
-}) => {
-  return (
-    <section className={cn("py-15", className)} {...rest}>
-      {children}
-    </section>
-  );
-};
+}) => (
+  <section className={className} {...rest}>
+    {/* <section className={cn("py-5 md:py-15", className)} {...rest}> */}
+    {children}
+  </section>
+);

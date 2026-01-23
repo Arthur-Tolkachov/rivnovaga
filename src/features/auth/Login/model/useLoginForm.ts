@@ -34,7 +34,7 @@ export const useLoginForm = () => {
       }
 
       notify.success("Вхiд виконано успiшно");
-      router.push("/admin");
+      router.push(response.redirectTo);
     } catch (error) {
       console.error(error);
       notify.error("Вхід не виконано");

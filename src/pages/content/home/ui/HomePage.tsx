@@ -1,5 +1,3 @@
-import { DESKTOP_HEADER_HEIGHT } from "@shared/config/layout.constants";
-
 import { AboutSection } from "./AboutSection";
 import { ContactSection } from "./ContactSection";
 import { CtaSection } from "./CtaSection";
@@ -9,22 +7,13 @@ import { ServicesSection } from "./ServicesSection";
 import { UsefulLinks } from "./UsefulLinks";
 
 export const HomePage = () => (
-  <div>
-    <div
-      style={{
-        marginTop: `-${DESKTOP_HEADER_HEIGHT}px`,
-      }}
-    >
-      <HeroSection />
-    </div>
-
-    <div>
-      <AboutSection />
-      <ServicesSection />
-      <CtaSection />
-      <PracticeSection />
-      <ContactSection />
-      <UsefulLinks />
-    </div>
+  <div className="overflow-x-hidden flex flex-col gap-5 md:gap-20 pb-5 md:pb-20">
+    <HeroSection />
+    <AboutSection />
+    <ServicesSection />
+    <CtaSection />
+    <PracticeSection />
+    <ContactSection />
+    <UsefulLinks />
   </div>
 );

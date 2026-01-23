@@ -1,7 +1,6 @@
 "use server";
 
 import bcrypt from "bcrypt";
-import { redirect } from "next/navigation";
 
 import { createSession } from "@shared/lib/auth/session";
 import { prisma } from "@shared/lib/prisma-client";
@@ -14,20 +13,20 @@ export const login = async ({ email, password }: LoginDTO) => {
   });
 
   if (!user) {
-    return { error: "Невірний email або пароль" };
+    return { error: "Невірний email або пароль", redirectTo: "/login" };
   }
 
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
-    return { error: "Невірний email або пароль" };
+    return { error: "Невірний email або пароль", redirectTo: "/login" };
   }
 
   await createSession(user.id);
 
   if (user.forcePasswordChange) {
-    redirect("/change-password");
+    return { redirectTo: "/change-password" };
   }
 
-  return { success: true };
+  return { redirectTo: "/admin" };
 };

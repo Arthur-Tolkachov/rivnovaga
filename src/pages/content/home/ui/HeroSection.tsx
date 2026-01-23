@@ -1,7 +1,5 @@
-import { getHero } from "@entity/hero";
-import MouseIcon from "@public/assets/icons/mouse.svg";
+import { getHero, MouseDown } from "@entity/hero";
 import { Container } from "@shared/ui/base/Container";
-import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { FeedbackModal } from "@widgets/FeedbackModal";
 
@@ -19,13 +17,7 @@ export const HeroSection = async () => {
 
             <FeedbackModal />
 
-            <Link
-              href="#about"
-              className="w-fit absolute bottom-10 left-2/4 ml-[-7px]"
-              startAdornment={
-                <MouseIcon className="w-15 h-auto fill-secondary-light hover:fill-secondary-main duration-200" />
-              }
-            />
+            <MouseDown anchor="#about" />
           </div>
         </Container>
       </MainSection>

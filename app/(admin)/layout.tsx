@@ -14,7 +14,7 @@ export default async function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await requireAuth();
+  await requireAuth({ forcePasswordChange: true });
 
   const {
     logo,
