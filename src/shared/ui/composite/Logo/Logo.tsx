@@ -9,12 +9,16 @@ export interface LogoProps {
   };
   organizationName: string;
   className?: string;
+  width?: number;
+  height?: number;
 }
 
 export const Logo: React.FC<LogoProps> = ({
   logo,
   organizationName,
   className,
+  width = 70,
+  height = 70,
 }) => {
   if (!logo) {
     return null;
@@ -23,23 +27,25 @@ export const Logo: React.FC<LogoProps> = ({
   return (
     <Link
       href="/"
-      className={cn("flex gap-6 items-center w-fit group", className)}
+      className={cn("flex gap-2 md:gap-6 items-center w-fit group", className)}
     >
       <Image
         src={logo.url}
         alt={organizationName || logo.fileName}
-        width={70}
-        height={70}
+        width={width}
+        height={height}
         priority
       />
 
       <div
         className={cn(
           "text-secondary-light duration-200",
-          "group-hover:text-secondary-lighter"
+          "group-hover:text-secondary-lighter",
         )}
       >
-        <div className="text-xl max-w-80">{organizationName}</div>
+        <div className="text-xs md:text-xl max-w-50 md:max-w-80">
+          {organizationName}
+        </div>
       </div>
     </Link>
   );

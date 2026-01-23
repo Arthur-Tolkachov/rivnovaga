@@ -1,4 +1,5 @@
 export { HeroSectionForm } from "./ui/HeroSectionForm";
+export { MouseDown } from "./ui/MouseDown";
 export { HeroFormSchema } from "./model/hero.validation";
 
 export { getHero } from "./repository/hero.repository";

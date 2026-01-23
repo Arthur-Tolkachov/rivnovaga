@@ -1,7 +1,6 @@
 "use server";
 
 import bcrypt from "bcrypt";
-import { redirect } from "next/navigation";
 
 import { getUser } from "@shared/lib/auth/auth";
 import { createSession } from "@shared/lib/auth/session";
@@ -13,7 +12,7 @@ export const changePassword = async (dto: PasswordDTO) => {
   const user = await getUser();
 
   if (!user) {
-    redirect("/login");
+    return { redirectTo: "/login" };
   }
 
   const passwordHash = await bcrypt.hash(dto.password, 12);
@@ -31,4 +30,6 @@ export const changePassword = async (dto: PasswordDTO) => {
   });
 
   await createSession(user.id);
+
+  return { redirectTo: "/admin" };
 };

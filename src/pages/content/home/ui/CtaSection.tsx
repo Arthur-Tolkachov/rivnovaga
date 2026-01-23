@@ -12,9 +12,9 @@ export const CtaSection = async () => {
   } = await getProfile();
 
   return (
-    <MainSection className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover py-30">
-      <Container>
-        <div className="bg-secondary-dark-80 p-10 flex flex-col gap-10">
+    <MainSection className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover !py-0 md:!py-30">
+      <Container className="!px-0">
+        <div className="bg-secondary-dark-80 p-5 md:p-10 flex flex-col gap-5 md:gap-10">
           <h2 className="text-secondary-light">{title}</h2>
 
           <div
@@ -22,7 +22,7 @@ export const CtaSection = async () => {
             dangerouslySetInnerHTML={{ __html: description }}
           />
 
-          <div className="flex justify-between items-center border-t-1 border-secondary-light pt-10">
+          <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-0 justify-between md:items-center border-t-1 border-secondary-light pt-5 md:pt-10">
             <FeedbackModal />
 
             <SocialLinks

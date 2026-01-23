@@ -13,8 +13,8 @@ export const PracticeSection = async () => {
 
   return (
     <MainSection>
-      <Container className="flex flex-col gap-10">
-        <div className="flex justify-between">
+      <Container className="flex flex-col gap-5 md:gap-10">
+        <div className="flex flex-col min-[400px]:flex-row gap-2 min-[400px]:gap-0 justify-between">
           <h2 className="text-secondary-dark w-fit">Наша практика</h2>
 
           <Link
@@ -29,7 +29,7 @@ export const PracticeSection = async () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid min-[600px]:grid-cols-2 lg:grid-cols-3 gap-5">
           {availablePractices.map((practice, idx) => {
             if (idx > 4) {
               return null;

@@ -1,2 +1,3 @@
 export const HEADER_STICKY_POSITION = -73;
-export const DESKTOP_HEADER_HEIGHT = 182;
+export const DESKTOP_HEADER_HEIGHT = 183;
+export const MOBILE_HEADER_HEIGHT = 60;

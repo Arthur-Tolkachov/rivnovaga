@@ -26,7 +26,7 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
   <div
     className={cn(
       "border-1 border-secondary-main p-5 bg-secondary-light flex flex-col justify-between gap-5 opacity-90 hover:opacity-100 duration-200",
-      className
+      className,
     )}
   >
     <span className="text-secondary-dark">{city}</span>
@@ -40,10 +40,11 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
         Номер провадження {proceedingNumber}
       </span>
 
-      <div className="flex gap-5 mt-5">
+      <div className="flex flex-col md:flex-row gap-5 mt-5">
         {href && (
           <Button
             href={href}
+            className="!w-full md:!w-fit"
             color="secondary"
             variant="outlined-dark"
             size="sm"
@@ -57,6 +58,7 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
         {fileUrl && (
           <Button
             href={fileUrl}
+            className="!w-full md:!w-fit"
             target="_blank"
             size="sm"
             color="secondary"

@@ -4,11 +4,9 @@ import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
 import { DAYS_OF_THE_WEEK } from "@shared/config/date.constants";
 import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFriendly";
-import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
-import { TextInput } from "@shared/ui/base/TextInput";
 import { Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
 
@@ -41,7 +39,7 @@ export const ContactSection = async () => {
 
   return (
     <MainSection>
-      <Container className="flex flex-col gap-10">
+      <Container className="flex flex-col gap-5 md:gap-10">
         <h1 className="text-secondary-dark w-fit">Контакти</h1>
 
         <div className="flex flex-col gap-3 text-secondary-dark">
@@ -54,7 +52,7 @@ export const ContactSection = async () => {
               спосіб:
             </h3>
 
-            <div className="flex gap-10">
+            <div className="flex flex-col md:flex-row gap-5 md:gap-10">
               {phone && (
                 <Link
                   href={`tel:${phone}`}

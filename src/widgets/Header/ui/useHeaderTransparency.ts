@@ -1,5 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 
+import { useMobile } from "@shared/lib/useMobile";
+
 interface UseHeaderTransparencyProps {
   shouldBeTransparent: boolean;
 }
@@ -7,6 +9,7 @@ interface UseHeaderTransparencyProps {
 export const useHeaderTransparency = ({
   shouldBeTransparent,
 }: UseHeaderTransparencyProps) => {
+  const isMobile = useMobile();
   const initialOpacity = shouldBeTransparent ? 0 : 1;
 
   const [opacity, setOpacity] = useState(initialOpacity);
@@ -31,6 +34,10 @@ export const useHeaderTransparency = ({
   };
 
   useLayoutEffect(() => {
+    if (isMobile) {
+      return;
+    }
+
     if (shouldBeTransparent) {
       window.addEventListener("scroll", onScroll);
       setOpacity(calculateOpacity(window.scrollY));
@@ -43,7 +50,7 @@ export const useHeaderTransparency = ({
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, [shouldBeTransparent, setOpacity]);
+  }, [shouldBeTransparent, setOpacity, isMobile]);
 
   return {
     shouldBeTransparent,
