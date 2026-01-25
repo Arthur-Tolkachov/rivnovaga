@@ -31,7 +31,7 @@ export const FeedbackModal = () => {
         width={800}
         showActions={false}
       >
-        <SendMessageForm onSuccess={handleCancel} />
+        <SendMessageForm onSuccess={handleCancel} onCancel={handleCancel} />
       </Modal>
     </>
   );
