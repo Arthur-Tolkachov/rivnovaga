@@ -6,7 +6,7 @@ import { FeedbackModal } from "@widgets/FeedbackModal";
 export const HeroSection = async () => {
   const hero = await getHero();
   const background =
-    "[background-image:-webkit-image-set(url('/assets/images/hero_bg.jpg')_1x,_url('/assets/images/hero_mobile_bg.jpg')_2x)]";
+    "[background-image:-webkit-image-set(url('/assets/images/hero_bg.jpg')_1x,_url('/assets/images/hero_bg.jpg')_2x)]";
 
   return (
     <>
