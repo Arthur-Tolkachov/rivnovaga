@@ -5,10 +5,14 @@ import { FeedbackModal } from "@widgets/FeedbackModal";
 
 export const HeroSection = async () => {
   const hero = await getHero();
+  const background =
+    "[background-image:-webkit-image-set(url('/assets/images/hero_bg.jpg')_1x,_url('/assets/images/hero_mobile_bg.jpg')_2x)]";
 
   return (
     <>
-      <MainSection className="bg-[url(/assets/images/hero_bg.jpg)] bg-fixed bg-cover w-full h-screen relative">
+      <MainSection
+        className={`${background} bg-fixed bg-center bg-cover w-full h-screen relative`}
+      >
         <Container className="flex h-full">
           <div className="flex flex-col justify-center gap-10">
             <h2 className="text-secondary-lighter">{hero.subtitle}</h2>
