@@ -11,7 +11,7 @@ export const HeroSection = async () => {
   return (
     <>
       <MainSection
-        className={`${background} bg-center bg-cover w-full h-screen relative`}
+        className={`${background} md:bg-fixed bg-center bg-cover w-full h-screen relative`}
       >
         <Container className="flex h-full">
           <div className="flex flex-col justify-center gap-10">
