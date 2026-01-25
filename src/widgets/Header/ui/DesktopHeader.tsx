@@ -34,10 +34,12 @@ export const DesktopHeader: React.FC<HeaderProps> = ({
       className="sticky left-0 right-0 z-2 "
       style={{
         top: HEADER_STICKY_POSITION,
-        marginBottom: `-${DESKTOP_HEADER_HEIGHT}px`,
         opacity: 0,
         transform: "scale(0)",
 
+        ...(pathname === "/" && {
+          marginBottom: `-${DESKTOP_HEADER_HEIGHT}px`,
+        }),
         ...(!isLoading && { opacity: 1, transform: "scale(1)" }),
       }}
     >

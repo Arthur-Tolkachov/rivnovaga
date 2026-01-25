@@ -17,7 +17,7 @@ export const ServicesPage = async () => {
   const services = await getAllAvailableServices();
 
   return (
-    <MainSection>
+    <MainSection className="py-5 md:py-15">
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
@@ -27,17 +27,15 @@ export const ServicesPage = async () => {
           <h3 className="text-primary-dark">{aboutServices.subtitle}</h3>
         </div>
 
-        <div className="grid grid-col-3">
-          {!!services.length ? (
-            <div className="grid grid-cols-3 gap-5">
-              <DisplayServicesList services={services} />
-            </div>
-          ) : (
-            <div className="text-primary-dark text-xl">
-              Наразі жодної послуги не додано.
-            </div>
-          )}
-        </div>
+        {!!services.length ? (
+          <div className="grid md:grid-cols-3 gap-5">
+            <DisplayServicesList services={services} />
+          </div>
+        ) : (
+          <div className="text-primary-dark text-xl">
+            Наразі жодної послуги не додано.
+          </div>
+        )}
       </Container>
     </MainSection>
   );

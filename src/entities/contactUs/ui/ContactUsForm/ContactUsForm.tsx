@@ -19,8 +19,8 @@ export const ContactUsForm: React.FC<ContactUsFormProps> = ({
   const isMobile = useMobile();
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-5">
-      <div className="flex flex-col w-[500px] max-w-full gap-5">
+    <form onSubmit={onSubmit} className="flex flex-col gap-5 overflow-hidden">
+      <div className="flex flex-col w-full max-w-[500px] gap-5">
         <TextField name="name" label="Як до вас звертатись" />
 
         <PhoneField name="phone" label="Телефон" />
