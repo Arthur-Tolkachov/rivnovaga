@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import BurgerButtonIcon from "@public/assets/icons/burger-button.svg";
@@ -22,6 +23,7 @@ export const MobileHeader: React.FC<HeaderProps> = ({
   telegram,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isOpen) {
@@ -43,7 +45,9 @@ export const MobileHeader: React.FC<HeaderProps> = ({
     <header
       className="bg-primary-main sticky top-0 left-0 right-0 z-2 py-2"
       style={{
-        marginBottom: `-${MOBILE_HEADER_HEIGHT}px`,
+        ...(pathname === "/" && {
+          marginBottom: `-${MOBILE_HEADER_HEIGHT}px`,
+        }),
       }}
     >
       <Container className="flex justify-between">

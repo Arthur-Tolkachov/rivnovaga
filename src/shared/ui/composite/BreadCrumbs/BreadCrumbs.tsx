@@ -16,7 +16,7 @@ export interface BreadCrumbsProps {
 }
 
 export const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ config, home }) => (
-  <ul className="flex gap-3">
+  <ul className="flex flex-wrap gap-3">
     <li>
       <Link
         href={home?.href || "/"}

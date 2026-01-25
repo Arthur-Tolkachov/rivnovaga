@@ -25,7 +25,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
   ];
 
   return (
-    <MainSection>
+    <MainSection className="py-5 md:py-15">
       <Container className="flex flex-col gap-10">
         <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
@@ -35,7 +35,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
               src={service.cover.url}
               alt={service.title}
               objectFit="cover"
-              className="float-left mr-5 mb-5"
+              className="md:float-left mr-5 mb-5"
               width={500}
               height={300}
             />
@@ -64,7 +64,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
           <div className="flex flex-col gap-5">
             <h2 className="text-secondary-dark">Практика</h2>
 
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-3 gap-5">
               {service.practices.map((practice) => (
                 <PracticeCard
                   key={practice.id}
