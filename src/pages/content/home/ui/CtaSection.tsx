@@ -11,8 +11,13 @@ export const CtaSection = async () => {
     general: { telegram, viber, whatsapp },
   } = await getProfile();
 
+  const background =
+    "[background-image:-webkit-image-set(url('/assets/images/cta_bg.jpg')_1x,_url('/assets/images/cta_bg.jpg')_2x)]";
+
   return (
-    <MainSection className="bg-[url(/assets/images/cta_bg.jpg)] bg-fixed bg-center bg-cover !py-0 md:!py-30">
+    <MainSection
+      className={`${background} md:bg-fixed bg-center bg-cover !py-0 md:!py-30`}
+    >
       <Container className="!px-0">
         <div className="bg-secondary-dark-80 p-5 md:p-10 flex flex-col gap-5 md:gap-10">
           <h2 className="text-secondary-light">{title}</h2>
