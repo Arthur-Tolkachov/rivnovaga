@@ -61,7 +61,7 @@ export const QuickActionsPanel: React.FC<QuickActionPanelProps> = ({
   };
 
   return (
-    <div className="fixed bottom-4 md:bottom-8 right-4 md:right-8 flex flex-col gap-5 md:gap-10">
+    <div className="fixed bottom-4 md:bottom-8 right-4 md:right-8 flex flex-col gap-5 md:gap-10 z-1">
       {show && (
         <Button
           variant="rounded"

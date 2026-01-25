@@ -42,15 +42,15 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-primary-main-30 z-2"
+      className="fixed inset-0 w-screen h-screen flex justify-center items-center bg-primary-main-30 z-2 min-[500px]:p-5"
       onClick={onCancel}
     >
       <div
-        className="bg-secondary-light border-1 border-secondary-main max-w-full"
+        className="bg-secondary-light border-1 border-secondary-main max-w-full max-h-full overflow-auto"
         style={{ width }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="border-b-1 border-secondary-main p-5 flex justify-between items-start">
+        <div className="border-b-1 border-secondary-main p-5 flex justify-between items-start sticky top-0 bg-secondary-light z-1">
           <span className="text-primary-dark">{title}</span>
 
           <button className="cursor-pointer" onClick={onCancel}>
