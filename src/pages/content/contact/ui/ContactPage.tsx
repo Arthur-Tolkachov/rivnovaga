@@ -41,7 +41,7 @@ export const ContactPage = async () => {
   const workingRangeString = `Графік роботи: ${startDay} - ${endDay}: ${workingTimeSchedule.start} - ${workingTimeSchedule.end}`;
 
   return (
-    <MainSection>
+    <MainSection className="py-5 md:py-15">
       <Container className="flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
@@ -58,7 +58,7 @@ export const ContactPage = async () => {
               спосіб:
             </h3>
 
-            <div className="flex gap-10">
+            <div className="flex flex-col md:flex-row gap-5 md:gap-10">
               {phone && (
                 <Link
                   href={`tel:${phone}`}
