@@ -3,6 +3,9 @@
 import cn from "classnames";
 import { forwardRef } from "react";
 
+import NotVisibleIcon from "@public/assets/icons/not-visible.svg";
+import VisibleIcon from "@public/assets/icons/visible.svg";
+
 import { useTextInput, UseTextInputProps } from "./useTextInput";
 
 export interface TextInputProps extends UseTextInputProps {
@@ -16,7 +19,7 @@ export interface TextInputProps extends UseTextInputProps {
   error?: string | null;
   multiline?: boolean;
   rows?: number;
-  type?: "password" | "email";
+  type?: "password" | "email" | "text";
   onClick?: VoidFunction;
 }
 
@@ -45,15 +48,23 @@ export const TextInput = forwardRef<
     },
     ref,
   ) => {
-    const { inputValue, isFocus, shouldLabelTransform, ...textInput } =
-      useTextInput({
-        id,
-        value,
-        defaultFocus,
-        onBlur,
-        onFocus,
-        onChange,
-      });
+    const {
+      inputValue,
+      isFocus,
+      shouldLabelTransform,
+      isVisibleText,
+      onChangeTextVisibility,
+      ...textInput
+    } = useTextInput({
+      id,
+      value,
+      defaultFocus,
+      onBlur,
+      onFocus,
+      onChange,
+    });
+
+    const isPasswordField = type === "password";
 
     return (
       <div className={cn("pt-5 w-full", containerClassName)}>
@@ -95,29 +106,48 @@ export const TextInput = forwardRef<
               {...rest}
             />
           ) : (
-            <input
-              ref={ref as React.Ref<HTMLInputElement>}
-              value={inputValue}
-              type={type}
-              className={cn(
-                "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
-                className,
+            <div className="relative">
+              {isPasswordField && (
+                <button
+                  type="button"
+                  className="absolute flex justify-center items-center right-0 top-0 bottom-0 w-10 bg-secondary-main cursor-pointer"
+                  onClick={onChangeTextVisibility}
+                >
+                  {isVisibleText ? (
+                    <NotVisibleIcon className="w-5 h-5 fill-secondary-light" />
+                  ) : (
+                    <VisibleIcon className="w-5 h-5 fill-secondary-light" />
+                  )}
+                </button>
               )}
-              style={{
-                ...(isFocus &&
-                  !error && {
+
+              <input
+                ref={ref as React.Ref<HTMLInputElement>}
+                value={inputValue}
+                type={!isPasswordField || !isVisibleText ? type : "text"}
+                className={cn(
+                  "outline-none text-secondary-dark border-b-1 border-secondary-main w-full p-2",
+                  className,
+                )}
+                style={{
+                  ...(isFocus &&
+                    !error && {
+                      borderColor: "transparent",
+                      boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                    }),
+                  ...(error && {
                     borderColor: "transparent",
-                    boxShadow: "0px 0px 0px 1px var(--color-secondary-main)",
+                    boxShadow: "0px 0px 0px 1px var(--color-error)",
                   }),
-                ...(error && {
-                  borderColor: "transparent",
-                  boxShadow: "0px 0px 0px 1px var(--color-error)",
-                }),
-              }}
-              {...textInput}
-              {...rest}
-              readOnly={readonly}
-            />
+                  ...(isPasswordField && {
+                    paddingRight: 50,
+                  }),
+                }}
+                {...textInput}
+                {...rest}
+                readOnly={readonly}
+              />
+            </div>
           )}
         </div>
 

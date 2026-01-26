@@ -1,5 +1,3 @@
-import { ToastContainer } from "react-toastify";
-
 import { getProfile } from "@entity/profile";
 import { Footer } from "@widgets/Footer";
 import { Header } from "@widgets/Header";
@@ -51,8 +49,6 @@ export default async function ContentLayout({
           viber={viber}
           whatsapp={whatsapp}
         />
-
-        <ToastContainer />
       </>
     );
   } catch (error) {
