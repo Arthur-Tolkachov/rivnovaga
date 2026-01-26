@@ -21,8 +21,8 @@ export const UsefulMaterialsPage = async () => {
   const regulatoryActs = await getRegulatoryActs();
 
   return (
-    <MainSection>
-      <Container className="flex flex-col gap-10">
+    <MainSection className="py-5 md:py-15">
+      <Container className="flex flex-col gap-5 md:gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
@@ -31,12 +31,12 @@ export const UsefulMaterialsPage = async () => {
           <h3 className="text-primary-dark">{aboutUsefulMaterials.subtitle}</h3>
         </div>
 
-        <div className="sticky grid grid-cols-[3fr_1fr]">
-          <div className="flex flex-col gap-10 pr-5">
+        <div className="sticky grid md:grid-cols-[3fr_1fr] gap-5 md:gap-0">
+          <div className="flex flex-col gap-5 md:gap-10 pr-5">
             <h3 className="text-primary-dark">Зразки документів</h3>
 
             {!!documentOverviews.length ? (
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid min-[600px]:grid-cols-2 lg:grid-cols-3 gap-5">
                 {documentOverviews.map((documentOverview) => (
                   <Card
                     key={documentOverview.id}
@@ -55,11 +55,11 @@ export const UsefulMaterialsPage = async () => {
             )}
           </div>
 
-          <div className="flex flex-col gap-10 pl-5 border-l-1 border-secondary-main">
+          <div className="flex flex-col gap-5 md:gap-10 md:pl-5 md:border-l-1 border-secondary-main">
             <h3 className="text-primary-dark">Нормативно-правові акти</h3>
 
             {!!regulatoryActs.length ? (
-              <div className="flex flex-col gap-5 px-10">
+              <div className="flex flex-col gap-5 md:px-10">
                 {regulatoryActs.map((regulatoryAct) => (
                   <Link
                     key={regulatoryAct.id}
