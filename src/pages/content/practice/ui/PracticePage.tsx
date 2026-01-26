@@ -16,8 +16,8 @@ export const PracticePage = async () => {
   const practices = await getAllPractices();
 
   return (
-    <MainSection>
-      <Container className="flex flex-col gap-10">
+    <MainSection className="py-5 md:py-15">
+      <Container className="flex flex-col gap-5 md:gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
@@ -26,7 +26,7 @@ export const PracticePage = async () => {
           <h3 className="text-primary-dark">{aboutPractice.subtitle}</h3>
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid min-[600px]:grid-cols-2 lg:grid-cols-3 gap-5">
           {!!practices.length ? (
             practices.map((practice) => (
               <PracticeCard
