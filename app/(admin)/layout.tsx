@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { ToastContainer } from "react-toastify";
 
 import { getProfile } from "@entity/profile";
 import { requireAuth } from "@shared/lib/auth/auth-guard";
@@ -26,8 +25,6 @@ export default async function AdminLayout({
       <AdminPanel logo={logo} organizationName={name} />
 
       <div className="p-5">{children}</div>
-
-      <ToastContainer />
     </main>
   );
 }

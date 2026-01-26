@@ -9,6 +9,8 @@ import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
+import "@app/styles/content.css";
+
 const BREADCRUMBS_CONFIG = [
   {
     key: "about",
@@ -21,8 +23,8 @@ export const LawyersPage = async () => {
   const lawyers = await getLawyers();
 
   return (
-    <MainSection>
-      <Container className="flex flex-col gap-10">
+    <MainSection className="py-5 md:py-15">
+      <Container className="flex flex-col gap-5 md:gap-10">
         <div className="flex flex-col gap-5">
           <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
@@ -31,7 +33,7 @@ export const LawyersPage = async () => {
           <h3 className="text-primary-dark">{aboutLawyers.subtitle}</h3>
         </div>
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-5 md:gap-10">
           {!!lawyers.length ? (
             lawyers.map((lawyer) => {
               const lawyerFullName = `${lawyer.surname} ${lawyer.name} ${lawyer.patronymic}`;
@@ -39,10 +41,10 @@ export const LawyersPage = async () => {
 
               return (
                 <div
-                  className="grid grid-cols-[auto_auto] gap-8"
+                  className="grid md:grid-cols-[auto_auto] gap-8"
                   key={lawyer.id}
                 >
-                  <div className="w-[400px] h-[500px]">
+                  <div className="w-full">
                     <Image
                       src={lawyer.photo.url}
                       alt={`Адвокат ${lawyerFullName}`}
@@ -52,14 +54,19 @@ export const LawyersPage = async () => {
                     />
                   </div>
 
-                  <div className="flex flex-col gap-10">
+                  <div className="flex flex-col gap-5 md:gap-10">
                     <div className="flex flex-col gap-3">
                       <h3 className="text-primary-dark">{lawyerFullName}</h3>
 
-                      <p className="text-primary-dark">
-                        Свідоцтво №{lawyer.certificate.number} видане{" "}
-                        {lawyer.certificate.date} р.
-                      </p>
+                      <div className="flex flex-col min-[500px]:flex-row min-[500px]:gap-5">
+                        <div className="text-primary-dark">
+                          Свідоцтво №{lawyer.certificate.number}
+                        </div>
+
+                        <div className="text-primary-dark">
+                          Видане {lawyer.certificate.date} р.
+                        </div>
+                      </div>
 
                       {displayPhone && (
                         <Link

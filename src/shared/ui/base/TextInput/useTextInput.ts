@@ -5,13 +5,13 @@ export interface UseTextInputProps {
   value?: string;
   defaultFocus?: boolean;
   onFocus?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   onChange?: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
 }
 
@@ -28,9 +28,14 @@ export const useTextInput = ({
 
   const [isFocus, setIsFocus] = useState(defaultFocus);
   const [inputValue, setInputValue] = useState<string>(value || "");
+  const [isVisibleText, setIsVisibleText] = useState<boolean>(false);
 
   const currentValue = hasExternalValue ? value : inputValue;
   const shouldLabelTransform = isFocus || currentValue.length;
+
+  const onChangeTextVisibility = () => {
+    setIsVisibleText((prev) => !prev);
+  };
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -44,7 +49,7 @@ export const useTextInput = ({
         setInputValue(value);
       }
     },
-    [setInputValue, hasExternalValue, onChange]
+    [setInputValue, hasExternalValue, onChange],
   );
 
   const handleFocus = useCallback(
@@ -57,7 +62,7 @@ export const useTextInput = ({
         setIsFocus(true);
       }
     },
-    [setIsFocus, onFocus, isFocus]
+    [setIsFocus, onFocus, isFocus],
   );
 
   const handleBlur = useCallback(
@@ -70,16 +75,18 @@ export const useTextInput = ({
         setIsFocus(false);
       }
     },
-    [setIsFocus, onBlur, isFocus]
+    [setIsFocus, onBlur, isFocus],
   );
 
   return {
     id: id || inputId,
+    isVisibleText,
     inputValue: currentValue,
     isFocus,
     shouldLabelTransform,
     onFocus: handleFocus,
     onBlur: handleBlur,
     onChange: handleChange,
+    onChangeTextVisibility,
   };
 };
