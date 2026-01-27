@@ -1,9 +1,12 @@
+import cn from "classnames";
+
 import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
 import { MOBILE_HEADER_HEIGHT } from "@shared/config/layout.constants";
 import { NAVIGATION_CONFIG } from "@shared/config/navigation.config";
 import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFriendly";
 import { Link } from "@shared/ui/base/Link";
+import { NavigationItem } from "@widgets/Navigation/ui/NavigationItem";
 import { SocialLinks } from "@widgets/SocialLinks";
 
 import { HeaderProps } from "../types/header.types";
@@ -35,11 +38,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     >
       <ul className="flex flex-col mt-5 gap-5 border-b-1 border-secondary-main pb-5">
         {NAVIGATION_CONFIG.map(({ key, href, label }) => (
-          <li key={key}>
-            <a href={href} className="text-secondary-light">
-              {label}
-            </a>
-          </li>
+          <NavigationItem key={key} href={href} label={label} />
         ))}
       </ul>
 

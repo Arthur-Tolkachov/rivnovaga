@@ -13,10 +13,11 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSubmit, isLoading }) => (
       <TextField name="password" label="Пароль" type="password" />
     </div>
 
-    <div className="flex gap-5">
+    <div className="flex flex-col md:flex-row gap-5">
       <Button
         color="secondary"
         type="submit"
+        className="w-full! md:w-fit!"
         isLoading={isLoading}
         disabled={isLoading}
       >
@@ -25,6 +26,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onSubmit, isLoading }) => (
 
       <Button
         href="/"
+        className="w-full! md:w-fit!"
         color="secondary"
         variant="outlined-dark"
         isLoading={isLoading}

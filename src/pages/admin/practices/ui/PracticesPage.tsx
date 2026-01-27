@@ -16,8 +16,11 @@ export const PracticesPage: React.FC<PracticesPageProps> = async ({
 
     <h2 className="text-primary-dark">Практика</h2>
 
-    <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/practices/new" />
+    <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <CardButton
+        className="h-[250px] md:h-[350px]"
+        href="/admin/practices/new"
+      />
 
       {practices.map(({ id, title, city, caseNumber, proceedingNumber }) => (
         <Link key={id} href={`/admin/practices/${id}`}>

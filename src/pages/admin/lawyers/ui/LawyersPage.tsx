@@ -14,8 +14,11 @@ export const LawyersPage: React.FC<LawyersPageProps> = ({ lawyers }) => (
 
     <h2 className="text-primary-dark">Адвокати</h2>
 
-    <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/lawyers/new" />
+    <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <CardButton
+        className="h-[250px] md:h-[350px]"
+        href="/admin/lawyers/new"
+      />
 
       {lawyers.map(({ id, name, surname, patronymic, photo, certificate }) => {
         const backgroundImageUrl = photo?.url || EmptyPlaceholderImg.src;
@@ -26,7 +29,7 @@ export const LawyersPage: React.FC<LawyersPageProps> = ({ lawyers }) => (
             key={id}
             href={`/admin/lawyers/${id}`}
             backgroundImageUrl={backgroundImageUrl}
-            className="h-[350px]"
+            className="h-[250px] md:h-[350px]"
           >
             <div>{fullName}</div>
 

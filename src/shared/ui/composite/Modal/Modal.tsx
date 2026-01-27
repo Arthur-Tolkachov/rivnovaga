@@ -61,7 +61,7 @@ export const Modal: React.FC<ModalProps> = ({
         <div className="p-5 text-primary-dark">{children}</div>
 
         {showActions && (
-          <div className="flex gap-5 justify-center p-5">
+          <div className="flex gap-5 p-5">
             <Button
               size="sm"
               variant="filled"

@@ -1,38 +1,21 @@
 "use client";
 
-import {
-  ADMIN_NAVIGATION_CONFIG,
-  ADMIN_SETTINGS_NAVIGATION_CONFIG,
-} from "@shared/config/navigation.config";
-import { Logo } from "@shared/ui/composite/Logo";
+import { useMobile } from "@shared/lib/useMobile";
 
-import { AdminPanelItem } from "./AdminPanelItem";
+import { DesktopAdminPanel } from "./DesktopAdminPanel";
+import { MobileAdminPanel } from "./MobileAdminPanel";
+import { AdminPanelProps } from "../types/adminPanel.types";
 
-interface AdminPanelProps {
-  logo: {
-    url: string;
-    fileName: string;
-  };
-  organizationName: string;
-}
+export const AdminPanel: React.FC<AdminPanelProps> = (props) => {
+  const isMobile = useMobile();
 
-export const AdminPanel: React.FC<AdminPanelProps> = ({
-  logo,
-  organizationName,
-}) => (
-  <div className="sticky p-5 left-0 top-0 flex flex-col gap-5 h-screen w-full bg-primary-main">
-    <Logo logo={logo} organizationName={organizationName} />
+  if (typeof isMobile !== "boolean") {
+    return <div />;
+  }
 
-    <ul className="flex flex-col gap-5 border-t-1 border-secondary-lighter py-5">
-      {ADMIN_NAVIGATION_CONFIG.map(({ key, href, label }) => (
-        <AdminPanelItem key={key} href={href} label={label} />
-      ))}
-    </ul>
+  if (!isMobile) {
+    return <DesktopAdminPanel {...props} />;
+  }
 
-    <ul className="flex flex-col gap-5 border-t-1 border-secondary-lighter py-5">
-      {ADMIN_SETTINGS_NAVIGATION_CONFIG.map(({ key, href, label }) => (
-        <AdminPanelItem key={key} href={href} label={label} />
-      ))}
-    </ul>
-  </div>
-);
+  return <MobileAdminPanel {...props} />;
+};

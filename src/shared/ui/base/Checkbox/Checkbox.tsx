@@ -42,7 +42,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         className="inline-flex gap-5 cursor-pointer hover:opacity-85 transition-opacity duration-200 text-primary-dark"
       >
         <div
-          className={cn("w-6 h-6  border-1 border-secondary-main", {
+          className={cn("w-6 h-6  border-1 border-secondary-main shrink-0", {
             "bg-secondary-main": checked,
           })}
         >

@@ -14,7 +14,7 @@ export const ServiceFields: React.FC<ServiceFieldsProps> = ({
 }) => (
   <div className="flex flex-col gap-5">
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
-      <div className="max-w-[300px] ">
+      <div className="lg:max-w-[300px] ">
         <FileUploaderField name="cover" label="Обкладинка" />
       </div>
 
@@ -22,7 +22,7 @@ export const ServiceFields: React.FC<ServiceFieldsProps> = ({
         <TextField name="title" label="Заголовок" />
         <RichTextField name="description" label="Опис" />
 
-        <div className="w-100">
+        <div className="w-[240px] lg:w-100">
           <SelectField
             name="practices"
             options={practicesDropdownOptions}
