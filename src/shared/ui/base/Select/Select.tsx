@@ -13,7 +13,7 @@ type RSProps = ReactSelectProps<SelectOption, boolean>;
 
 const ReactSelect = dynamic<RSProps>(
   () => import("react-select").then((m) => m.default),
-  { ssr: false }
+  { ssr: false },
 );
 
 export interface SelectOption {
@@ -46,7 +46,7 @@ export const Select: React.FC<SelectProps> = ({
 }) => {
   const handleChange = (
     option: SingleValue<SelectOption> | MultiValue<SelectOption>,
-    actionMeta: ActionMeta<SelectOption>
+    actionMeta: ActionMeta<SelectOption>,
   ) => {
     if (actionMeta.action === "clear") {
       onChange(null);
@@ -55,7 +55,7 @@ export const Select: React.FC<SelectProps> = ({
 
     if (isMulti) {
       const values = (option as MultiValue<SelectOption>)?.map(
-        (opt) => opt.value
+        (opt) => opt.value,
       );
       onChange(values ?? []);
       return;

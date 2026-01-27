@@ -1,5 +1,8 @@
 import { useFormContext } from "react-hook-form";
 
+import SaveIcon from "@public/assets/icons/save.svg";
+import TrashIcon from "@public/assets/icons/trash.svg";
+import { useMobile } from "@shared/lib/useMobile";
 import { Button } from "@shared/ui/base/Button";
 
 export interface FormActionButtonsProps {
@@ -17,6 +20,8 @@ export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
   onDelete,
   onCancel,
 }) => {
+  const isMobile = useMobile();
+
   const {
     formState: { isDirty },
   } = useFormContext();
@@ -33,7 +38,11 @@ export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
         disabled={isDisabled}
         size="sm"
       >
-        Зберiгти
+        {isMobile ? (
+          <SaveIcon className="w-5 h-5 fill-secondary-light" />
+        ) : (
+          "Зберiгти"
+        )}
       </Button>
 
       {onDelete && (
@@ -45,7 +54,11 @@ export const FormActionButtons: React.FC<FormActionButtonsProps> = ({
           isLoading={isLoading}
           disabled={isLoading}
         >
-          Видалити
+          {isMobile ? (
+            <TrashIcon className="w-5 h-5 fill-secondary-main" />
+          ) : (
+            "Видалити"
+          )}
         </Button>
       )}
 

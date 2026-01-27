@@ -11,8 +11,8 @@ export const CardButtonContainer: React.FC<CardButtonContainerProps> = ({
 }) => (
   <div
     className={cn(
-      "h-[300px] bg-secondary-light border-1 border-secondary-lighter hover:opacity-70 transition-all duration-100",
-      className
+      "bg-secondary-light border-1 border-secondary-lighter hover:opacity-70 transition-all duration-100",
+      className,
     )}
   >
     {children}

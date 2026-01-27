@@ -18,15 +18,18 @@ export const DocumentOverviewsPage: React.FC<DocumentOverviewsProps> = async ({
 
     <h2 className="text-primary-dark">Зразки документiв</h2>
 
-    <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/document-overviews/new" />
+    <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <CardButton
+        className="h-[250px] md:h-[350px]"
+        href="/admin/document-overviews/new"
+      />
 
       {documentOverviews.map(({ id, title }) => (
         <Card
           key={id}
           href={`/admin/document-overviews/${id}`}
           backgroundImageUrl={EmptyDocPlaceholder.src}
-          className="h-[350px]"
+          className="h-[250px] md:h-[350px]"
           variant="secondary"
         >
           {title}

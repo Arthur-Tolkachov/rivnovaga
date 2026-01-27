@@ -1,27 +1,19 @@
-"use client";
-
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import BurgerButtonIcon from "@public/assets/icons/burger-button.svg";
 import CloseIcon from "@public/assets/icons/plus.svg";
-import { MOBILE_HEADER_HEIGHT } from "@shared/config/layout.constants";
 import { Button } from "@shared/ui/base/Button";
 import { Container } from "@shared/ui/base/Container";
 import { Logo } from "@shared/ui/composite/Logo";
 
-import { MobileMenu } from "./MobileMenu";
-import { HeaderProps } from "../types/header.types";
+import { AdminPanelMenu } from "./AdminPanelMenu";
+import { AdminPanelProps } from "../types/adminPanel.types";
 
-export const MobileHeader: React.FC<HeaderProps> = ({
+export const MobileAdminPanel = ({
   logo,
-  phone,
-  email,
   organizationName,
-  viber,
-  whatsapp,
-  telegram,
-}) => {
+}: AdminPanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -48,14 +40,7 @@ export const MobileHeader: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header
-      className="bg-primary-main sticky top-0 left-0 right-0 z-2 py-2"
-      style={{
-        ...(pathname === "/" && {
-          marginBottom: `-${MOBILE_HEADER_HEIGHT}px`,
-        }),
-      }}
-    >
+    <div className="sticky top-0 bg-primary-main py-2 z-2">
       <Container className="flex justify-between">
         <Logo
           logo={logo}
@@ -64,14 +49,7 @@ export const MobileHeader: React.FC<HeaderProps> = ({
           height={50}
         />
 
-        <MobileMenu
-          email={email}
-          phone={phone}
-          telegram={telegram}
-          viber={viber}
-          whatsapp={whatsapp}
-          isOpen={isOpen}
-        />
+        <AdminPanelMenu isOpen={isOpen} />
 
         <Button variant="text" size="xs" onClick={toggleMenu}>
           {isOpen ? (
@@ -81,6 +59,6 @@ export const MobileHeader: React.FC<HeaderProps> = ({
           )}
         </Button>
       </Container>
-    </header>
+    </div>
   );
 };

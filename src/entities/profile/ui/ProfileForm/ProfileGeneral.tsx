@@ -4,13 +4,13 @@ import { PhoneField } from "@shared/ui/fields/PhoneField";
 import { TextField } from "@shared/ui/fields/TextField";
 
 export const ProfileGeneral = () => (
-  <div className="grid grid-cols-[2fr_2fr_1fr] gap-5">
-    <div className="flex flex-col gap-5 bg-secondary-light p-5">
+  <div className="grid lg:grid-cols-2 xl:grid-cols-[2fr_2fr_1fr] gap-5">
+    <div className="lg:col-span-2 xl:col-span-1 flex flex-col gap-5 bg-secondary-light p-5">
       <h3 className="text-primary-dark">Основна iнформацiя:</h3>
 
       <TextField
         name="general.name"
-        label="Назва компанії (максимум 40 символiв)"
+        label="Назва компанії"
         transform={(value) => maxLength(value, 40)}
       />
       <TextField name="general.email" label="Електронна пошта" type="email" />

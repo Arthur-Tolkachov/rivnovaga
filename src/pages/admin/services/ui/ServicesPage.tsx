@@ -16,8 +16,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = async ({
 
     <h2 className="text-primary-dark">Послуги</h2>
 
-    <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/services/new" />
+    <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <CardButton
+        className="h-[250px] md:h-[350px]"
+        href="/admin/services/new"
+      />
 
       {services.map(({ id, title, cover }) => {
         const backgroundImageUrl = cover?.url || EmptyPlaceholderImg.src;
@@ -27,7 +30,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = async ({
             key={id}
             href={`/admin/services/${id}`}
             backgroundImageUrl={backgroundImageUrl}
-            className="h-[350px]"
+            className="h-[250px] md:h-[350px]"
           >
             {title}
           </Card>

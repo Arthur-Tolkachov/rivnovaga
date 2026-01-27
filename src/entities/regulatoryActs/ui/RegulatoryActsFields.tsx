@@ -31,7 +31,7 @@ export const RegulatoryActsFields = () => {
         {fields.map(({ id }, idx) => (
           <div
             key={id}
-            className="grid grid-cols-[1fr_1fr_auto] items-center gap-5"
+            className="grid lg:grid-cols-[1fr_1fr_auto] items-center gap-5"
           >
             <TextField
               name={`regulatoryActs[${idx}].title`}

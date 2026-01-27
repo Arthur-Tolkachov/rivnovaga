@@ -16,14 +16,17 @@ export const UsefulLinksPage: React.FC<UsefulLinksPageProps> = ({
 
     <h2 className="text-primary-dark">Кориснi посилання</h2>
 
-    <div className="grid grid-cols-4 gap-5">
-      <CardButton className="h-[350px]" href="/admin/useful-links/new" />
+    <div className="grid lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <CardButton
+        className="h-[250px] md:h-[350px]"
+        href="/admin/useful-links/new"
+      />
 
       {usefulLinks.map(({ id, title, data }) => (
         <a
           key={id}
           href={`/admin/useful-links/${id}`}
-          className="h-[350px] overflow-hidden bg-secondary-main opacity-85 hover:opacity-100 duration-200 relative"
+          className="h-[250px] md:h-[350px] overflow-hidden bg-secondary-main opacity-85 hover:opacity-100 duration-200 relative"
         >
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-linear-to-t from-secondary-main to-transparent" />
 

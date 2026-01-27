@@ -43,7 +43,7 @@ export const Logo: React.FC<LogoProps> = ({
           "group-hover:text-secondary-lighter",
         )}
       >
-        <div className="text-xs md:text-xl max-w-50 md:max-w-80">
+        <div className="text-xs md:text-xl max-w-50 md:max-w-80 line-clamp-2">
           {organizationName}
         </div>
       </div>

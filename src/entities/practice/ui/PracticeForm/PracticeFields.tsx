@@ -15,7 +15,7 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
       <TextField name="title" label="Заголовок" />
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-8">
         <div className="flex flex-col gap-5">
           <TextField name="caseNumber" label="Номер справи" />
           <TextField name="proceedingNumber" label="Номер провадження" />
@@ -34,7 +34,7 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
       </div>
     </div>
 
-    <div className="bg-secondary-light flex items-center gap-5 p-5">
+    <div className="bg-secondary-light flex flex-col lg:flex-row lg:items-center gap-5 p-5">
       <SelectField
         name="services"
         width="300px"

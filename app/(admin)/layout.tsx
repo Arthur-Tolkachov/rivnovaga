@@ -21,7 +21,7 @@ export default async function AdminLayout({
   } = await getProfile();
 
   return (
-    <main className="grid grid-cols-[1fr_3fr]">
+    <main className="grid md:grid-cols-[2.8fr_3fr] lg:grid-cols-[1fr_3fr]">
       <AdminPanel logo={logo} organizationName={name} />
 
       <div className="p-5">{children}</div>
