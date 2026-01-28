@@ -20,8 +20,16 @@ export const metadata: Metadata = {
     title: "Наша практика | Адвокатське об'єднання «Рівновага»",
     description:
       "Ознайомтесь із реальними кейсами та судовими рішеннями, які демонструють досвід та професійний підхід наших адвокатів.",
-    url: "https://zahist-ua.com/practice",
+    url: "/practice",
     type: "website",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/practice",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -20,7 +20,15 @@ export const metadata: Metadata = {
     description:
       "Зразки юридичних документів та актуальні нормативно-правові акти для ознайомлення та практичного використання.",
     type: "website",
-    url: "https://zahist-ua.com/",
+    url: "/useful-materials",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/useful-materials",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

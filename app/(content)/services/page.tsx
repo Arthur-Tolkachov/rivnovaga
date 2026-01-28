@@ -19,8 +19,16 @@ export const metadata: Metadata = {
     title: "Адвокатські послуги | Адвокатське об'эднання «Рівновага»",
     description:
       "Надійна юридична допомога у справах будь-якої складності. Захист прав та інтересів клієнтів на всіх етапах судового процесу.",
-    url: "https://zahist-ua.com/",
+    url: "/services",
     type: "website",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/services",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

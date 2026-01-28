@@ -19,8 +19,16 @@ export const metadata: Metadata = {
     title: "Контакти | Адвокатське об'єднання «Рівновага»",
     description:
       "Адреса, телефон, електронна пошта та форма зворотного зв'язку Адвокатського об'єднання «Рівновага». Зв'яжіться з нами для консультації.",
-    url: "https://zahist-ua.com/contact",
+    url: "/contact",
     type: "website",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/contact",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
