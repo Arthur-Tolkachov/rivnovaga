@@ -1,9 +1,14 @@
+import dynamic from "next/dynamic";
+
 import { getProfile } from "@entity/profile";
-import { Footer } from "@widgets/Footer";
 import { Header } from "@widgets/Header";
 import { QuickActionsPanel } from "@widgets/QuickActionsPanel";
 
 import Error from "../error";
+
+const Footer = dynamic(() =>
+  import("@widgets/Footer").then((mod) => mod.Footer),
+);
 
 export default async function ContentLayout({
   children,

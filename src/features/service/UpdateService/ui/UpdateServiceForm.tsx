@@ -1,15 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
 
 import { ServiceForm } from "@entity/service";
-import { Modal } from "@shared/ui/composite/Modal";
 
 import {
   useUpdateServiceForm,
   UseUpdateServiceFormProps,
 } from "../model/useUpdateServiceForm";
+
+const Modal = dynamic(() =>
+  import("@shared/ui/composite/Modal").then((mod) => mod.Modal),
+);
 
 export type UpdateServiceFormProps = UseUpdateServiceFormProps;
 

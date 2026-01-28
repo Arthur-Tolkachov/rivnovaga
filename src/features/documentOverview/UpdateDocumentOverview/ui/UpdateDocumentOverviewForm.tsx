@@ -1,10 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
 
 import { DocumentOverviewForm } from "@entity/documentOverview";
-import { Modal } from "@shared/ui/composite/Modal";
+
+const Modal = dynamic(() =>
+  import("@shared/ui/composite/Modal").then((mod) => mod.Modal),
+);
 
 import {
   UseUpdateDocumentOverviewForm,

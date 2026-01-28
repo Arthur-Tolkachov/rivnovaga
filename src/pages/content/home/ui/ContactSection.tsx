@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { getProfile } from "@entity/profile";
 import { SendMessageForm } from "@features/contactUs/SendMessage";
 import EmailIcon from "@public/assets/icons/email.svg";
@@ -7,8 +9,9 @@ import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFr
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
-import { Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
+
+const Map = dynamic(() => import("@widgets/Map").then((mod) => mod.Map));
 
 export const ContactSection = async () => {
   const {

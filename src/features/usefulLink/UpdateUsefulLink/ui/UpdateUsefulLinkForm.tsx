@@ -1,15 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
 
 import { UsefulLinkForm } from "@entity/usefulLink";
-import { Modal } from "@shared/ui/composite/Modal";
 
 import {
   UseUpdateUsefulLinkForm,
   useUpdateUsefulLinkForm,
 } from "../model/useUpdateUsefulLinkForm";
+
+const Modal = dynamic(() =>
+  import("@shared/ui/composite/Modal").then((mod) => mod.Modal),
+);
 
 type UpdateUsefulLinkProps = UseUpdateUsefulLinkForm;
 
