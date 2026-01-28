@@ -1,11 +1,18 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import { PracticeCard } from "@entity/practice";
 import { ServiceWithPracticesModel } from "@entity/service";
-import { SendMessageForm } from "@features/contactUs/SendMessage";
 import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
+
+const PracticeCard = dynamic(() =>
+  import("@entity/practice").then((mod) => mod.PracticeCard),
+);
+
+const SendMessageForm = dynamic(() =>
+  import("@features/contactUs/SendMessage").then((mod) => mod.SendMessageForm),
+);
 
 interface ServicePageProps {
   service: ServiceWithPracticesModel;

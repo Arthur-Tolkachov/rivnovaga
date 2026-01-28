@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useMemo } from "react";
 import {
   FieldPath,
@@ -7,13 +8,16 @@ import {
   useFormContext,
 } from "react-hook-form";
 
-import {
-  RichTextInput,
-  RichTextInputProps,
-} from "@shared/ui/base/RichTextInput";
+import { RichTextInputProps } from "@shared/ui/base/RichTextInput";
 
-export interface RichTextFieldProps<T extends FieldValues>
-  extends Omit<RichTextInputProps, "name" | "onChange"> {
+const RichTextInput = dynamic(() =>
+  import("@shared/ui/base/RichTextInput").then((mod) => mod.RichTextInput),
+);
+
+export interface RichTextFieldProps<T extends FieldValues> extends Omit<
+  RichTextInputProps,
+  "name" | "onChange"
+> {
   name: FieldPath<T>;
 }
 

@@ -1,10 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 import { SendMessageForm } from "@features/contactUs/SendMessage";
 import { Button } from "@shared/ui/base/Button";
-import { Modal } from "@shared/ui/composite/Modal";
+
+const Modal = dynamic(() =>
+  import("@shared/ui/composite/Modal").then((mod) => mod.Modal),
+);
 
 export const FeedbackModal = () => {
   const [isOpen, setIsOpen] = useState(false);

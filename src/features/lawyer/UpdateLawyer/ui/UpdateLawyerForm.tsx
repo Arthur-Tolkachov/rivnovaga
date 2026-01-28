@@ -1,15 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { FormProvider } from "react-hook-form";
 
 import { LawyerForm } from "@entity/lawyer";
-import { Modal } from "@shared/ui/composite/Modal";
 
 import {
   useUpdateLawyerForm,
   UseUpdateLawyerFormProps,
 } from "../model/useUpdateLawyerForm";
+
+const Modal = dynamic(() =>
+  import("@shared/ui/composite/Modal").then((mod) => mod.Modal),
+);
 
 export type UpdateLawyerFormProps = UseUpdateLawyerFormProps;
 
