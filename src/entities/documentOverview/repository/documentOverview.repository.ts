@@ -22,20 +22,20 @@ export const getAllDocumentOverviews = unstable_cache(
     return DocumentOverviewsArraySchema.parse(documentOverviews?.value || []);
   },
   ["documentOverviews"],
-  { tags: ["documentOverviews"] }
+  { tags: ["documentOverviews"] },
 );
 
 export const getAvailableDocumentOverviews = unstable_cache(
   async () => {
     const documentOverviews = await getAllDocumentOverviews();
     const availableDocumentOverviews = documentOverviews.filter(
-      (documentOverview) => documentOverview.isActive
+      (documentOverview) => documentOverview.isActive,
     );
 
     return availableDocumentOverviews;
   },
   ["documentOverviews"],
-  { tags: ["documentOverviews"] }
+  { tags: ["documentOverviews"] },
 );
 
 export const getDocumentOverview = async (id: string) =>
@@ -44,11 +44,11 @@ export const getDocumentOverview = async (id: string) =>
       const documentOverviews = await getAllDocumentOverviews();
 
       const documentOverview = documentOverviews.find(
-        (documentOverview) => documentOverview.id === id
+        (documentOverview) => documentOverview.id === id,
       );
 
       return DocumentOverviewSchema.parse(documentOverview);
     },
     ["documentOverview", id],
-    { tags: ["documentOverview"] }
+    { tags: ["documentOverview"] },
   )();

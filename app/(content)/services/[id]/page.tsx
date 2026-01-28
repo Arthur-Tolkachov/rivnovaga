@@ -2,36 +2,47 @@ import { Metadata } from "next";
 
 import { getServiceWithPractices } from "@entity/service";
 import { ServicePage } from "@pages/content/service";
+import { stripHtml } from "@shared/lib/stripHtml";
 
 import Error from "../../../error";
-
-export const metadata: Metadata = {
-  title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",
-  description:
-    "Професійний юридичний захист у сімейних спорах: розірвання шлюбу, поділ майна, визначення місця проживання дитини. Надійна допомога адвокатів на всіх етапах процесу.",
-  keywords: [
-    "сімейні спори",
-    "розірвання шлюбу",
-    "поділ майна",
-    "адвокат сімейний",
-    "захист прав дитини",
-    "сімейний адвокат",
-    "юридична допомога",
-  ],
-  openGraph: {
-    title: "Вирішення сімейних спорів | Адвокатське об'єднання «Рівновага»",
-    description:
-      "Експертний юридичний захист у сімейних спорах: розірвання шлюбу, поділ майна, визначення місця проживання дитини.",
-    url: "https://zahist-ua.com/services",
-    type: "website",
-  },
-};
 
 type PageProps = {
   params: {
     id: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id } = params;
+  const service = await getServiceWithPractices(id);
+
+  if (!service) {
+    return {
+      title: "Послугу не знайдено",
+    };
+  }
+
+  const description = stripHtml(service.description);
+
+  return {
+    title: `${service.title} | Адвокатське об'єднання «Рівновага»`,
+    description,
+
+    alternates: {
+      canonical: `/services/${service.id}`,
+    },
+
+    openGraph: {
+      title: `${service.title} | Рівновага`,
+      description: service.description,
+      url: `/services/${service.id}`,
+      type: "article",
+      locale: "uk_UA",
+    },
+  };
+}
 
 export default async function Service({ params }: PageProps) {
   try {

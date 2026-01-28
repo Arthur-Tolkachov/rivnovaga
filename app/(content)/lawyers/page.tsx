@@ -22,7 +22,15 @@ export const metadata: Metadata = {
     description:
       "Досвідчені адвокати, які надають професійну правову допомогу та представляють інтереси клієнтів у судах і державних органах.",
     type: "website",
-    url: "https://zahist-ua.com/about",
+    url: "/about",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/about",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

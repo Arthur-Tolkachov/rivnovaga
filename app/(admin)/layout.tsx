@@ -6,6 +6,11 @@ import { AdminPanel } from "@widgets/AdminPanel";
 
 export const metadata: Metadata = {
   title: "Адмiн панель",
+  description: "Адмінська панель для керування контентом сайту.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function AdminLayout({

@@ -20,8 +20,16 @@ export const metadata: Metadata = {
       "Адвокатське об'єднання «Рівновага» – Захист ваших прав та інтересів",
     description:
       "Експертний юридичний захист у всіх галузях права. Ваш надійний адвокат у суді та поза ним.",
-    url: "https://zahist-ua.com/",
+    url: "/",
     type: "website",
+    locale: "uk_UA",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

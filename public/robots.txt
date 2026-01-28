@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /change-password/
+Disallow: /500/
+Disallow: /404/
+
+# Sitemap
+Sitemap: https://zahist-ua.com/sitemap.xml

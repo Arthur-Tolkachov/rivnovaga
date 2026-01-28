@@ -7,6 +7,20 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const documentOverview = await getDocumentOverview(id);
+
+  return {
+    title: documentOverview.title,
+    description: `Редагування документа`,
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
+
 export default async function UpdateDocumentOverview({ params }: Props) {
   try {
     const { id } = await params;
