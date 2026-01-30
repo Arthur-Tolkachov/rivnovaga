@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import { getProfile } from "@entity/profile";
 import { SendMessageForm } from "@features/contactUs/SendMessage";
 import EmailIcon from "@public/assets/icons/email.svg";
@@ -9,9 +7,8 @@ import { transformPhoneToUserFriendly } from "@shared/lib/transformPhoneToUserFr
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
+import { MapContainer as Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
-
-const Map = dynamic(() => import("@widgets/Map").then((mod) => mod.Map));
 
 export const ContactSection = async () => {
   const {
@@ -26,7 +23,7 @@ export const ContactSection = async () => {
   const city = address.city ? `${address.city},` : "";
   const street = address.street ? `${address.street},` : "";
   const building = address.building ? `${address.building},` : "";
-  const office = address.office ? `${address.office},` : "";
+  const office = address.office ? address.office : "";
 
   const displayPhone = transformPhoneToUserFriendly(phone);
   const addressString = `${index} ${city} ${street} ${building} ${office}`;
@@ -101,7 +98,11 @@ export const ContactSection = async () => {
         </div>
 
         <div className="border-1 border-secondary-main">
-          <Map lat={Number(map.lat)} lng={Number(map.lng)} />
+          <Map
+            lat={Number(map.lat)}
+            lng={Number(map.lng)}
+            popupChildren={<div>{addressString}</div>}
+          />
         </div>
       </Container>
     </MainSection>
