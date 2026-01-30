@@ -4,13 +4,6 @@ export const EmailValidationSchema = z.email({
   message: "Невалiдна електронна пошта",
 });
 
-export const PhoneValidationSchema = z.string().superRefine((value, ctx) => {
-  if (value && value.length < 13) {
-    ctx.addIssue({
-      origin: "string",
-      code: "too_small",
-      minimum: 13,
-      message: "Телефон має містити 13 символiв, включно +38",
-    });
-  }
-});
+export const PhoneValidationSchema = z
+  .string()
+  .min(13, "Телефон має містити 13 символiв, включно +38");

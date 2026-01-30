@@ -1,1 +1,1 @@
-export { Map } from "./ui/Map";
+export { MapContainer } from "./ui/MapContainer";

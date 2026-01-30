@@ -1,5 +1,3 @@
-import dynamic from "next/dynamic";
-
 import { getProfile } from "@entity/profile";
 import { SendMessageForm } from "@features/contactUs/SendMessage";
 import EmailIcon from "@public/assets/icons/email.svg";
@@ -10,9 +8,8 @@ import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
+import { MapContainer as Map } from "@widgets/Map";
 import { SocialLinks } from "@widgets/SocialLinks";
-
-const Map = dynamic(() => import("@widgets/Map").then((mod) => mod.Map));
 
 const BREADCRUMBS_CONFIG = [
   {
@@ -24,11 +21,17 @@ const BREADCRUMBS_CONFIG = [
 export const ContactPage = async () => {
   const {
     general: { phone, email, telegram, viber, whatsapp },
-    address: { building, city, index, office, street },
+    address,
     workingDaysSchedule,
     workingTimeSchedule,
     map,
   } = await getProfile();
+
+  const index = address.index ? `${address.index},` : "";
+  const city = address.city ? `${address.city},` : "";
+  const street = address.street ? `${address.street},` : "";
+  const building = address.building ? `${address.building},` : "";
+  const office = address.office ? address.office : "";
 
   const addressString = `${index} ${city} ${street} ${building} ${office}`;
 
@@ -107,7 +110,11 @@ export const ContactPage = async () => {
         </div>
 
         <div className="border-1 border-secondary-main">
-          <Map lat={Number(map.lat)} lng={Number(map.lng)} />
+          <Map
+            lat={Number(map.lat)}
+            lng={Number(map.lng)}
+            popupChildren={<div>{addressString}</div>}
+          />
         </div>
       </Container>
     </MainSection>
