@@ -12,14 +12,14 @@ export async function POST(req: NextRequest) {
     }
 
     const text = `
-      📥 <b>Нова заявка</b>
+📥 <b>Нова заявка</b>
 
-      📞 <b>Телефон:</b> <code>${phone}</code>
-      👤 <b>Им'я:</b> ${name || "-"}
+📞 <b>Телефон:</b> <code>${phone}</code>
 
-      💬 <b>Повiдомлення:</b>
-      ${message || "-"}
-    `;
+👤 <b>Им'я:</b> ${name || "-"}
+
+💬 <b>Повiдомлення:</b>
+${message || "-"}`.trim();
 
     const response = await fetch(
       `https://api.telegram.org/bot${process.env.TG_BOT_TOKEN}/sendMessage`,
