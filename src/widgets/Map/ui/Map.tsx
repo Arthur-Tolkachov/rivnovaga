@@ -48,14 +48,3 @@ const Map: React.FC<MapProps> = ({ lat, lng, popupChildren }) => {
 };
 
 export default Map;
-
-// <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
-//   <GoogleMap
-//     style={{ width: "100%", height: isMobile ? "300px" : "600px" }}
-//     defaultCenter={{ lat, lng }}
-//     defaultZoom={15}
-//     gestureHandling="greedy"
-//   >
-//     <Marker position={{ lat, lng }} />
-//   </GoogleMap>
-// </APIProvider>
