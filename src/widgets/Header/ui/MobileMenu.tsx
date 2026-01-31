@@ -1,5 +1,3 @@
-import cn from "classnames";
-
 import EmailIcon from "@public/assets/icons/email.svg";
 import PhoneIcon from "@public/assets/icons/phone.svg";
 import { MOBILE_HEADER_HEIGHT } from "@shared/config/layout.constants";

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { Prisma } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import mime from "mime-types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(response);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error instanceof PrismaClientKnownRequestError) {
       return NextResponse.json({ message: error.message }, { status: 500 });
     }
 
