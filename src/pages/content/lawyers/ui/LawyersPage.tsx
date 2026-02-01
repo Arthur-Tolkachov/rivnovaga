@@ -94,7 +94,7 @@ export const LawyersPage = async () => {
             })
           ) : (
             <div className="text-primary-dark text-xl">
-              Наразі жодного адвоката не додано.
+              Розділ в стані наповнення.
             </div>
           )}
         </div>

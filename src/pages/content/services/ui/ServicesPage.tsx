@@ -33,7 +33,7 @@ export const ServicesPage = async () => {
           </div>
         ) : (
           <div className="text-primary-dark text-xl">
-            Наразі жодної послуги не додано.
+            Розділ в стані наповнення.
           </div>
         )}
       </Container>
