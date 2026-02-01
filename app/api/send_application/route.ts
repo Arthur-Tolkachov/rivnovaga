@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
 📞 <b>Телефон:</b> <code>${phone}</code>
 
-👤 <b>Им'я:</b> ${name || "-"}
+👤 <b>П.I.Б:</b> ${name || "-"}
 
 💬 <b>Повiдомлення:</b>
 ${message || "-"}`.trim();

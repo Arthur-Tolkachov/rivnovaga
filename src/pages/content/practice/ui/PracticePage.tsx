@@ -41,7 +41,7 @@ export const PracticePage = async () => {
             ))
           ) : (
             <div className="text-primary-dark text-xl">
-              Наразі жодної практики не додано.
+              Розділ в стані наповнення.
             </div>
           )}
         </div>
