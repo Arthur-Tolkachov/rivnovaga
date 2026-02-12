@@ -43,7 +43,7 @@ export const ServicesSection = async () => {
             return (
               <Card
                 key={service.id}
-                href={`services/${service.id}`}
+                href={`services/${service.slug}`}
                 className="min-h-[350px]"
                 backgroundImageUrl={backgroundImageUrl}
               >
