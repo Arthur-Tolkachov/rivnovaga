@@ -1,13 +1,15 @@
-import { getAvailablePractices, PracticeCard } from "@entity/practice";
+import { getPracticeCategories } from "@entity/practiceCategory";
 import ArrowRightIcon from "@public/assets/icons/arrow-right.svg";
+import EmptyPlaceholderImg from "@public/assets/images/empty_placeholder.png";
 import { Container } from "@shared/ui/base/Container";
 import { Link } from "@shared/ui/base/Link";
 import { MainSection } from "@shared/ui/base/MainSection";
+import { Card } from "@shared/ui/composite/Card";
 
 export const PracticeSection = async () => {
-  const availablePractices = await getAvailablePractices();
+  const practiceCategories = await getPracticeCategories();
 
-  if (!availablePractices.length) {
+  if (!practiceCategories.length) {
     return null;
   }
 
@@ -30,21 +32,22 @@ export const PracticeSection = async () => {
         </div>
 
         <div className="grid min-[600px]:grid-cols-2 lg:grid-cols-3 gap-5">
-          {availablePractices.map((practice, idx) => {
+          {practiceCategories.map(({ id, cover, title, slug }, idx) => {
             if (idx > 4) {
               return null;
             }
 
+            const backgroundImageUrl = cover?.url || EmptyPlaceholderImg.src;
+
             return (
-              <PracticeCard
-                key={practice.id}
-                caseNumber={practice.caseNumber}
-                city={practice.city}
-                proceedingNumber={practice.proceedingNumber}
-                title={practice.title}
-                fileUrl={practice.file.url}
-                href={practice.url}
-              />
+              <Card
+                key={id}
+                backgroundImageUrl={backgroundImageUrl}
+                href={`services/${slug}`}
+                className="min-h-[350px]"
+              >
+                {title}
+              </Card>
             );
           })}
         </div>

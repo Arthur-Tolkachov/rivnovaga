@@ -9,7 +9,8 @@ model ServiceCover {
 
 model Service {
   id             String       @id @default(uuid())
-  title          String
+  title          String       @unique
+  slug           String       @unique
   description    String
   isActive       Boolean
 

@@ -10,12 +10,12 @@ const axiosClient = axios.create({
 class API {
   async get<TResult>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<TResult | null> {
     try {
       const response: AxiosResponse<TResult> = await axiosClient.get(
         url,
-        config
+        config,
       );
 
       return response.data;
@@ -28,13 +28,13 @@ class API {
   async post<TData, TResult>(
     url: string,
     data: TData,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) {
     try {
       const response: AxiosResponse<TResult> = await axiosClient.post(
         url,
         data,
-        config
+        config,
       );
 
       return response.data;
@@ -47,13 +47,13 @@ class API {
   async put<TData, TResult>(
     url: string,
     data: TData,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ) {
     try {
       const response: AxiosResponse<TResult> = await axiosClient.put(
         url,
         data,
-        config
+        config,
       );
 
       return response.data;

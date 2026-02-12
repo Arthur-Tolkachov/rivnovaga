@@ -4,6 +4,7 @@ import { PhoneValidationSchema } from "@shared/lib/validation";
 
 export const LawyerDTOSchema = z.object({
   name: z.string().min(1, "Поле обов`язкове"),
+  slug: z.string(),
   surname: z.string().min(1, "Поле обов`язкове"),
   patronymic: z.string().min(1, "Поле обов`язкове"),
   certificate: z.object({

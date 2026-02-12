@@ -6,12 +6,12 @@ import { stripHtml } from "@shared/lib/stripHtml";
 import Error from "../../../../error";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
-  const service = await getService(id);
+  const { slug } = await params;
+  const service = await getService(slug);
 
   const description = stripHtml(service.description);
 
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function UpdateService({ params }: Props) {
   try {
-    const { id } = await params;
-    const service = await getService(id);
+    const { slug } = await params;
+    const service = await getService(slug);
     const practices = await getAllPractices();
 
     return <ServicePage service={service} practices={practices} />;

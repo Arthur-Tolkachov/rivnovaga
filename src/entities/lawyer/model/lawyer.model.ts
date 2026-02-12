@@ -2,6 +2,7 @@ import z from "zod";
 
 export const LawyerSchema = z.object({
   id: z.uuid(),
+  slug: z.string(),
   name: z.string(),
   surname: z.string(),
   patronymic: z.string(),

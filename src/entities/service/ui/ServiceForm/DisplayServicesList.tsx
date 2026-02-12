@@ -15,7 +15,7 @@ export const DisplayServicesList: React.FC<DisplayServicesListProps> = ({
     return (
       <Card
         key={service.id}
-        href={`services/${service.id}`}
+        href={`services/${service.slug}`}
         className="min-h-[350px]"
         backgroundImageUrl={backgroundImageUrl}
       >

@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@shared/lib/prisma-client";
 
@@ -19,18 +20,17 @@ export const getLawyers = unstable_cache(
     return LawyersArraySchema.parse(lawyers?.value || []);
   },
   ["lawyers"],
-  { tags: ["lawyers"] }
+  { tags: ["lawyers"] },
 );
 
-export const getLawyer = async (id: string) =>
-  unstable_cache(
-    async () => {
-      const lawyers = await getLawyers();
+export const getLawyer = async (slug: string) => {
+  const lawyers = await getLawyers();
 
-      const lawyer = lawyers.find((lawyer) => lawyer.id === id);
+  const lawyer = lawyers?.find((lawyer) => lawyer.slug === slug);
 
-      return LawyerSchema.parse(lawyer);
-    },
-    ["lawyer", id],
-    { tags: ["lawyer"] }
-  )();
+  if (!lawyer) {
+    redirect("/admin/lawyers");
+  }
+
+  return LawyerSchema.parse(lawyer);
+};

@@ -1,30 +1,44 @@
-import { getAboutPractice } from "@entity/aboutPractice";
-import { getAllPractices, PracticeCard } from "@entity/practice";
+import dynamic from "next/dynamic";
+
+import { PracticeModel } from "@entity/practice";
+import { PracticeCategoryModel } from "@entity/practiceCategory";
 import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
-const BREADCRUMBS_CONFIG = [
-  {
-    key: "practice",
-    title: "Наша практика",
-  },
-];
+const PracticeCard = dynamic(() =>
+  import("@entity/practice").then((mod) => mod.PracticeCard),
+);
 
-export const PracticePage = async () => {
-  const aboutPractice = await getAboutPractice();
-  const practices = await getAllPractices();
+const SendMessageForm = dynamic(() =>
+  import("@features/contactUs/SendMessage").then((mod) => mod.SendMessageForm),
+);
+
+interface PracticePageProps {
+  category: PracticeCategoryModel;
+  practices: PracticeModel[];
+}
+
+export const PracticePage: React.FC<PracticePageProps> = ({
+  practices,
+  category,
+}) => {
+  const BREADCRUMBS_CONFIG = [
+    {
+      key: "practice",
+      title: "Практика",
+      href: "/practice",
+    },
+    {
+      key: category.slug,
+      title: category.title,
+    },
+  ];
 
   return (
     <MainSection className="py-5 md:py-15">
-      <Container className="flex flex-col gap-5 md:gap-10">
-        <div className="flex flex-col gap-5">
-          <BreadCrumbs config={BREADCRUMBS_CONFIG} />
-
-          <h1 className="text-primary-dark">{aboutPractice.title}</h1>
-
-          <h3 className="text-primary-dark">{aboutPractice.subtitle}</h3>
-        </div>
+      <Container className="flex flex-col gap-10">
+        <BreadCrumbs config={BREADCRUMBS_CONFIG} />
 
         <div className="grid min-[600px]:grid-cols-2 lg:grid-cols-3 gap-5">
           {!!practices.length ? (
@@ -44,6 +58,15 @@ export const PracticePage = async () => {
               Розділ в стані наповнення.
             </div>
           )}
+        </div>
+
+        <div className="border-y-1 border-secondary-main py-5 flex flex-col gap-5">
+          <h3 className="text-secondary-darker">
+            Для отримання консультації заповніть форму нижче або зв’яжіться з
+            нами у зручний для вас спосіб:
+          </h3>
+
+          <SendMessageForm />
         </div>
       </Container>
     </MainSection>

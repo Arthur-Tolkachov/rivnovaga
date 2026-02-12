@@ -5,12 +5,12 @@ import { stripHtml } from "@shared/lib/stripHtml";
 import Error from "../../../../error";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { id } = await params;
-  const lawyer = await getLawyer(id);
+  const { slug } = await params;
+  const lawyer = await getLawyer(slug);
 
   const lawyerFullName = `${lawyer.surname} ${lawyer.name} ${lawyer.patronymic}`;
   const description = stripHtml(lawyer.description);
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function UpdateLawyer({ params }: Props) {
   try {
-    const { id } = await params;
-    const lawyer = await getLawyer(id);
+    const { slug } = await params;
+    const lawyer = await getLawyer(slug);
 
     return <LawyerPage lawyer={lawyer} />;
   } catch (error) {

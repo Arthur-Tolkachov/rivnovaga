@@ -13,13 +13,17 @@ export interface PracticeFormProps extends PracticeFieldsProps {
 
 export const PracticeForm: React.FC<PracticeFormProps> = ({
   isLoading,
-  dropdownOptions,
+  servicesDropdownOptions,
+  categoriesDropdownOptions,
   onSubmit,
   onDelete,
   onCancel,
 }) => (
   <form onSubmit={onSubmit} className="flex flex-col gap-5">
-    <PracticeFields dropdownOptions={dropdownOptions} />
+    <PracticeFields
+      categoriesDropdownOptions={categoriesDropdownOptions}
+      servicesDropdownOptions={servicesDropdownOptions}
+    />
 
     <FormActionButtons
       isLoading={isLoading}

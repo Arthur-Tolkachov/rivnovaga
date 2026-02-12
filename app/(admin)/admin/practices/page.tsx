@@ -1,9 +1,14 @@
 import { Metadata } from "next";
 
-import { getAllPractices } from "@entity/practice";
+import { getAllPractices, getPracticesBySlug } from "@entity/practice";
+import { getPracticeCategories } from "@entity/practiceCategory";
 import { PracticesPage } from "@pages/admin/practices";
 
 import Error from "../../../error";
+
+interface Props {
+  searchParams: { categories?: string };
+}
 
 export const metadata: Metadata = {
   title: "Практика | Рівновага",
@@ -14,11 +19,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Practices() {
-  try {
-    const practices = await getAllPractices();
+export default async function Practices({ searchParams }: Props) {
+  const filterSlug = searchParams.categories || null;
 
-    return <PracticesPage practices={practices} />;
+  try {
+    const practices = filterSlug
+      ? await getPracticesBySlug(filterSlug)
+      : await getAllPractices();
+    const categories = await getPracticeCategories();
+
+    return <PracticesPage categories={categories} practices={practices} />;
   } catch (error) {
     console.error(error);
 
