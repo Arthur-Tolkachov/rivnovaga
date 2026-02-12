@@ -40,7 +40,7 @@ export const useUpdateServiceForm = ({
         label: practice.title,
         value: practice.id,
       })),
-    [practices]
+    [practices],
   );
 
   const onCancel = useCallback(() => {
@@ -51,7 +51,7 @@ export const useUpdateServiceForm = ({
     try {
       setIsLoading(true);
 
-      await deleteService(initialValues.id);
+      await deleteService(initialValues.slug);
       notify.success("Послугу успішно видалено");
       router.push("/admin/services");
     } catch (error) {
@@ -70,7 +70,7 @@ export const useUpdateServiceForm = ({
       if (cover instanceof File) {
         const response = await uploadFile(
           cover,
-          `services/${initialValues.id}`
+          `services/${initialValues.id}`,
         );
 
         if (!response) {
@@ -88,6 +88,10 @@ export const useUpdateServiceForm = ({
       notify.success("Послугу успішно оновлено");
       router.push("/admin/services");
     } catch (error) {
+      if (error instanceof Error) {
+        notify.error(error.message);
+      }
+
       console.error(error);
     } finally {
       setIsLoading(false);

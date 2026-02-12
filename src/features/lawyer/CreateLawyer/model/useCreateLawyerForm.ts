@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import slugify from "slugify";
 import { v4 as uuidv4 } from "uuid";
 
 import { createLawyer } from "@entity/lawyer";
@@ -14,6 +15,7 @@ import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
 const DEFAULT_VALUES = {
+  slug: "",
   name: "",
   surname: "",
   patronymic: "",
@@ -46,10 +48,17 @@ export const useCreateLawyerForm = () => {
     router.push("/admin/lawyers");
   }, [router]);
 
-  const onSubmit = handleSubmit(async ({ photo, ...values }) => {
+  const onSubmit = handleSubmit(async ({ photo, slug: _slug, ...values }) => {
     try {
       setIsLoading(true);
+
+      const fullName = `${values.surname} ${values.name} ${values.patronymic}`;
+
       const id = uuidv4();
+      const slug = slugify(fullName, {
+        lower: true,
+        strict: true,
+      });
 
       let photoDto = photo;
 
@@ -65,12 +74,17 @@ export const useCreateLawyerForm = () => {
 
       await createLawyer(id, {
         photo: photoDto as FileDto,
+        slug,
         ...values,
       });
 
       notify.success("Адвоката успішно створено");
       router.push("/admin/lawyers");
     } catch (error) {
+      if (error instanceof Error) {
+        notify.error(error.message);
+      }
+
       console.error(error);
     } finally {
       setIsLoading(false);

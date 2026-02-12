@@ -1,4 +1,5 @@
 import { PracticeModel } from "@entity/practice";
+import { PracticeCategoryModel } from "@entity/practiceCategory";
 import { ServiceModel } from "@entity/service";
 import { CreatePracticeForm, UpdatePracticeForm } from "@features/practice";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
@@ -6,11 +7,13 @@ import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 interface PracticePageProps {
   practice?: PracticeModel;
   services: ServiceModel[];
+  practiceCategories: PracticeCategoryModel[];
 }
 
 export const PracticePage: React.FC<PracticePageProps> = async ({
   practice,
   services,
+  practiceCategories,
 }) => {
   const title = practice ? "Редагування практики" : "Нова практика";
 
@@ -31,9 +34,16 @@ export const PracticePage: React.FC<PracticePageProps> = async ({
       <h2 className="text-primary-dark">{title}</h2>
 
       {practice ? (
-        <UpdatePracticeForm services={services} initialValues={practice} />
+        <UpdatePracticeForm
+          services={services}
+          practiceCategories={practiceCategories}
+          initialValues={practice}
+        />
       ) : (
-        <CreatePracticeForm services={services} />
+        <CreatePracticeForm
+          services={services}
+          practiceCategories={practiceCategories}
+        />
       )}
     </div>
   );

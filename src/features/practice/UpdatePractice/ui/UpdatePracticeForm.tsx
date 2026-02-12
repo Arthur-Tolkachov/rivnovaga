@@ -19,15 +19,16 @@ export type UpdatePracticeFormProps = UseUpdatePracticeFormProps;
 
 export const UpdatePracticeForm: React.FC<UpdatePracticeFormProps> = ({
   services,
+  practiceCategories,
   initialValues,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { methods, servicesDropdownOptions, onDelete, ...rest } =
-    useUpdatePracticeForm({
-      services,
-      initialValues,
-    });
+  const { methods, onDelete, ...rest } = useUpdatePracticeForm({
+    services,
+    practiceCategories,
+    initialValues,
+  });
 
   const handleDelete = () => {
     setIsModalOpen(true);
@@ -40,11 +41,7 @@ export const UpdatePracticeForm: React.FC<UpdatePracticeFormProps> = ({
   return (
     <>
       <FormProvider {...methods}>
-        <PracticeForm
-          dropdownOptions={servicesDropdownOptions}
-          onDelete={handleDelete}
-          {...rest}
-        />
+        <PracticeForm onDelete={handleDelete} {...rest} />
       </FormProvider>
 
       <Modal

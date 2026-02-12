@@ -13,14 +13,16 @@ export type CreatePracticeForm = UseCreatePracticeFormProps;
 
 export const CreatePracticeForm: React.FC<CreatePracticeForm> = ({
   services,
+  practiceCategories,
 }) => {
-  const { methods, servicesDropdownOptions, ...rest } = useCreatePracticeForm({
+  const { methods, ...rest } = useCreatePracticeForm({
     services,
+    practiceCategories,
   });
 
   return (
     <FormProvider {...methods}>
-      <PracticeForm dropdownOptions={servicesDropdownOptions} {...rest} />
+      <PracticeForm {...rest} />
     </FormProvider>
   );
 };

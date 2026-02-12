@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import { getPracticeCategories } from "@entity/practiceCategory";
 import { getAllServices } from "@entity/service";
 import { PracticePage } from "@pages/admin/practice";
 
@@ -17,8 +18,14 @@ export const metadata: Metadata = {
 export default async function CreatePractice() {
   try {
     const services = await getAllServices();
+    const practiceCategories = await getPracticeCategories();
 
-    return <PracticePage services={services} />;
+    return (
+      <PracticePage
+        practiceCategories={practiceCategories}
+        services={services}
+      />
+    );
   } catch (error) {
     console.error(error);
 

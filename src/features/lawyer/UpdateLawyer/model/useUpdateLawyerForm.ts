@@ -72,6 +72,10 @@ export const useUpdateLawyerForm = ({
       notify.success("Адвоката успішно оновлено");
       router.push("/admin/lawyers");
     } catch (error) {
+      if (error instanceof Error) {
+        notify.error(error.message);
+      }
+
       console.error(error);
     } finally {
       setIsLoading(false);

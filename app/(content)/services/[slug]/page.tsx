@@ -8,15 +8,15 @@ import Error from "../../../error";
 
 type PageProps = {
   params: {
-    id: string;
+    slug: string;
   };
 };
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = params;
-  const service = await getServiceWithPractices(id);
+  const { slug } = params;
+  const service = await getServiceWithPractices(slug);
 
   if (!service) {
     return {
@@ -46,8 +46,8 @@ export async function generateMetadata({
 
 export default async function Service({ params }: PageProps) {
   try {
-    const { id } = params;
-    const service = await getServiceWithPractices(id);
+    const { slug } = params;
+    const service = await getServiceWithPractices(slug);
     return <ServicePage service={service} />;
   } catch (error) {
     console.error(error);

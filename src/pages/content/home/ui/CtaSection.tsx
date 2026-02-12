@@ -23,7 +23,7 @@ export const CtaSection = async () => {
           <h2 className="text-secondary-light">{title}</h2>
 
           <div
-            className="flex flex-col gap-5 text-secondary-light text-xl"
+            className="flex flex-col gap-5 text-secondary-light text-xl rich-editor"
             dangerouslySetInnerHTML={{ __html: description }}
           />
 

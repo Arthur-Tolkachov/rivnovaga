@@ -22,13 +22,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = async ({
         href="/admin/services/new"
       />
 
-      {services.map(({ id, title, cover }) => {
+      {services.map(({ id, title, slug, cover }) => {
         const backgroundImageUrl = cover?.url || EmptyPlaceholderImg.src;
 
         return (
           <Card
             key={id}
-            href={`/admin/services/${id}`}
+            href={`/admin/services/${slug}`}
             backgroundImageUrl={backgroundImageUrl}
             className="h-[250px] md:h-[350px]"
           >

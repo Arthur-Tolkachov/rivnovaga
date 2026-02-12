@@ -10,6 +10,7 @@ export const PracticeDTOSchema = z.object({
   url: z.string().nullable(),
 
   services: z.array(z.string()).nullable(),
+  categories: z.array(z.string()).nullable(),
 
   file: z.object({
     url: z.string(),

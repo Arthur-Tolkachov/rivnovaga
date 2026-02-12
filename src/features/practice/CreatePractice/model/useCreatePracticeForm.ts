@@ -9,6 +9,7 @@ import {
   PracticeFormSchema,
   createPractice,
 } from "@entity/practice";
+import { PracticeCategoryModel } from "@entity/practiceCategory";
 import { ServiceModel } from "@entity/service";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
@@ -25,14 +26,17 @@ const DEFAULT_VALUES = {
     fileName: "",
   },
   services: null,
+  categories: null,
 };
 
 export interface UseCreatePracticeFormProps {
   services: ServiceModel[];
+  practiceCategories: PracticeCategoryModel[];
 }
 
 export const useCreatePracticeForm = ({
   services,
+  practiceCategories,
 }: UseCreatePracticeFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -51,7 +55,16 @@ export const useCreatePracticeForm = ({
         label: service.title,
         value: service.id,
       })),
-    [services]
+    [services],
+  );
+
+  const categoriesDropdownOptions = useMemo(
+    () =>
+      practiceCategories.map((category) => ({
+        label: category.title,
+        value: category.id,
+      })),
+    [practiceCategories],
   );
 
   const onCancel = useCallback(() => {
@@ -63,6 +76,7 @@ export const useCreatePracticeForm = ({
       setIsLoading(true);
 
       const id = uuidv4();
+
       let pdfDto = file;
 
       if (file instanceof File) {
@@ -92,6 +106,7 @@ export const useCreatePracticeForm = ({
   return {
     methods,
     servicesDropdownOptions,
+    categoriesDropdownOptions,
     isLoading,
     onCancel,
     onSubmit,

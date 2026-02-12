@@ -20,26 +20,28 @@ export const LawyersPage: React.FC<LawyersPageProps> = ({ lawyers }) => (
         href="/admin/lawyers/new"
       />
 
-      {lawyers.map(({ id, name, surname, patronymic, photo, certificate }) => {
-        const backgroundImageUrl = photo?.url || EmptyPlaceholderImg.src;
-        const fullName = `${surname} ${name} ${patronymic}`;
+      {lawyers.map(
+        ({ id, slug, name, surname, patronymic, photo, certificate }) => {
+          const backgroundImageUrl = photo?.url || EmptyPlaceholderImg.src;
+          const fullName = `${surname} ${name} ${patronymic}`;
 
-        return (
-          <Card
-            key={id}
-            href={`/admin/lawyers/${id}`}
-            backgroundImageUrl={backgroundImageUrl}
-            className="h-[250px] md:h-[350px]"
-          >
-            <div>{fullName}</div>
+          return (
+            <Card
+              key={id}
+              href={`/admin/lawyers/${slug}`}
+              backgroundImageUrl={backgroundImageUrl}
+              className="h-[250px] md:h-[350px]"
+            >
+              <div>{fullName}</div>
 
-            <ul className="flex flex-col gap-1 mt-5">
-              <li className="text-sm">Свідоцтво № {certificate.number}</li>
-              <li className="text-sm">Видане {certificate.date}</li>
-            </ul>
-          </Card>
-        );
-      })}
+              <ul className="flex flex-col gap-1 mt-5">
+                <li className="text-sm">Свідоцтво № {certificate.number}</li>
+                <li className="text-sm">Видане {certificate.date}</li>
+              </ul>
+            </Card>
+          );
+        },
+      )}
     </div>
   </div>
 );

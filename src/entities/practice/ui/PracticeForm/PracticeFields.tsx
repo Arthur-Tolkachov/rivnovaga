@@ -5,11 +5,13 @@ import { SelectField } from "@shared/ui/fields/SelectField";
 import { TextField } from "@shared/ui/fields/TextField";
 
 export interface PracticeFieldsProps {
-  dropdownOptions: SelectOption[];
+  servicesDropdownOptions: SelectOption[];
+  categoriesDropdownOptions: SelectOption[];
 }
 
 export const PracticeFields: React.FC<PracticeFieldsProps> = ({
-  dropdownOptions,
+  servicesDropdownOptions,
+  categoriesDropdownOptions,
 }) => (
   <div className="flex flex-col gap-5">
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
@@ -36,10 +38,25 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
 
     <div className="bg-secondary-light flex flex-col lg:flex-row lg:items-center gap-5 p-5">
       <SelectField
+        name="categories"
+        width="300px"
+        options={categoriesDropdownOptions}
+        placeholder="Роздiли"
+        isMulti
+        isClearable
+      />
+
+      <span className="text-primary-dark">
+        - роздiли в яких присутня практика
+      </span>
+    </div>
+
+    <div className="bg-secondary-light flex flex-col lg:flex-row lg:items-center gap-5 p-5">
+      <SelectField
         name="services"
         width="300px"
-        options={dropdownOptions}
-        placeholder="Пов'язана послуга"
+        options={servicesDropdownOptions}
+        placeholder="Пов'язанi послуги"
         isMulti
         isClearable
       />

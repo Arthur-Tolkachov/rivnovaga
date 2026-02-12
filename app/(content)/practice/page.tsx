@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { PracticePage } from "@pages/content/practice";
+import { PracticesPage } from "@pages/content/practices";
 
 export const metadata: Metadata = {
   title: "Наша практика | Адвокатське об'єднання «Рівновага»",
@@ -34,5 +34,5 @@ export const metadata: Metadata = {
 };
 
 export default function Practice() {
-  return <PracticePage />;
+  return <PracticesPage />;
 }

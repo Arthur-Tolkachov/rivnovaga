@@ -51,7 +51,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
           <h1 className="text-primary-dark">{service.title}</h1>
 
           <div
-            className="text-primary-main mt-5"
+            className="text-primary-main mt-5 rich-editor"
             dangerouslySetInnerHTML={{
               __html: service.description,
             }}

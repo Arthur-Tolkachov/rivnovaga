@@ -4,7 +4,8 @@ import { PracticeSchema } from "@entity/practice";
 
 export const ServiceSchema = z.object({
   id: z.uuid(),
-  title: z.string().min(1),
+  title: z.string(),
+  slug: z.string(),
   description: z.string(),
   cover: z.object({
     url: z.string(),

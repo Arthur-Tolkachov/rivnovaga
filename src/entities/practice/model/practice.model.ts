@@ -3,6 +3,7 @@ import z from "zod";
 export const PracticeSchema = z.object({
   id: z.uuid(),
   title: z.string(),
+  slug: z.string(),
   city: z.string(),
   caseNumber: z.string(),
   proceedingNumber: z.string(),
@@ -11,6 +12,7 @@ export const PracticeSchema = z.object({
   url: z.string().nullable(),
 
   services: z.array(z.string()).optional(),
+  categories: z.array(z.string()).optional(),
 
   file: z.object({
     url: z.string(),

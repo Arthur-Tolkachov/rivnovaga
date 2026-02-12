@@ -41,7 +41,7 @@ export const LawyersPage = async () => {
 
               return (
                 <div
-                  className="grid md:grid-cols-[auto_auto] gap-8"
+                  className="grid md:grid-cols-[400px_auto] gap-8"
                   key={lawyer.id}
                 >
                   <div className="w-full">
@@ -85,7 +85,7 @@ export const LawyersPage = async () => {
                     </div>
 
                     <div
-                      className="text-primary-main"
+                      className="text-primary-main rich-editor"
                       dangerouslySetInnerHTML={{ __html: lawyer.description }}
                     />
                   </div>

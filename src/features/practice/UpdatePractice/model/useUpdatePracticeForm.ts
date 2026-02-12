@@ -10,17 +10,20 @@ import {
   updatePractice,
   deletePractice,
 } from "@entity/practice";
+import { PracticeCategoryModel } from "@entity/practiceCategory";
 import { ServiceModel } from "@entity/service";
 import { FileDto, uploadFile } from "@entity/upload";
 import { notify } from "@shared/lib/toastr";
 
 export interface UseUpdatePracticeFormProps {
   services: ServiceModel[];
+  practiceCategories: PracticeCategoryModel[];
   initialValues: PracticeModel;
 }
 
 export const useUpdatePracticeForm = ({
   services,
+  practiceCategories,
   initialValues,
 }: UseUpdatePracticeFormProps) => {
   const router = useRouter();
@@ -40,7 +43,16 @@ export const useUpdatePracticeForm = ({
         label: service.title,
         value: service.id,
       })),
-    [services]
+    [services],
+  );
+
+  const categoriesDropdownOptions = useMemo(
+    () =>
+      practiceCategories.map((category) => ({
+        label: category.title,
+        value: category.id,
+      })),
+    [practiceCategories],
   );
 
   const onCancel = useCallback(() => {
@@ -51,7 +63,7 @@ export const useUpdatePracticeForm = ({
     try {
       setIsLoading(true);
 
-      await deletePractice(initialValues.id);
+      await deletePractice(initialValues.slug);
       notify.success("Практику успішно видалено");
       router.push("/admin/practices");
     } catch (error) {
@@ -70,7 +82,7 @@ export const useUpdatePracticeForm = ({
       if (file instanceof File) {
         const response = await uploadFile(
           file,
-          `practices/${initialValues.id}`
+          `practices/${initialValues.id}`,
         );
 
         if (!response) {
@@ -97,6 +109,7 @@ export const useUpdatePracticeForm = ({
   return {
     methods,
     servicesDropdownOptions,
+    categoriesDropdownOptions,
     isLoading,
     onCancel,
     onDelete,

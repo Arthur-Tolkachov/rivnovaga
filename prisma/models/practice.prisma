@@ -1,15 +1,39 @@
+model CategoryCover {
+  id String @id @default(uuid())
+  url String
+  fileName String
+
+  category Category @relation(fields:[categoryId], references: [id], onDelete: Cascade)
+  categoryId String @unique
+}
+
+
+model Category {
+  id          String      @id @default(uuid())
+  title       String      @unique
+  description String
+  slug        String      @unique
+
+  practices   Practice[]
+  cover          CategoryCover?
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
 model PracticeFile {
   id String @id @default(uuid())
   url String
   fileName String
 
-  service Practice @relation(fields:[practiceId], references: [id], onDelete: Cascade)
+  practice Practice @relation(fields:[practiceId], references: [id], onDelete: Cascade)
   practiceId String @unique
 }
 
 model Practice {
   id             String       @id @default(uuid())
   title          String
+  slug            String      @unique
   caseNumber       String
   proceedingNumber       String
   isActive       Boolean
@@ -19,6 +43,7 @@ model Practice {
   file          PracticeFile?
 
   services           Service[]
+  categories        Category[]
   
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt

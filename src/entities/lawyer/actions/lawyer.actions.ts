@@ -9,6 +9,12 @@ import { removeFile } from "@shared/lib/removeFile";
 export const createLawyer = async (id: string, dto: LawyerDTO) => {
   const currentLawyers = await getLawyers();
 
+  const isUnique = currentLawyers.every((lawyer) => lawyer.slug !== dto.slug);
+
+  if (!isUnique) {
+    throw new Error("Адвокат з таким П.I.Б вже існує");
+  }
+
   await prisma.setting.upsert({
     where: { key: "lawyers" },
     update: {
@@ -27,6 +33,13 @@ export const createLawyer = async (id: string, dto: LawyerDTO) => {
 
 export const updateLawyer = async (id: string, dto: LawyerDTO) => {
   const currentLawyers = await getLawyers();
+
+  const isUnique = currentLawyers.every((lawyer) => lawyer.slug !== dto.slug);
+
+  if (!isUnique) {
+    throw new Error("Адвокат з таким П.I.Б вже існує");
+  }
+
   const currentLawyer = currentLawyers.find((lawyer) => lawyer.id === id);
   const currentPhoto = currentLawyer?.photo || { fileName: "", url: "" };
 
@@ -44,8 +57,6 @@ export const updateLawyer = async (id: string, dto: LawyerDTO) => {
   });
 
   revalidateTag("lawyers");
-  revalidateTag("lawyer");
-  revalidateTag(`lawyer-${id}`);
 
   if (currentPhoto.fileName !== dto.photo.fileName) {
     removeFile(currentPhoto.fileName, `lawyers/${id}`);
@@ -66,7 +77,7 @@ export const deleteLawyer = async (id: string) => {
     data: { value: newLawyers },
   });
 
-  removeFile(currentPhoto.fileName, `lawyers/${id}`);
+  removeFile(currentPhoto.fileName, `lawyers/${currentLawyer?.id}`);
 
   revalidateTag("lawyers");
 };

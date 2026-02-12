@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@shared/lib/prisma-client";
 
@@ -19,6 +20,7 @@ export const getAllServices = unstable_cache(
         title: true,
         description: true,
         isActive: true,
+        slug: true,
         practices: {
           select: {
             id: true,
@@ -37,13 +39,13 @@ export const getAllServices = unstable_cache(
       ({ practices, ...service }) => ({
         ...service,
         practices: practices.map(({ id }) => id),
-      })
+      }),
     );
 
     return ServicesArraySchema.parse(servicesWithMappedPractices);
   },
   ["services"],
-  { tags: ["services"] }
+  { tags: ["services"] },
 );
 
 export const getAllAvailableServices = unstable_cache(
@@ -54,21 +56,22 @@ export const getAllAvailableServices = unstable_cache(
     return availableServices;
   },
   ["services"],
-  { tags: ["services"] }
+  { tags: ["services"] },
 );
 
-export const getService = async (id: string) =>
+export const getService = async (slug: string) =>
   unstable_cache(
     async () => {
       const service = await prisma.service.findUnique({
         where: {
-          id,
+          slug,
         },
         select: {
           id: true,
           title: true,
           description: true,
           isActive: true,
+          slug: true,
           practices: {
             select: {
               id: true,
@@ -83,24 +86,29 @@ export const getService = async (id: string) =>
         },
       });
 
+      if (!service) {
+        redirect("/admin/services");
+      }
+
       const mappedPractice = service?.practices.map(({ id }) => id);
 
       return ServiceSchema.parse({ ...service, practices: mappedPractice });
     },
-    ["service", id],
-    { tags: ["service"] }
+    ["service", slug],
+    { tags: [`service-${slug}`] },
   )();
 
-export const getServiceWithPractices = async (id: string) =>
+export const getServiceWithPractices = async (slug: string) =>
   unstable_cache(
     async () => {
       const service = await prisma.service.findUnique({
         where: {
-          id,
+          slug,
         },
         select: {
           id: true,
           title: true,
+          slug: true,
           description: true,
           isActive: true,
           practices: {
@@ -126,6 +134,6 @@ export const getServiceWithPractices = async (id: string) =>
 
       return ServiceWithPracticesSchema.parse(service);
     },
-    ["service", id],
-    { tags: ["service"] }
+    ["service", slug],
+    { tags: [`service-${slug}`] },
   )();

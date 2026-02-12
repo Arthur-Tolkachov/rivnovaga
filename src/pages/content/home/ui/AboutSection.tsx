@@ -16,7 +16,7 @@ export const AboutSection = async () => {
             <h2 className="text-primary-dark w-fit">{title}</h2>
 
             <div
-              className="text-primary-lighter"
+              className="text-primary-lighter rich-editor"
               dangerouslySetInnerHTML={{
                 __html: description,
               }}

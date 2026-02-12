@@ -1,4 +1,5 @@
 import { unstable_cache } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@shared/lib/prisma-client";
 
@@ -14,6 +15,7 @@ export const getAllPractices = unstable_cache(
         id: true,
         title: true,
         city: true,
+        slug: true,
         caseNumber: true,
         proceedingNumber: true,
         isActive: true,
@@ -32,13 +34,51 @@ export const getAllPractices = unstable_cache(
       ({ services, ...practice }) => ({
         ...practice,
         services: services.map(({ id }) => id),
-      })
+      }),
     );
 
     return PracticesArraySchema.parse(practicesWithMappedServices);
   },
   ["practices"],
-  { tags: ["practices"] }
+  { tags: ["practices"] },
+);
+
+export const getPracticesBySlug = unstable_cache(
+  async (slug: string) => {
+    const practices = await prisma.practice.findMany({
+      where: {
+        categories: { some: { slug } },
+      },
+      select: {
+        id: true,
+        title: true,
+        city: true,
+        slug: true,
+        caseNumber: true,
+        proceedingNumber: true,
+        isActive: true,
+        url: true,
+        services: { select: { id: true } },
+        file: {
+          select: {
+            url: true,
+            fileName: true,
+          },
+        },
+      },
+    });
+
+    const practicesWithMappedServices = practices.map(
+      ({ services, ...practice }) => ({
+        ...practice,
+        services: services.map(({ id }) => id),
+      }),
+    );
+
+    return PracticesArraySchema.parse(practicesWithMappedServices);
+  },
+  ["practices"],
+  { tags: ["practices"] },
 );
 
 export const getAvailablePractices = unstable_cache(
@@ -48,25 +88,27 @@ export const getAvailablePractices = unstable_cache(
     return practices;
   },
   ["practices"],
-  { tags: ["practices"] }
+  { tags: ["practices"] },
 );
 
-export const getPractice = async (id: string) =>
+export const getPractice = async (slug: string) =>
   unstable_cache(
     async () => {
       const practice = await prisma.practice.findUnique({
         where: {
-          id,
+          slug,
         },
         select: {
           id: true,
           title: true,
+          slug: true,
           city: true,
           caseNumber: true,
           proceedingNumber: true,
           isActive: true,
           url: true,
           services: true,
+          categories: true,
           file: {
             select: {
               url: true,
@@ -76,10 +118,19 @@ export const getPractice = async (id: string) =>
         },
       });
 
-      const mappedServices = practice?.services.map(({ id }) => id);
+      if (!practice) {
+        redirect("/admin/practices");
+      }
 
-      return PracticeSchema.parse({ ...practice, services: mappedServices });
+      const mappedServices = practice?.services.map(({ id }) => id);
+      const mappedCategories = practice?.categories.map(({ id }) => id);
+
+      return PracticeSchema.parse({
+        ...practice,
+        categories: mappedCategories,
+        services: mappedServices,
+      });
     },
-    ["practice", id],
-    { tags: ["practice"] }
+    ["practice", slug],
+    { tags: [`practice-${slug}`] },
   )();

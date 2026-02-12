@@ -7,9 +7,10 @@ export const PracticeFormSchema = PracticeDTOSchema.extend({
     z.object({
       url: z.string(),
       fileName: z.string(),
-    })
+    }),
   ),
   services: z.array(z.string()).nullable(),
+  categories: z.array(z.string()).nullable(),
 });
 
 export type PracticeFormValues = z.infer<typeof PracticeFormSchema>;

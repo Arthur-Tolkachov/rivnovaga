@@ -7,6 +7,7 @@ export {
   getAllPractices,
   getAvailablePractices,
   getPractice,
+  getPracticesBySlug,
 } from "./repository/practice.repository";
 export {
   createPractice,
