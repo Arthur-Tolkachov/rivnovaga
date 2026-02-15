@@ -114,6 +114,7 @@ export const getServiceWithPractices = async (slug: string) =>
           practices: {
             select: {
               id: true,
+              slug: true,
               caseNumber: true,
               city: true,
               file: true,

@@ -43,7 +43,7 @@ export const PracticeSection = async () => {
               <Card
                 key={id}
                 backgroundImageUrl={backgroundImageUrl}
-                href={`services/${slug}`}
+                href={`practice/${slug}`}
                 className="min-h-[350px]"
               >
                 {title}
