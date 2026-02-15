@@ -1,7 +1,7 @@
 export const NAVIGATION_CONFIG = [
   { key: "services", label: "Послуги", href: "/services" },
-  { key: "lawyers", label: "Про адвокатiв", href: "/lawyers" },
   { key: "practice", label: "Наша практика", href: "/practice" },
+  { key: "lawyers", label: "Про адвокатiв", href: "/lawyers" },
   {
     key: "usefulMaterials",
     label: "Кориснi матерiали",

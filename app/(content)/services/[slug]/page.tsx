@@ -48,6 +48,7 @@ export default async function Service({ params }: PageProps) {
   try {
     const { slug } = params;
     const service = await getServiceWithPractices(slug);
+
     return <ServicePage service={service} />;
   } catch (error) {
     console.error(error);
