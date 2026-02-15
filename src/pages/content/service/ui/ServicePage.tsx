@@ -69,7 +69,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
 
         {!!service.practices.length && (
           <div className="flex flex-col gap-5">
-            <h2 className="text-secondary-dark">Практика</h2>
+            <h2 className="text-secondary-dark">Пов&apos;язана практика</h2>
 
             <div className="grid md:grid-cols-3 gap-5">
               {service.practices.map((practice) => (
