@@ -112,11 +112,6 @@ export const deleteService = async (slug: string) => {
     select: { cover: true, id: true },
   });
 
-  await prisma.practice.updateMany({
-    where: { services: { some: { slug } } },
-    data: { services: { disconnect: { slug } } },
-  });
-
   await prisma.service.delete({
     where: {
       slug,
