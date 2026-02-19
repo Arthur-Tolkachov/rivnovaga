@@ -7,7 +7,9 @@ import { PracticesPage } from "@pages/admin/practices";
 import Error from "../../../error";
 
 interface Props {
-  searchParams: { categories?: string };
+  searchParams: Promise<{
+    categories?: string;
+  }>;
 }
 
 export const metadata: Metadata = {
@@ -20,7 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Practices({ searchParams }: Props) {
-  const filterSlug = searchParams.categories || null;
+  const params = await searchParams;
+  const filterSlug = params.categories || null;
 
   try {
     const practices = filterSlug
