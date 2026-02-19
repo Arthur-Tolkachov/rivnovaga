@@ -16,6 +16,7 @@ export const getAllPractices = unstable_cache(
         title: true,
         city: true,
         slug: true,
+        description: true,
         caseNumber: true,
         proceedingNumber: true,
         isActive: true,
@@ -52,6 +53,7 @@ export const getPracticesBySlug = unstable_cache(
       select: {
         id: true,
         title: true,
+        description: true,
         city: true,
         slug: true,
         caseNumber: true,
@@ -101,6 +103,7 @@ export const getPractice = async (slug: string) =>
         select: {
           id: true,
           title: true,
+          description: true,
           slug: true,
           city: true,
           caseNumber: true,

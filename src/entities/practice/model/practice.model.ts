@@ -3,6 +3,7 @@ import z from "zod";
 export const PracticeSchema = z.object({
   id: z.uuid(),
   title: z.string(),
+  description: z.string(),
   slug: z.string(),
   city: z.string(),
   caseNumber: z.string(),

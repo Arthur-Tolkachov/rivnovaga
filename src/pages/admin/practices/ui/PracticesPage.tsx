@@ -31,15 +31,23 @@ export const PracticesPage: React.FC<PracticesPageProps> = async ({
       />
 
       {practices.map(
-        ({ id, title, slug, city, caseNumber, proceedingNumber }) => (
+        ({
+          id,
+          title,
+          description,
+          slug,
+          city,
+          caseNumber,
+          proceedingNumber,
+        }) => (
           <Link key={id} href={`/admin/practices/${slug}`}>
             <PracticeCard
               className="h-[350px]"
               title={title}
+              description={description}
               city={city}
               caseNumber={caseNumber}
               proceedingNumber={proceedingNumber}
-              disabled
             />
           </Link>
         ),

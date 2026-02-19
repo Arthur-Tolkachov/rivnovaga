@@ -33,6 +33,7 @@ model PracticeFile {
 model Practice {
   id             String       @id @default(uuid())
   title          String
+  description    String?
   slug            String      @unique
   caseNumber       String
   proceedingNumber       String

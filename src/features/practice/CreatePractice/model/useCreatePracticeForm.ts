@@ -16,6 +16,7 @@ import { notify } from "@shared/lib/toastr";
 
 const DEFAULT_VALUES = {
   title: "",
+  description: "",
   caseNumber: "",
   proceedingNumber: "",
   isActive: true,

@@ -6,8 +6,8 @@ import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
-const PracticeCard = dynamic(() =>
-  import("@entity/practice").then((mod) => mod.PracticeCard),
+const ServicePracticesBlock = dynamic(() =>
+  import("@entity/service").then((mod) => mod.ServicePracticesBlock),
 );
 
 const SendMessageForm = dynamic(() =>
@@ -67,25 +67,7 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
           <SendMessageForm />
         </div>
 
-        {!!service.practices.length && (
-          <div className="flex flex-col gap-5">
-            <h2 className="text-secondary-dark">Пов&apos;язана практика</h2>
-
-            <div className="grid md:grid-cols-3 gap-5">
-              {service.practices.map((practice) => (
-                <PracticeCard
-                  key={practice.id}
-                  caseNumber={practice.caseNumber}
-                  city={practice.city}
-                  proceedingNumber={practice.proceedingNumber}
-                  title={practice.title}
-                  fileUrl={practice.file.url}
-                  href={practice.url}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        <ServicePracticesBlock practices={service.practices} />
       </Container>
     </MainSection>
   );

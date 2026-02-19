@@ -2,22 +2,22 @@ import { Metadata } from "next";
 
 import { getPracticesBySlug } from "@entity/practice";
 import { getPracticeCategory } from "@entity/practiceCategory";
-import { PracticePage } from "@pages/content/practice";
+import { PracticeCategoryPage } from "@pages/content/practiceCategory";
 import { stripHtml } from "@shared/lib/stripHtml";
 
 import Error from "../../../error";
 
 type PageProps = {
   params: {
-    slug: string;
+    categorySlug: string;
   };
 };
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = params;
-  const category = await getPracticeCategory(slug);
+  const { categorySlug } = params;
+  const category = await getPracticeCategory(categorySlug);
 
   if (!category) {
     return {
@@ -45,13 +45,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function Practice({ params }: PageProps) {
+export default async function PracticeCategory({ params }: PageProps) {
   try {
-    const { slug } = params;
-    const practices = await getPracticesBySlug(slug);
-    const category = await getPracticeCategory(slug);
+    const { categorySlug } = params;
+    const practices = await getPracticesBySlug(categorySlug);
+    const category = await getPracticeCategory(categorySlug);
 
-    return <PracticePage practices={practices} category={category} />;
+    return <PracticeCategoryPage practices={practices} category={category} />;
   } catch (error) {
     console.error(error);
     return <Error />;
