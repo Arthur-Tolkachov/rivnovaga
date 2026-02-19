@@ -135,5 +135,5 @@ export const getPractice = async (slug: string) =>
       });
     },
     ["practice", slug],
-    { tags: [`practice-${slug}`] },
+    { tags: ["practices", `practice-${slug}`] },
   )();

@@ -62,16 +62,13 @@ export const updatePracticeCategory = async (
   { cover, practices, ...dto }: PracticeCategoryDTO,
 ) => {
   try {
-    const { cover: currentCover } = (await prisma.category.findUnique({
+    const category = await prisma.category.findUnique({
       where: { id },
       select: { cover: true },
-    })) as { cover: FileDto };
+    });
 
-    if (!currentCover) {
-      throw new Error("Cover not found");
-    }
-
-    const practicesArray = practices?.map((practiceId) => ({ id: practiceId }));
+    const practicesArray =
+      practices?.map((practiceId) => ({ id: practiceId })) || [];
 
     await prisma.category.update({
       where: {
@@ -88,8 +85,8 @@ export const updatePracticeCategory = async (
       },
     });
 
-    if (currentCover.fileName !== cover.fileName) {
-      removeFile(currentCover.fileName, `practice_categories/${id}`);
+    if (category?.cover && category.cover.fileName !== cover.fileName) {
+      removeFile(category.cover.fileName, `practice_categories/${id}`);
     }
 
     revalidateTag("practice_categories");
@@ -111,14 +108,10 @@ export const updatePracticeCategory = async (
 };
 
 export const deletePracticeCategory = async (slug: string) => {
-  const { cover: currentCover, id } = (await prisma.category.findUnique({
+  const category = await prisma.category.findUnique({
     where: { slug },
     select: { cover: true, id: true },
-  })) as { cover: FileDto; id: string };
-
-  if (!currentCover) {
-    throw new Error("Cover not found");
-  }
+  });
 
   await prisma.category.delete({
     where: {
@@ -126,7 +119,9 @@ export const deletePracticeCategory = async (slug: string) => {
     },
   });
 
-  removeFile(currentCover.fileName, `practice_categories/${id}`);
+  if (category?.cover) {
+    removeFile(category.cover.fileName, `practice_categories/${category.id}`);
+  }
 
   revalidateTag("practice_categories");
   revalidateTag(`practice_category-${slug}`);

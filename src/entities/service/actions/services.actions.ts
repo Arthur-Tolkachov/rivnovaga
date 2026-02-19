@@ -3,7 +3,6 @@
 import { Prisma } from "@prisma/client";
 import { revalidateTag } from "next/cache";
 
-import { FileDto } from "@entity/upload";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
 
@@ -62,16 +61,13 @@ export const updateService = async (
   { cover, practices, ...dto }: ServiceDTO,
 ) => {
   try {
-    const { cover: currentCover } = (await prisma.service.findUnique({
+    const service = await prisma.service.findUnique({
       where: { id },
       select: { cover: true },
-    })) as { cover: FileDto };
+    });
 
-    if (!currentCover) {
-      throw new Error("Logo not found");
-    }
-
-    const practicesArray = practices?.map((practiceId) => ({ id: practiceId }));
+    const practicesArray =
+      practices?.map((practiceId) => ({ id: practiceId })) || [];
 
     await prisma.service.update({
       where: {
@@ -88,11 +84,12 @@ export const updateService = async (
       },
     });
 
-    if (currentCover.fileName !== cover.fileName) {
-      removeFile(currentCover.fileName, `services/${id}`);
+    if (service?.cover && service.cover.fileName !== cover.fileName) {
+      removeFile(service.cover.fileName, `services/${id}`);
     }
 
     revalidateTag("services");
+    revalidateTag("practices");
     revalidateTag("service");
     revalidateTag(`service-${dto.slug}`);
 
@@ -110,14 +107,15 @@ export const updateService = async (
 };
 
 export const deleteService = async (slug: string) => {
-  const { cover: currentCover, id } = (await prisma.service.findUnique({
+  const service = await prisma.service.findUnique({
     where: { slug },
     select: { cover: true, id: true },
-  })) as { cover: FileDto; id: string };
+  });
 
-  if (!currentCover) {
-    throw new Error("Logo not found");
-  }
+  await prisma.practice.updateMany({
+    where: { services: { some: { slug } } },
+    data: { services: { disconnect: { slug } } },
+  });
 
   await prisma.service.delete({
     where: {
@@ -125,7 +123,9 @@ export const deleteService = async (slug: string) => {
     },
   });
 
-  removeFile(currentCover.fileName, `services/${id}`);
+  if (service?.cover) {
+    removeFile(service.cover.fileName, `services/${service.id}`);
+  }
 
   revalidateTag("services");
   revalidateTag(`service-${slug}`);
