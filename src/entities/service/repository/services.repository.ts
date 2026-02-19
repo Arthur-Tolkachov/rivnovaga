@@ -95,7 +95,7 @@ export const getService = async (slug: string) =>
       return ServiceSchema.parse({ ...service, practices: mappedPractice });
     },
     ["service", slug],
-    { tags: [`service-${slug}`] },
+    { tags: ["services", `service-${slug}`] },
   )();
 
 export const getServiceWithPractices = async (slug: string) =>

@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { revalidateTag } from "next/cache";
 import slugify from "slugify";
 
-import { FileDto } from "@entity/upload";
 import { prisma } from "@shared/lib/prisma-client";
 import { removeFile } from "@shared/lib/removeFile";
 
@@ -50,8 +49,8 @@ export const createPractice = async (
   }
 
   revalidateTag("practices");
-  revalidateTag("practice_categories");
   revalidateTag("services");
+  revalidateTag("practice_categories");
   revalidateTag("service");
 
   return dto;
@@ -61,16 +60,13 @@ export const updatePractice = async (
   id: string,
   { file, services, categories, ...dto }: PracticeDTO,
 ) => {
-  const { file: currentFile } = (await prisma.practice.findUnique({
+  const practice = await prisma.practice.findUnique({
     where: { id },
     select: { file: true },
-  })) as { file: FileDto };
+  });
 
-  if (!currentFile) {
-    throw new Error("File not found");
-  }
-
-  const servicesArray = services?.map((servicesId) => ({ id: servicesId }));
+  const servicesArray =
+    services?.map((servicesId) => ({ id: servicesId })) || [];
   const categoriesArray = categories?.map((categoryId) => ({ id: categoryId }));
 
   const newPractice = await prisma.practice.update({
@@ -91,8 +87,8 @@ export const updatePractice = async (
     },
   });
 
-  if (currentFile.fileName !== file.fileName) {
-    removeFile(currentFile.fileName, `practices/${id}`);
+  if (practice?.file && practice.file.fileName !== file.fileName) {
+    removeFile(practice.file.fileName, `practices/${id}`);
   }
 
   revalidateTag("practices");
@@ -107,14 +103,10 @@ export const updatePractice = async (
 };
 
 export const deletePractice = async (slug: string) => {
-  const { file: currentFile, id } = (await prisma.practice.findUnique({
+  const practice = await prisma.practice.findUnique({
     where: { slug },
     select: { file: true, id: true },
-  })) as { file: FileDto; id: string };
-
-  if (!currentFile) {
-    throw new Error("File not found");
-  }
+  });
 
   await prisma.practice.delete({
     where: {
@@ -122,7 +114,9 @@ export const deletePractice = async (slug: string) => {
     },
   });
 
-  removeFile(currentFile.fileName, `practices/${id}`);
+  if (practice?.file) {
+    removeFile(practice.file.fileName, `practices/${practice.id}`);
+  }
 
   revalidateTag("practices");
   revalidateTag("practice_categories");

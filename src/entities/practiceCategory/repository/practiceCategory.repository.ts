@@ -87,7 +87,7 @@ export const getPracticeCategory = async (slug: string) =>
       });
     },
     ["practice_category", slug],
-    { tags: [`practice_category-${slug}`] },
+    { tags: ["practice_categories", `practice_category-${slug}`] },
   )();
 
 export const getPracticeCategoryWithPractices = async (slug: string) =>
