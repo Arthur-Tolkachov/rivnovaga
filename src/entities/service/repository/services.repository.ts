@@ -116,12 +116,14 @@ export const getServiceWithPractices = async (slug: string) =>
               id: true,
               slug: true,
               caseNumber: true,
+              description: true,
               city: true,
               file: true,
               isActive: true,
               proceedingNumber: true,
               title: true,
               url: true,
+              categories: true,
             },
           },
           cover: {
@@ -133,7 +135,19 @@ export const getServiceWithPractices = async (slug: string) =>
         },
       });
 
-      return ServiceWithPracticesSchema.parse(service);
+      const practicesWithMappedCategories = service?.practices.map(
+        (practice) => {
+          return {
+            ...practice,
+            categories: practice.categories.map(({ slug }) => slug),
+          };
+        },
+      );
+
+      return ServiceWithPracticesSchema.parse({
+        ...service,
+        practices: practicesWithMappedCategories,
+      });
     },
     ["service", slug],
     { tags: [`service-${slug}`] },

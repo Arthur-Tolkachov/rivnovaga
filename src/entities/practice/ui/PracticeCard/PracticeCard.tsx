@@ -1,27 +1,21 @@
 import cn from "classnames";
 
-import { Button } from "@shared/ui/base/Button";
-
 export interface PracticeCardProps {
   className?: string;
   title: string;
+  description: string;
   city: string;
   caseNumber: string;
   proceedingNumber: string;
-  href?: string | null;
-  fileUrl?: string | null;
-  disabled?: boolean;
 }
 
 export const PracticeCard: React.FC<PracticeCardProps> = ({
   className,
   city,
-  href,
+  description,
   title,
   caseNumber,
   proceedingNumber,
-  fileUrl,
-  disabled,
 }) => (
   <div
     className={cn(
@@ -40,35 +34,12 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
         Номер провадження {proceedingNumber}
       </span>
 
-      <div className="flex flex-col md:flex-row gap-5 mt-5">
-        {href && (
-          <Button
-            href={href}
-            className="!w-full md:!w-fit"
-            color="secondary"
-            variant="outlined-dark"
-            size="sm"
-            target="_blank"
-            disabled={disabled}
-          >
-            Рішення в ЄРДСР
-          </Button>
-        )}
-
-        {fileUrl && (
-          <Button
-            href={fileUrl}
-            className="!w-full md:!w-fit"
-            target="_blank"
-            size="sm"
-            color="secondary"
-            variant="filled"
-            disabled={disabled}
-          >
-            PDF
-          </Button>
-        )}
-      </div>
+      <span
+        className="text-secondary-dark mt-5 line-clamp-2"
+        dangerouslySetInnerHTML={{
+          __html: description,
+        }}
+      ></span>
     </div>
   </div>
 );

@@ -1,5 +1,6 @@
 export { ServiceForm } from "./ui/ServiceForm";
 export { ServiceFormSchema } from "./model/service.validation";
+export { ServicePracticesBlock } from "./ui/ServicePractices";
 export {
   ServiceSchema,
   ServiceWithPracticesSchema,

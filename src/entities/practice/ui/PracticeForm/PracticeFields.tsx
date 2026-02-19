@@ -1,6 +1,7 @@
 import { SelectOption } from "@shared/ui/base/Select";
 import { CheckboxField } from "@shared/ui/fields/CheckboxField";
 import { FileUploaderField } from "@shared/ui/fields/FileUploaderField";
+import { RichTextField } from "@shared/ui/fields/RichTextField";
 import { SelectField } from "@shared/ui/fields/SelectField";
 import { TextField } from "@shared/ui/fields/TextField";
 
@@ -16,6 +17,7 @@ export const PracticeFields: React.FC<PracticeFieldsProps> = ({
   <div className="flex flex-col gap-5">
     <div className="flex flex-col gap-5 bg-secondary-light p-5">
       <TextField name="title" label="Заголовок" />
+      <RichTextField name="description" label="Oпис" />
 
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="flex flex-col gap-5">

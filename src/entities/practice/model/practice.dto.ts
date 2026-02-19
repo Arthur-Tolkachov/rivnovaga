@@ -2,6 +2,7 @@ import z from "zod";
 
 export const PracticeDTOSchema = z.object({
   title: z.string().min(1, "Це обов`язкове поле"),
+  description: z.string().min(1, "Це обов`язкове поле"),
   city: z.string().min(1, "Це обов`язкове поле"),
   caseNumber: z.string().min(1, "Це обов`язкове поле"),
   proceedingNumber: z.string().min(1, "Це обов`язкове поле"),
