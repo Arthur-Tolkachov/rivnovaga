@@ -43,19 +43,15 @@ export const PracticeCategoryPage: React.FC<PracticeCategoryPageProps> = ({
               const href = `/practice/${category.slug}/${practice.slug}`;
 
               return (
-                <Link
-                  href={href}
+                <PracticeCard
                   key={practice.id}
-                  className="opacity-90 hover:opacity-100 duration-200"
-                >
-                  <PracticeCard
-                    caseNumber={practice.caseNumber}
-                    city={practice.city}
-                    proceedingNumber={practice.proceedingNumber}
-                    title={practice.title}
-                    description={practice.description}
-                  />
-                </Link>
+                  caseNumber={practice.caseNumber}
+                  city={practice.city}
+                  proceedingNumber={practice.proceedingNumber}
+                  title={practice.title}
+                  description={practice.description}
+                  href={href}
+                />
               );
             })
           ) : (

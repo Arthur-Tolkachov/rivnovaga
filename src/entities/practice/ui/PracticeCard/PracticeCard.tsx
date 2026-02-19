@@ -1,5 +1,7 @@
 import cn from "classnames";
 
+import { Button } from "@shared/ui/base/Button";
+
 export interface PracticeCardProps {
   className?: string;
   title: string;
@@ -7,6 +9,7 @@ export interface PracticeCardProps {
   city: string;
   caseNumber: string;
   proceedingNumber: string;
+  href?: string;
 }
 
 export const PracticeCard: React.FC<PracticeCardProps> = ({
@@ -16,6 +19,7 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
   title,
   caseNumber,
   proceedingNumber,
+  href,
 }) => (
   <div
     className={cn(
@@ -27,19 +31,27 @@ export const PracticeCard: React.FC<PracticeCardProps> = ({
 
     <h3 className="text-secondary-darker line-clamp-3">{title}</h3>
 
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-5">
       <span className="text-secondary-dark">Номер справи {caseNumber}</span>
 
       <span className="text-secondary-dark">
         Номер провадження {proceedingNumber}
       </span>
 
-      <span
-        className="text-secondary-dark mt-5 line-clamp-2"
-        dangerouslySetInnerHTML={{
-          __html: description,
-        }}
-      ></span>
+      {description && (
+        <span
+          className="text-secondary-dark line-clamp-2"
+          dangerouslySetInnerHTML={{
+            __html: description,
+          }}
+        ></span>
+      )}
+
+      {href && (
+        <Button href={href} size="sm" color="secondary">
+          Детальнiше
+        </Button>
+      )}
     </div>
   </div>
 );

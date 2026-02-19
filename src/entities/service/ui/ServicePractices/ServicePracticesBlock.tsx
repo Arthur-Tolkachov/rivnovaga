@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { PracticeCard, PracticeModel } from "@entity/practice";
 
 interface ServicePracticesBlockProps {
@@ -23,15 +21,15 @@ export const ServicePracticesBlock: React.FC<ServicePracticesBlockProps> = ({
             const href = `/practice/${practice.categories[0]}/${practice.slug}`;
 
             return (
-              <Link key={practice.id} href={href}>
-                <PracticeCard
-                  caseNumber={practice.caseNumber}
-                  city={practice.city}
-                  proceedingNumber={practice.proceedingNumber}
-                  title={practice.title}
-                  description={practice.description}
-                />
-              </Link>
+              <PracticeCard
+                key={practice.id}
+                caseNumber={practice.caseNumber}
+                city={practice.city}
+                proceedingNumber={practice.proceedingNumber}
+                title={practice.title}
+                description={practice.description}
+                href={href}
+              />
             );
           })}
         </div>

@@ -8,10 +8,6 @@ import { Container } from "@shared/ui/base/Container";
 import { MainSection } from "@shared/ui/base/MainSection";
 import { BreadCrumbs } from "@shared/ui/composite/BreadCrumbs";
 
-const PracticeCard = dynamic(() =>
-  import("@entity/practice").then((mod) => mod.PracticeCard),
-);
-
 const SendMessageForm = dynamic(() =>
   import("@features/contactUs/SendMessage").then((mod) => mod.SendMessageForm),
 );
@@ -82,9 +78,9 @@ export const PracticePage: React.FC<PracticePageProps> = ({
               </Button>
             )}
 
-            {practice.url && (
+            {practice.file && (
               <Button
-                href={practice.url}
+                href={practice.file.url}
                 className="!w-full md:!w-fit"
                 target="_blank"
                 size="sm"
